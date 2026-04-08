@@ -7,6 +7,9 @@ interface Node {
   vy: number
   baseX: number
   baseY: number
+  size: number
+  pulse: number
+  pulseSpeed: number
 }
 
 export default function NeuralBg() {
@@ -23,10 +26,11 @@ export default function NeuralBg() {
     let mouseX = 0
     let mouseY = 0
     let nodes: Node[] = []
+    let time = 0
 
-    const NODE_COUNT = 60
-    const CONNECT_DIST = 180
-    const PARALLAX_STRENGTH = 15
+    const NODE_COUNT = 75
+    const CONNECT_DIST = 200
+    const PARALLAX_STRENGTH = 18
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -43,8 +47,11 @@ export default function NeuralBg() {
           x, y,
           baseX: x,
           baseY: y,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          size: 1.5 + Math.random() * 1.5,
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpeed: 0.008 + Math.random() * 0.012,
         })
       }
     }
@@ -55,22 +62,21 @@ export default function NeuralBg() {
     }
 
     const draw = () => {
+      time++
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Update nodes
       for (const node of nodes) {
         node.baseX += node.vx
         node.baseY += node.vy
+        node.pulse += node.pulseSpeed
 
-        // Bounce off edges
         if (node.baseX < 0 || node.baseX > canvas.width) node.vx *= -1
         if (node.baseY < 0 || node.baseY > canvas.height) node.vy *= -1
 
-        // Clamp
         node.baseX = Math.max(0, Math.min(canvas.width, node.baseX))
         node.baseY = Math.max(0, Math.min(canvas.height, node.baseY))
 
-        // Parallax offset
         node.x = node.baseX + mouseX * PARALLAX_STRENGTH
         node.y = node.baseY + mouseY * PARALLAX_STRENGTH
       }
@@ -83,12 +89,14 @@ export default function NeuralBg() {
           const dist = Math.sqrt(dx * dx + dy * dy)
 
           if (dist < CONNECT_DIST) {
-            const opacity = (1 - dist / CONNECT_DIST) * 0.12
+            const strength = 1 - dist / CONNECT_DIST
+            const opacity = strength * 0.35
+
             ctx.beginPath()
             ctx.moveTo(nodes[i].x, nodes[i].y)
             ctx.lineTo(nodes[j].x, nodes[j].y)
-            ctx.strokeStyle = `rgba(0, 229, 255, ${opacity})`
-            ctx.lineWidth = 0.8
+            ctx.strokeStyle = `rgba(0, 240, 255, ${opacity})`
+            ctx.lineWidth = strength * 1.2
             ctx.stroke()
           }
         }
@@ -96,15 +104,25 @@ export default function NeuralBg() {
 
       // Draw nodes
       for (const node of nodes) {
+        const pulseScale = 0.7 + Math.sin(node.pulse) * 0.3
+        const size = node.size * pulseScale
+
+        // Outer glow
+        const gradient = ctx.createRadialGradient(
+          node.x, node.y, 0,
+          node.x, node.y, size * 6
+        )
+        gradient.addColorStop(0, 'rgba(0, 240, 255, 0.12)')
+        gradient.addColorStop(1, 'rgba(0, 240, 255, 0)')
         ctx.beginPath()
-        ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(0, 229, 255, 0.15)'
+        ctx.arc(node.x, node.y, size * 6, 0, Math.PI * 2)
+        ctx.fillStyle = gradient
         ctx.fill()
 
-        // Glow
+        // Core
         ctx.beginPath()
-        ctx.arc(node.x, node.y, 4, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(0, 229, 255, 0.04)'
+        ctx.arc(node.x, node.y, size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(0, 240, 255, ${0.4 + Math.sin(node.pulse) * 0.15})`
         ctx.fill()
       }
 
