@@ -130,131 +130,44 @@ nav {
 
 /* ===================== HERO ===================== */
 .hero {
-  min-height: 100vh;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, #030610 50%, var(--bg) 100%);
+}
+
+/* Text overlay — left side, on top of canvas */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 64px;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--bg) 0%, #040812 50%, var(--bg) 100%);
+  padding: 0 clamp(32px, 5vw, 80px);
+  max-width: 600px;
+  pointer-events: none;
 }
 
-.hero::after {
-  content: '';
+.hero-overlay > * {
+  pointer-events: auto;
+}
+
+/* Bottom fade into next section */
+.hero-fade {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
   background: linear-gradient(to top, var(--bg), transparent);
   pointer-events: none;
-  z-index: 3;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 0.48fr 1fr;
-  align-items: center;
-  gap: 0;
-  min-height: calc(100vh - 64px);
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 40px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 3;
-}
-
-/* Brain visual container — full hero height, dominant */
-.hero-visual {
-  position: relative;
-  width: 100%;
-  height: calc(100vh - 64px);
-  min-height: 550px;
-  z-index: 1;
-}
-
-/* glow is handled inside Three.js scene */
-
-/* Data overlays around brain */
-.data-overlays {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.do-card {
-  position: absolute;
-  background: rgba(10,14,28,0.85);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  padding: 10px 14px;
-  backdrop-filter: blur(12px);
-  animation: float 6s ease-in-out infinite;
-  transition: border-color 0.3s;
-}
-.do-card:hover { border-color: var(--border-hover); }
-
-.do-pos-tl { top: 10%; left: 5%; animation-delay: 0s; }
-.do-pos-tr { top: 12%; right: 8%; animation-delay: 1.5s; }
-.do-pos-bl { bottom: 16%; left: 8%; animation-delay: 3s; }
-.do-pos-br { bottom: 14%; right: 5%; animation-delay: 0.8s; }
-.do-pos-mr { top: 50%; right: 2%; transform: translateY(-50%); animation-delay: 2s; }
-
-.do-label {
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-
-.do-num {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-  display: block;
-  line-height: 1.2;
-}
-
-.do-tag {
-  font-size: 0.5rem;
-  color: var(--muted2);
-  margin-top: 2px;
-}
-
-.do-bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 20px;
-  margin-top: 4px;
-}
-
-.do-bar {
-  width: 4px;
-  border-radius: 1px;
-  transition: height 0.6s ease;
-}
-
-/* SVG connecting lines */
-.do-lines {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-}
-.do-lines line {
-  stroke: rgba(0,200,255,0.06);
-  stroke-width: 0.3;
-  stroke-dasharray: 4 4;
+  z-index: 5;
 }
 
 .hero-badge {
@@ -1211,9 +1124,7 @@ footer {
 @media (max-width: 1024px) {
   .container { padding: 0 28px; }
   nav { padding: 0 28px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; padding-top: 32px; }
-  .hero-visual { height: 400px; }
-  .do-card { display: none; }
+  .hero-overlay { max-width: 100%; padding: 80px 28px 0; }
   .trust-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .apps-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }

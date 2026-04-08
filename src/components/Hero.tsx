@@ -1,38 +1,37 @@
 import NeuralBrain3D from './NeuralBrain3D'
-import DataOverlays from './DataOverlays'
 
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="hero-inner">
-        <div className="hero-text">
-          <div className="hero-badge">
-            <span className="badge-dot" />
-            AI-Powered Platform
-          </div>
+      {/* Full-screen Three.js canvas */}
+      <NeuralBrain3D />
 
-          <h1 className="hero-h1">
-            AI-powered apps<br />
-            built for{' '}
-            <span className="text-gradient">real&nbsp;people.</span>
-          </h1>
-
-          <p className="hero-p">
-            Smart health tracking, AI coaching with memory, and real-time
-            analytics — designed, built, and shipped by a solo developer.
-          </p>
-
-          <div className="hero-actions">
-            <a href="#apps" className="btn-primary">Explore apps</a>
-            <a href="#about" className="btn-ghost">Learn more</a>
-          </div>
+      {/* Text overlay — left side, on top of canvas */}
+      <div className="hero-overlay">
+        <div className="hero-badge">
+          <span className="badge-dot" />
+          AI-Powered Platform
         </div>
 
-        <div className="hero-visual">
-          <NeuralBrain3D />
-          <DataOverlays />
+        <h1 className="hero-h1">
+          AI-powered apps<br />
+          built for{' '}
+          <span className="text-gradient">real&nbsp;people.</span>
+        </h1>
+
+        <p className="hero-p">
+          Smart health tracking, AI coaching with memory, and real-time
+          analytics — designed, built, and shipped by a solo developer.
+        </p>
+
+        <div className="hero-actions">
+          <a href="#apps" className="btn-primary">Explore apps</a>
+          <a href="#about" className="btn-ghost">Learn more</a>
         </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="hero-fade" />
     </section>
   )
 }

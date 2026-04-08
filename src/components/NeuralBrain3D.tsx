@@ -1,17 +1,20 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-/**
- * 3D Neural Brain — anatomically recognizable abstract brain
- * built from nodes + connections using Three.js WebGL.
- *
- * Shape: SDF-based brain volume with two hemispheres,
- * temporal lobes, frontal bulge, occipital taper, cerebellum,
- * and brain stem. Points are rejection-sampled inside this
- * volume with density bias toward the cortical surface.
- */
+/* ============================================================
+   FULL-SCREEN 3D Neural Brain — Three.js WebGL
+   
+   - Canvas fills entire hero viewport
+   - Brain positioned center-right, large scale
+   - SDF-based anatomical shape (two hemispheres)
+   - 3 depth layers with parallax
+   - FOV 70 for strong perspective
+   - Foreground: big + bright / Background: small + dim
+   - Pulse signals along connections
+   - Clean, minimal glow
+   ============================================================ */
 
-// ---- Signed-distance helpers ----
+// ---- SDF helpers ----
 function sdEllipsoid(px: number, py: number, pz: number, rx: number, ry: number, rz: number): number {
   const k = Math.sqrt((px * px) / (rx * rx) + (py * py) / (ry * ry) + (pz * pz) / (rz * rz))
   return (k - 1.0) * Math.min(rx, ry, rz)
@@ -22,111 +25,90 @@ function smoothMin(a: number, b: number, k: number): number {
   return Math.min(a, b) - h * h * h * k / 6
 }
 
-// Brain SDF: returns negative if inside, positive outside
+// Brain SDF — negative = inside
 function brainSDF(x: number, y: number, z: number): number {
-  // Cerebrum — main mass, two hemispheres
-  // Right hemisphere (x > 0)
-  const rh = sdEllipsoid(x - 0.55, y - 0.1, z + 0.1, 1.15, 1.05, 1.35)
-  // Left hemisphere (x < 0)
-  const lh = sdEllipsoid(x + 0.55, y - 0.1, z + 0.1, 1.15, 1.05, 1.35)
-  let d = smoothMin(rh, lh, 0.6)
+  // Two hemispheres
+  const rh = sdEllipsoid(x - 0.55, y - 0.05, z + 0.1, 1.2, 1.1, 1.4)
+  const lh = sdEllipsoid(x + 0.55, y - 0.05, z + 0.1, 1.2, 1.1, 1.4)
+  let d = smoothMin(rh, lh, 0.65)
 
-  // Frontal lobe bulge (front, slightly up)
-  const frontal = sdEllipsoid(x, y + 0.15, z + 1.1, 0.85, 0.7, 0.6)
+  // Frontal lobe
+  const frontal = sdEllipsoid(x, y + 0.2, z + 1.15, 0.9, 0.75, 0.65)
   d = smoothMin(d, frontal, 0.5)
 
-  // Temporal lobes (sides, lower)
-  const tempR = sdEllipsoid(x - 1.0, y - 0.5, z + 0.4, 0.55, 0.45, 0.75)
-  const tempL = sdEllipsoid(x + 1.0, y - 0.5, z + 0.4, 0.55, 0.45, 0.75)
+  // Temporal lobes
+  const tempR = sdEllipsoid(x - 1.05, y - 0.5, z + 0.35, 0.6, 0.5, 0.8)
+  const tempL = sdEllipsoid(x + 1.05, y - 0.5, z + 0.35, 0.6, 0.5, 0.8)
   d = smoothMin(d, tempR, 0.4)
   d = smoothMin(d, tempL, 0.4)
 
-  // Occipital (back)
-  const occipital = sdEllipsoid(x, y + 0.0, z - 1.1, 0.7, 0.65, 0.55)
+  // Occipital
+  const occipital = sdEllipsoid(x, y + 0.05, z - 1.15, 0.75, 0.7, 0.6)
   d = smoothMin(d, occipital, 0.5)
 
-  // Cerebellum (below and back)
-  const cerebR = sdEllipsoid(x - 0.35, y - 0.85, z - 0.7, 0.55, 0.35, 0.45)
-  const cerebL = sdEllipsoid(x + 0.35, y - 0.85, z - 0.7, 0.55, 0.35, 0.45)
+  // Cerebellum
+  const cerebR = sdEllipsoid(x - 0.38, y - 0.9, z - 0.75, 0.6, 0.38, 0.5)
+  const cerebL = sdEllipsoid(x + 0.38, y - 0.9, z - 0.75, 0.6, 0.38, 0.5)
   d = smoothMin(d, cerebR, 0.25)
   d = smoothMin(d, cerebL, 0.25)
 
-  // Brain stem (cylinder going down)
+  // Brain stem
   const stemR = Math.sqrt(x * x + (z + 0.3) * (z + 0.3))
-  const stem = Math.max(stemR - 0.2, -(y + 0.7), y + 1.6)
+  const stem = Math.max(stemR - 0.22, -(y + 0.7), y + 1.7)
   d = smoothMin(d, stem, 0.3)
 
-  // Interhemispheric fissure — shallow groove on top
-  const fissure = Math.max(-Math.abs(x) + 0.06, -(y - 0.3))
-  d = Math.max(d, -fissure * 0.15)
+  // Interhemispheric fissure
+  const fissure = Math.max(-Math.abs(x) + 0.07, -(y - 0.35))
+  d = Math.max(d, -fissure * 0.18)
 
   return d
 }
 
 interface BrainNode {
   pos: THREE.Vector3
-  depth: number
-  layer: 0 | 1 | 2
-  region: number // cluster id for connection logic
+  depth: number      // 0=far, 1=near
+  layer: 0 | 1 | 2  // back, mid, front
+  region: number
 }
 
-function generateBrainNodes(count: number): BrainNode[] {
+const REGIONS = [
+  { c: [0.55, 0.0, 0.1], id: 0 },
+  { c: [-0.55, 0.0, 0.1], id: 1 },
+  { c: [0.0, 0.2, 1.0], id: 2 },
+  { c: [1.05, -0.5, 0.35], id: 3 },
+  { c: [-1.05, -0.5, 0.35], id: 4 },
+  { c: [0.0, 0.05, -1.1], id: 5 },
+  { c: [0.0, -0.9, -0.75], id: 6 },
+  { c: [0.0, -1.2, -0.3], id: 7 },
+]
+
+function generateNodes(count: number): BrainNode[] {
   const nodes: BrainNode[] = []
   let attempts = 0
-
-  // Region centers for clustering
-  const regions = [
-    { c: [0.55, 0.0, 0.1], id: 0 },    // right hemisphere
-    { c: [-0.55, 0.0, 0.1], id: 1 },   // left hemisphere
-    { c: [0.0, 0.15, 1.0], id: 2 },     // frontal
-    { c: [1.0, -0.5, 0.4], id: 3 },     // right temporal
-    { c: [-1.0, -0.5, 0.4], id: 4 },    // left temporal
-    { c: [0.0, 0.0, -1.0], id: 5 },     // occipital
-    { c: [0.0, -0.85, -0.7], id: 6 },   // cerebellum
-    { c: [0.0, -1.2, -0.3], id: 7 },    // brain stem
-  ]
-
-  while (nodes.length < count && attempts < 50000) {
+  while (nodes.length < count && attempts < 80000) {
     attempts++
-    const x = (Math.random() - 0.5) * 4.0
-    const y = (Math.random() - 0.5) * 4.0
-    const z = (Math.random() - 0.5) * 4.0
-
+    const x = (Math.random() - 0.5) * 4.2
+    const y = (Math.random() - 0.5) * 4.2
+    const z = (Math.random() - 0.5) * 4.2
     const sdf = brainSDF(x, y, z)
     if (sdf > 0) continue
+    // Surface bias: thin out deep interior
+    if (Math.abs(sdf) > 0.35 && Math.random() < 0.6) continue
 
-    // Bias toward cortical surface: higher density near surface (sdf close to 0)
-    const surfaceBias = Math.abs(sdf)
-    if (surfaceBias > 0.3 && Math.random() < 0.65) continue // thin out deep interior
+    const depth = Math.max(0, Math.min(1, (z + 2.0) / 4.0))
+    const layer: 0 | 1 | 2 = depth < 0.33 ? 0 : depth < 0.66 ? 1 : 2
 
-    // Depth for camera: z maps to depth (positive z = closer)
-    const depth = (z + 2.0) / 4.0
-    const clamped = Math.max(0, Math.min(1, depth))
-    const layer: 0 | 1 | 2 = clamped < 0.33 ? 0 : clamped < 0.66 ? 1 : 2
-
-    // Find nearest region
-    let minDist = Infinity
-    let region = 0
-    for (const r of regions) {
-      const d = Math.sqrt(
-        (x - r.c[0]) ** 2 + (y - r.c[1]) ** 2 + (z - r.c[2]) ** 2
-      )
-      if (d < minDist) { minDist = d; region = r.id }
+    let minD = Infinity, region = 0
+    for (const r of REGIONS) {
+      const d = Math.sqrt((x - r.c[0]) ** 2 + (y - r.c[1]) ** 2 + (z - r.c[2]) ** 2)
+      if (d < minD) { minD = d; region = r.id }
     }
-
-    nodes.push({ pos: new THREE.Vector3(x, y, z), depth: clamped, layer, region })
+    nodes.push({ pos: new THREE.Vector3(x, y, z), depth, layer, region })
   }
-
   return nodes
 }
 
-// Pulse signal data
-interface Pulse {
-  fromIdx: number
-  toIdx: number
-  progress: number  // 0..1
-  speed: number
-}
+interface Pulse { connIdx: number; progress: number; speed: number }
 
 export default function NeuralBrain3D() {
   const mountRef = useRef<HTMLDivElement>(null)
@@ -137,10 +119,14 @@ export default function NeuralBrain3D() {
 
     let W = el.clientWidth
     let H = el.clientHeight
+    if (W === 0 || H === 0) return
 
+    // ---- Scene ----
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(68, W / H, 0.1, 100)
-    camera.position.set(0, 0.2, 4.2)
+    const camera = new THREE.PerspectiveCamera(70, W / H, 0.1, 100)
+    // Brain center-right: offset camera slightly left so brain appears right-of-center
+    camera.position.set(-0.6, 0.15, 4.0)
+    camera.lookAt(0.4, 0, 0)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.setSize(W, H)
@@ -148,52 +134,55 @@ export default function NeuralBrain3D() {
     renderer.setClearColor(0x000000, 0)
     el.appendChild(renderer.domElement)
 
-    // 3 parallax groups
+    // ---- Groups ----
+    const brainPivot = new THREE.Group()
+    // Shift brain to right-center of screen
+    brainPivot.position.set(0.8, -0.1, 0)
+    // Scale brain up — large and immersive
+    brainPivot.scale.setScalar(1.35)
+
     const backGroup = new THREE.Group()
     const midGroup = new THREE.Group()
     const frontGroup = new THREE.Group()
-    const brainPivot = new THREE.Group()
     brainPivot.add(backGroup, midGroup, frontGroup)
     scene.add(brainPivot)
 
-    // Generate nodes
-    const nodes = generateBrainNodes(260)
+    // ---- Nodes ----
+    const nodes = generateNodes(300)
     const backNodes = nodes.filter(n => n.layer === 0)
     const midNodes = nodes.filter(n => n.layer === 1)
     const frontNodes = nodes.filter(n => n.layer === 2)
 
-    // ---- Build layer ----
+    // ---- Build layer function ----
     function buildLayer(
       group: THREE.Group,
       layerNodes: BrainNode[],
-      sizeMin: number, sizeMax: number,
-      alphaMin: number, alphaMax: number,
+      sizeRange: [number, number],
+      alphaRange: [number, number],
       linkDist: number,
-      colorFar: [number, number, number],
-      colorNear: [number, number, number],
+      colorFar: string,
+      colorNear: string,
     ) {
       if (!layerNodes.length) return
 
-      const geo = new THREE.BufferGeometry()
-      const pos = new Float32Array(layerNodes.length * 3)
-      const sizes = new Float32Array(layerNodes.length)
-      const alphas = new Float32Array(layerNodes.length)
-      const depths = new Float32Array(layerNodes.length)
+      const count = layerNodes.length
+      const pos = new Float32Array(count * 3)
+      const sizes = new Float32Array(count)
+      const alphas = new Float32Array(count)
+      const depths = new Float32Array(count)
 
       layerNodes.forEach((n, i) => {
         pos[i * 3] = n.pos.x; pos[i * 3 + 1] = n.pos.y; pos[i * 3 + 2] = n.pos.z
-        sizes[i] = sizeMin + n.depth * (sizeMax - sizeMin)
-        alphas[i] = alphaMin + n.depth * (alphaMax - alphaMin)
+        sizes[i] = sizeRange[0] + n.depth * (sizeRange[1] - sizeRange[0])
+        alphas[i] = alphaRange[0] + n.depth * (alphaRange[1] - alphaRange[0])
         depths[i] = n.depth
       })
 
+      const geo = new THREE.BufferGeometry()
       geo.setAttribute('position', new THREE.BufferAttribute(pos, 3))
       geo.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1))
       geo.setAttribute('aAlpha', new THREE.BufferAttribute(alphas, 1))
       geo.setAttribute('aDepth', new THREE.BufferAttribute(depths, 1))
-
-      const cF = `vec3(${colorFar[0]}, ${colorFar[1]}, ${colorFar[2]})`
-      const cN = `vec3(${colorNear[0]}, ${colorNear[1]}, ${colorNear[2]})`
 
       const mat = new THREE.ShaderMaterial({
         transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
@@ -205,10 +194,10 @@ export default function NeuralBrain3D() {
           void main() {
             vAlpha = aAlpha; vDepth = aDepth;
             vec3 p = position;
-            p += sin(uTime * 0.6 + p.x * 2.5 + p.y * 1.8 + p.z * 1.3) * 0.015;
+            p += sin(uTime * 0.5 + p.x * 2.5 + p.y * 1.8 + p.z * 1.3) * 0.018;
             vec4 mv = modelViewMatrix * vec4(p, 1.0);
             gl_Position = projectionMatrix * mv;
-            gl_PointSize = aSize * 480.0 * uPR * (1.0 / -mv.z);
+            gl_PointSize = aSize * 520.0 * uPR * (1.0 / -mv.z);
           }
         `,
         fragmentShader: `
@@ -216,36 +205,35 @@ export default function NeuralBrain3D() {
           void main() {
             float d = length(gl_PointCoord - 0.5) * 2.0;
             if (d > 1.0) discard;
-            float core = smoothstep(0.45, 0.0, d);
-            float glow = pow(max(1.0 - d, 0.0), 2.5) * 0.3;
-            vec3 col = mix(${cF}, ${cN}, vDepth);
+            float core = smoothstep(0.4, 0.0, d);
+            float glow = pow(max(1.0 - d, 0.0), 2.8) * 0.25;
+            vec3 colFar = ${colorFar};
+            vec3 colNear = ${colorNear};
+            vec3 col = mix(colFar, colNear, vDepth);
             gl_FragColor = vec4(col, (core + glow) * vAlpha);
           }
         `,
       })
-
       group.add(new THREE.Points(geo, mat))
 
-      // Lines — only connect within same region or adjacent regions
+      // ---- Connections ----
       const lPos: number[] = []
       const lAlpha: number[] = []
       for (let i = 0; i < layerNodes.length; i++) {
         for (let j = i + 1; j < layerNodes.length; j++) {
           const dist = layerNodes[i].pos.distanceTo(layerNodes[j].pos)
           if (dist > linkDist) continue
-          // Same region or adjacent region (id diff ≤ 2)
           const rDiff = Math.abs(layerNodes[i].region - layerNodes[j].region)
-          if (rDiff > 2 && Math.random() > 0.08) continue
+          if (rDiff > 2 && Math.random() > 0.06) continue
           lPos.push(
             layerNodes[i].pos.x, layerNodes[i].pos.y, layerNodes[i].pos.z,
-            layerNodes[j].pos.x, layerNodes[j].pos.y, layerNodes[j].pos.z
+            layerNodes[j].pos.x, layerNodes[j].pos.y, layerNodes[j].pos.z,
           )
           const avg = (layerNodes[i].depth + layerNodes[j].depth) / 2
-          const a = (1 - dist / linkDist) * (alphaMin + avg * (alphaMax - alphaMin)) * 0.5
+          const a = (1 - dist / linkDist) * (alphaRange[0] + avg * (alphaRange[1] - alphaRange[0])) * 0.45
           lAlpha.push(a, a)
         }
       }
-
       if (lPos.length) {
         const lGeo = new THREE.BufferGeometry()
         lGeo.setAttribute('position', new THREE.Float32BufferAttribute(lPos, 3))
@@ -257,44 +245,41 @@ export default function NeuralBrain3D() {
             attribute float aAlpha; varying float vA; uniform float uTime;
             void main() {
               vA = aAlpha;
-              vec3 p = position + sin(uTime * 0.4 + position.x * 3.0) * 0.012;
+              vec3 p = position + sin(uTime * 0.35 + position.x * 3.0) * 0.01;
               gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
             }
           `,
-          fragmentShader: `
-            varying float vA;
-            void main() { gl_FragColor = vec4(0.1, 0.7, 1.0, vA); }
-          `,
+          fragmentShader: `varying float vA; void main() { gl_FragColor = vec4(0.1, 0.7, 1.0, vA); }`,
         })
         group.add(new THREE.LineSegments(lGeo, lMat))
       }
     }
 
-    // Back: tiny, dim, deep blue
+    // Back layer: tiny, dim, deep blue
     buildLayer(backGroup, backNodes,
-      0.012, 0.028, 0.08, 0.2, 1.0,
-      [0.12, 0.15, 0.5], [0.18, 0.3, 0.7]
+      [0.01, 0.025], [0.06, 0.18], 1.0,
+      'vec3(0.1, 0.12, 0.45)', 'vec3(0.15, 0.25, 0.6)'
     )
-    // Mid: medium
+    // Mid layer: medium
     buildLayer(midGroup, midNodes,
-      0.03, 0.06, 0.25, 0.55, 0.85,
-      [0.08, 0.4, 0.85], [0.0, 0.6, 1.0]
+      [0.028, 0.058], [0.22, 0.5], 0.85,
+      'vec3(0.06, 0.35, 0.8)', 'vec3(0.0, 0.55, 1.0)'
     )
-    // Front: large, bright, cyan-white
+    // Front layer: large, bright, cyan-white
     buildLayer(frontGroup, frontNodes,
-      0.055, 0.11, 0.55, 1.0, 0.7,
-      [0.0, 0.65, 1.0], [0.5, 0.92, 1.0]
+      [0.05, 0.12], [0.5, 1.0], 0.7,
+      'vec3(0.0, 0.6, 1.0)', 'vec3(0.55, 0.95, 1.0)'
     )
 
-    // Cross-layer connections (sparse: mid↔front)
+    // ---- Cross-layer connections (sparse mid↔front) ----
     const crossPos: number[] = []
     const crossAlpha: number[] = []
     for (const m of midNodes) {
       for (const f of frontNodes) {
         const d = m.pos.distanceTo(f.pos)
-        if (d < 0.8 && Math.random() < 0.15) {
+        if (d < 0.75 && Math.random() < 0.12) {
           crossPos.push(m.pos.x, m.pos.y, m.pos.z, f.pos.x, f.pos.y, f.pos.z)
-          const a = (1 - d / 0.8) * 0.12
+          const a = (1 - d / 0.75) * 0.1
           crossAlpha.push(a, a)
         }
       }
@@ -306,41 +291,37 @@ export default function NeuralBrain3D() {
       const cMat = new THREE.ShaderMaterial({
         transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
         vertexShader: `attribute float aAlpha; varying float vA; void main() { vA = aAlpha; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-        fragmentShader: `varying float vA; void main() { gl_FragColor = vec4(0.0, 0.72, 1.0, vA); }`,
+        fragmentShader: `varying float vA; void main() { gl_FragColor = vec4(0.0, 0.7, 1.0, vA); }`,
       })
       midGroup.add(new THREE.LineSegments(cGeo, cMat))
     }
 
     // ---- PULSE SIGNALS ----
-    // Small bright dots that travel along connections suggesting neural activity
-    const allConnections: { from: THREE.Vector3; to: THREE.Vector3 }[] = []
-    const allNodesFlat = [...midNodes, ...frontNodes]
-    for (let i = 0; i < allNodesFlat.length; i++) {
-      for (let j = i + 1; j < allNodesFlat.length; j++) {
-        const d = allNodesFlat[i].pos.distanceTo(allNodesFlat[j].pos)
-        if (d < 0.9) {
-          allConnections.push({ from: allNodesFlat[i].pos, to: allNodesFlat[j].pos })
+    const allConns: { from: THREE.Vector3; to: THREE.Vector3 }[] = []
+    const activeLayers = [...midNodes, ...frontNodes]
+    for (let i = 0; i < activeLayers.length; i++) {
+      for (let j = i + 1; j < activeLayers.length; j++) {
+        if (activeLayers[i].pos.distanceTo(activeLayers[j].pos) < 0.9) {
+          allConns.push({ from: activeLayers[i].pos, to: activeLayers[j].pos })
         }
       }
     }
 
-    const MAX_PULSES = 18
+    const NUM_PULSES = 22
     const pulses: Pulse[] = []
-    for (let i = 0; i < MAX_PULSES; i++) {
-      const idx = Math.floor(Math.random() * allConnections.length)
+    for (let i = 0; i < NUM_PULSES; i++) {
       pulses.push({
-        fromIdx: idx,
-        toIdx: idx,
+        connIdx: Math.floor(Math.random() * Math.max(1, allConns.length)),
         progress: Math.random(),
-        speed: 0.3 + Math.random() * 0.5,
+        speed: 0.25 + Math.random() * 0.55,
       })
     }
 
     const pulseGeo = new THREE.BufferGeometry()
-    const pulsePos = new Float32Array(MAX_PULSES * 3)
-    const pulseAlphas = new Float32Array(MAX_PULSES)
-    pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePos, 3))
-    pulseGeo.setAttribute('aAlpha', new THREE.BufferAttribute(pulseAlphas, 1))
+    const pPos = new Float32Array(NUM_PULSES * 3)
+    const pAlpha = new Float32Array(NUM_PULSES)
+    pulseGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3))
+    pulseGeo.setAttribute('aAlpha', new THREE.BufferAttribute(pAlpha, 1))
 
     const pulseMat = new THREE.ShaderMaterial({
       transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
@@ -351,7 +332,7 @@ export default function NeuralBrain3D() {
           vA = aAlpha;
           vec4 mv = modelViewMatrix * vec4(position, 1.0);
           gl_Position = projectionMatrix * mv;
-          gl_PointSize = 6.0 * uPR * (1.0 / -mv.z);
+          gl_PointSize = 7.0 * uPR * (1.0 / -mv.z);
         }
       `,
       fragmentShader: `
@@ -360,59 +341,61 @@ export default function NeuralBrain3D() {
           float d = length(gl_PointCoord - 0.5) * 2.0;
           if (d > 1.0) discard;
           float s = pow(1.0 - d, 3.0);
-          gl_FragColor = vec4(0.4, 0.95, 1.0, s * vA);
+          gl_FragColor = vec4(0.45, 0.95, 1.0, s * vA);
         }
       `,
     })
-    const pulsePoints = new THREE.Points(pulseGeo, pulseMat)
-    frontGroup.add(pulsePoints)
+    frontGroup.add(new THREE.Points(pulseGeo, pulseMat))
 
-    // Subtle central glow (very low opacity)
-    const glowC = document.createElement('canvas')
-    glowC.width = 128; glowC.height = 128
-    const gCtx = glowC.getContext('2d')!
-    const gGrad = gCtx.createRadialGradient(64, 64, 0, 64, 64, 64)
-    gGrad.addColorStop(0, 'rgba(0,150,255,0.06)')
-    gGrad.addColorStop(0.5, 'rgba(30,50,160,0.02)')
-    gGrad.addColorStop(1, 'rgba(0,0,0,0)')
-    gCtx.fillStyle = gGrad
-    gCtx.fillRect(0, 0, 128, 128)
-    const glowTex = new THREE.CanvasTexture(glowC)
+    // ---- Subtle ambient glow (very low) ----
+    const gc = document.createElement('canvas')
+    gc.width = 128; gc.height = 128
+    const gx = gc.getContext('2d')!
+    const grad = gx.createRadialGradient(64, 64, 0, 64, 64, 64)
+    grad.addColorStop(0, 'rgba(0,140,255,0.045)')
+    grad.addColorStop(0.5, 'rgba(25,40,150,0.015)')
+    grad.addColorStop(1, 'rgba(0,0,0,0)')
+    gx.fillStyle = grad
+    gx.fillRect(0, 0, 128, 128)
+    const glowTex = new THREE.CanvasTexture(gc)
     const glowSprite = new THREE.Sprite(new THREE.SpriteMaterial({
       map: glowTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false,
     }))
-    glowSprite.scale.set(6, 5, 1)
+    glowSprite.scale.set(7, 6, 1)
     glowSprite.position.set(0, -0.1, 0)
     midGroup.add(glowSprite)
 
-    // Mouse
+    // ---- Mouse tracking ----
     let tgtRX = 0, tgtRY = 0, curRX = 0, curRY = 0, mx = 0, my = 0
     const onMouse = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect()
-      mx = ((e.clientX - r.left) / W - 0.5) * 2
-      my = ((e.clientY - r.top) / H - 0.5) * 2
-      tgtRY = mx * 0.3
-      tgtRX = -my * 0.2
+      mx = (e.clientX / window.innerWidth - 0.5) * 2
+      my = (e.clientY / window.innerHeight - 0.5) * 2
+      tgtRY = mx * 0.25
+      tgtRX = -my * 0.15
     }
     window.addEventListener('mousemove', onMouse)
 
+    // ---- Resize ----
     const onResize = () => {
       W = el.clientWidth; H = el.clientHeight
+      if (W === 0 || H === 0) return
       camera.aspect = W / H
       camera.updateProjectionMatrix()
       renderer.setSize(W, H)
     }
     window.addEventListener('resize', onResize)
 
-    // Animate
+    // ---- Animation loop ----
     let time = 0
     const clock = new THREE.Clock()
+    let raf = 0
 
     const animate = () => {
+      raf = requestAnimationFrame(animate)
       const dt = clock.getDelta()
       time += dt
 
-      // Update uniforms
+      // Update shader uniforms
       ;[backGroup, midGroup, frontGroup].forEach(g => {
         g.children.forEach(c => {
           const m = (c as any).material
@@ -421,55 +404,55 @@ export default function NeuralBrain3D() {
       })
 
       // Smooth mouse
-      curRX += (tgtRX - curRX) * 0.035
-      curRY += (tgtRY - curRY) * 0.035
+      curRX += (tgtRX - curRX) * 0.03
+      curRY += (tgtRY - curRY) * 0.03
 
-      // Rotation
-      brainPivot.rotation.y = time * 0.04 + curRY
-      brainPivot.rotation.x = Math.sin(time * 0.1) * 0.03 + curRX
-      brainPivot.rotation.z = Math.sin(time * 0.07) * 0.01
+      // Slow auto-rotation + mouse
+      brainPivot.rotation.y = time * 0.035 + curRY
+      brainPivot.rotation.x = Math.sin(time * 0.08) * 0.025 + curRX
+      brainPivot.rotation.z = Math.sin(time * 0.06) * 0.008
 
-      // Layer parallax
-      backGroup.position.set(mx * 0.04, -my * 0.025, 0)
-      midGroup.position.set(mx * 0.12, -my * 0.08, 0)
-      frontGroup.position.set(mx * 0.3, -my * 0.2, 0)
+      // Parallax layers — foreground moves more
+      backGroup.position.set(mx * 0.03, -my * 0.02, 0)
+      midGroup.position.set(mx * 0.1, -my * 0.07, 0)
+      frontGroup.position.set(mx * 0.28, -my * 0.18, 0)
 
       // Breathing
-      brainPivot.scale.setScalar(1.0 + Math.sin(time * 0.35) * 0.01)
+      const baseScale = 1.35
+      brainPivot.scale.setScalar(baseScale + Math.sin(time * 0.3) * 0.012)
 
-      // Update pulses
-      const pPos = pulseGeo.attributes.position as THREE.BufferAttribute
-      const pAlpha = pulseGeo.attributes.aAlpha as THREE.BufferAttribute
+      // Pulse signals
+      const posAttr = pulseGeo.attributes.position as THREE.BufferAttribute
+      const alpAttr = pulseGeo.attributes.aAlpha as THREE.BufferAttribute
       for (let i = 0; i < pulses.length; i++) {
         const p = pulses[i]
         p.progress += dt * p.speed
         if (p.progress >= 1) {
           p.progress = 0
-          p.fromIdx = Math.floor(Math.random() * allConnections.length)
-          p.speed = 0.3 + Math.random() * 0.5
+          p.connIdx = Math.floor(Math.random() * Math.max(1, allConns.length))
+          p.speed = 0.25 + Math.random() * 0.55
         }
-        const conn = allConnections[p.fromIdx]
+        const conn = allConns[p.connIdx]
         if (conn) {
           const t = p.progress
-          pPos.setXYZ(i,
+          posAttr.setXYZ(i,
             conn.from.x + (conn.to.x - conn.from.x) * t,
             conn.from.y + (conn.to.y - conn.from.y) * t,
             conn.from.z + (conn.to.z - conn.from.z) * t,
           )
-          // Fade in/out
-          const fade = t < 0.2 ? t / 0.2 : t > 0.8 ? (1 - t) / 0.2 : 1
-          pAlpha.setX(i, fade * 0.9)
+          const fade = t < 0.15 ? t / 0.15 : t > 0.85 ? (1 - t) / 0.15 : 1
+          alpAttr.setX(i, fade * 0.85)
         }
       }
-      pPos.needsUpdate = true
-      pAlpha.needsUpdate = true
+      posAttr.needsUpdate = true
+      alpAttr.needsUpdate = true
 
       renderer.render(scene, camera)
-      requestAnimationFrame(animate)
     }
     animate()
 
     return () => {
+      cancelAnimationFrame(raf)
       window.removeEventListener('mousemove', onMouse)
       window.removeEventListener('resize', onResize)
       renderer.dispose()
@@ -478,6 +461,16 @@ export default function NeuralBrain3D() {
   }, [])
 
   return (
-    <div ref={mountRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+    <div
+      ref={mountRef}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1,
+      }}
+    />
   )
 }
