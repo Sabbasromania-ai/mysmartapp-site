@@ -16,9 +16,10 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
@@ -42,10 +43,10 @@ nav {
 }
 
 .logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
   font-size: 1.1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   text-decoration: none;
   color: var(--text);
   display: flex;
@@ -97,7 +98,7 @@ nav {
   padding: 8px 20px;
   background: var(--accent);
   color: #000;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   border-radius: 6px;
   transition: all 0.2s;
@@ -128,6 +129,7 @@ nav {
   padding: 6px 14px;
   border-radius: 100px;
   font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
@@ -144,11 +146,11 @@ nav {
 }
 
 .hero-h1 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
   margin-bottom: 24px;
   opacity: 0;
   animation: fadeUp 0.7s 0.25s forwards;
@@ -156,11 +158,11 @@ nav {
 
 .hero-h1 em {
   font-style: normal;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-weight: 500;
-  color: transparent;
+  color: rgba(255,255,255,0.4);
   -webkit-text-stroke: 1.5px rgba(255,255,255,0.8);
-  text-shadow: 0 0 8px rgba(255,255,255,0.15);
+  text-shadow: 0 0 12px rgba(255,255,255,0.1);
 }
 
 /* Fallback for browsers without text-stroke */
@@ -175,7 +177,7 @@ nav {
   position: relative;
   display: inline-block;
   color: var(--accent);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-weight: 700;
 }
 
@@ -198,8 +200,8 @@ nav {
 .hero-p {
   color: var(--muted2);
   font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.75;
+  font-weight: 400;
+  line-height: 1.8;
   max-width: 420px;
   margin-bottom: 40px;
   opacity: 0;
@@ -221,7 +223,7 @@ nav {
   padding: 13px 28px;
   background: var(--accent);
   color: #000;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.875rem;
   text-decoration: none;
   border-radius: 8px;
@@ -233,6 +235,7 @@ nav {
 .btn-link {
   color: var(--muted2);
   font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -290,7 +293,7 @@ nav {
 }
 
 .phone-header {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -309,7 +312,7 @@ nav {
 }
 
 .phone-stat-val {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--accent);
@@ -359,7 +362,7 @@ nav {
 
 .log-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 .log-text { font-size: 0.58rem; color: var(--muted2); }
-.log-val { margin-left: auto; font-size: 0.6rem; font-weight: 600; color: var(--text); }
+.log-val { margin-left: auto; font-size: 0.6rem; font-weight: 700; color: var(--text); }
 
 .float-card {
   position: absolute;
@@ -379,7 +382,7 @@ nav {
 }
 
 .fc-label { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.fc-value { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); margin-top: 2px; }
+.fc-value { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); margin-top: 2px; }
 
 /* HERO STRIP */
 .hero-strip {
@@ -403,28 +406,29 @@ nav {
 .strip-item:last-child { border-right: none; }
 
 .strip-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text);
   line-height: 1;
+  letter-spacing: 0.01em;
 }
 
 .strip-num sup { font-size: 0.9rem; color: var(--accent); }
-.strip-label { font-size: 0.75rem; color: var(--muted2); }
-.strip-sub { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+.strip-label { font-size: 0.75rem; color: var(--muted2); line-height: 1.5; }
+.strip-sub { font-size: 0.65rem; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
 /* SECTION COMMON */
 .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .eyebrow-line { width: 28px; height: 1px; background: var(--accent); }
-.eyebrow-text { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.eyebrow-text { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 
 .sec-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
   margin-bottom: 64px;
 }
 
@@ -472,14 +476,14 @@ nav {
 .app-row:hover { background: #0d1020; }
 .app-row:hover::before { transform: scaleY(1); }
 
-.app-row-num { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); text-align: center; }
+.app-row-num { font-family: 'Satoshi', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; color: var(--muted); text-align: center; }
 .app-row-icon { font-size: 2rem; margin-top: 8px; }
 
 .app-row-name {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Satoshi', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   margin-bottom: 6px;
   display: flex;
   align-items: center;
@@ -501,8 +505,8 @@ nav {
 .app-row-desc {
   font-size: 0.875rem;
   color: var(--muted2);
-  font-weight: 300;
-  line-height: 1.5;
+  font-weight: 400;
+  line-height: 1.6;
   max-width: 520px;
   margin-bottom: 12px;
 }
@@ -562,19 +566,20 @@ nav {
 
 .about-left p {
   color: var(--muted2);
-  font-weight: 300;
-  line-height: 1.8;
+  font-weight: 400;
+  line-height: 1.85;
   margin-bottom: 20px;
   font-size: 0.95rem;
 }
 
-.about-left p strong { color: var(--text); font-weight: 500; }
+.about-left p strong { color: var(--text); font-weight: 700; }
 .about-left p:last-child { margin-bottom: 0; }
 
 .about-right { padding: 60px; display: flex; flex-direction: column; gap: 32px; }
 
 .tech-group-label {
   font-size: 0.65rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -585,6 +590,7 @@ nav {
 
 .tech-pill {
   font-size: 0.78rem;
+  font-weight: 500;
   color: var(--muted2);
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
@@ -608,24 +614,24 @@ nav {
 .contact-section .sec-eyebrow { justify-content: center; margin-bottom: 20px; }
 
 .contact-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  margin-bottom: 16px;
-  line-height: 1.05;
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-bottom: 20px;
+  line-height: 1.15;
 }
 
-.contact-sub { color: var(--muted2); font-weight: 300; margin-bottom: 40px; font-size: 0.95rem; }
+.contact-sub { color: var(--muted2); font-weight: 400; margin-bottom: 40px; font-size: 0.95rem; line-height: 1.7; }
 
 .contact-email {
   display: inline-block;
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
   font-weight: 700;
   color: var(--accent);
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   border-bottom: 1px solid rgba(0,229,255,0.3);
   padding-bottom: 4px;
   transition: all 0.2s;

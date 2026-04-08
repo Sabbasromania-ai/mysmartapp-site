@@ -5,9 +5,9 @@ export default function Contact({ email }: { email: string }) {
         <div className="eyebrow-line" />
         <span className="eyebrow-text">Contact</span>
       </div>
-      <div className="contact-title">Got a project?<br />Let's talk.</div>
+      <div className="contact-title">Let's build something<br />that actually ships.</div>
       <div className="contact-sub">Open to collaborations, freelance work, and interesting ideas.</div>
-      <a href={`mailto:${email}`} className="contact-email">{email}</a>
+      <a href="mailto:sabbasromania@icloud.com" className="contact-email">sabbasromania@icloud.com</a>
     </div>
   )
 }

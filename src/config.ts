@@ -12,7 +12,7 @@ export const config = {
     "My focus right now is health & lifestyle apps, but I'm always exploring new ideas.",
   ],
   contact: {
-    email: 'hello@example.com',        // ← αλλαξε εδω
+    email: 'sabbasromania@icloud.com',
     available: true,
   },
   stats: [
