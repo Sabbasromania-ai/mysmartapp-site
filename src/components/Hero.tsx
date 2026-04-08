@@ -1,11 +1,10 @@
-import NeuralBrain from './NeuralBrain'
+import NeuralBrain3D from './NeuralBrain3D'
 import DataOverlays from './DataOverlays'
 
 export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-inner">
-        {/* Left: Text */}
         <div className="hero-text">
           <div className="hero-badge">
             <span className="badge-dot" />
@@ -29,10 +28,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: Brain visual */}
         <div className="hero-visual">
-          <div className="hero-brain-glow" />
-          <NeuralBrain />
+          <NeuralBrain3D />
           <DataOverlays />
         </div>
       </div>
