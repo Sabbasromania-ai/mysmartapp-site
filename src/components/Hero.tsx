@@ -4,23 +4,43 @@ import PhoneChart from './PhoneChart'
 import AnimatedNum from './AnimatedNum'
 
 export default function Hero({ config }: { config: typeof Cfg }) {
-  const heroRef = useRef<HTMLElement>(null)
   const phoneRef = useRef<HTMLDivElement>(null)
 
-  // Parallax between background and phone on mouse move
+  // JS-driven floating animation on the phone (requestAnimationFrame)
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
+    let raf = 0
+    let t = 0
+
+    function tick() {
+      t += 0.015
+      if (phoneRef.current) {
+        const y = Math.sin(t) * 10
+        const r = Math.sin(t * 0.7) * 1.2
+        phoneRef.current.style.transform = `translateY(${y}px) rotate(${r}deg)`
+      }
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  // Parallax on mouse move (layered on top of float)
+  useEffect(() => {
+    function onMove(e: MouseEvent) {
       if (!phoneRef.current) return
-      const x = (e.clientX / window.innerWidth - 0.5) * 12
-      const y = (e.clientY / window.innerHeight - 0.5) * 8
-      phoneRef.current.style.transform = `translate(${x}px, ${y}px)`
+      const mx = (e.clientX / window.innerWidth - 0.5) * 14
+      const my = (e.clientY / window.innerHeight - 0.5) * 10
+      // We add to existing float transform via CSS custom properties
+      phoneRef.current.style.setProperty('--px', `${mx}px`)
+      phoneRef.current.style.setProperty('--py', `${my}px`)
     }
     window.addEventListener('mousemove', onMove)
     return () => window.removeEventListener('mousemove', onMove)
   }, [])
 
   return (
-    <section className="hero" ref={heroRef}>
+    <section className="hero">
       <div className="container hero-grid">
         <div className="hero-left">
           <div className="hero-badge">
@@ -46,19 +66,21 @@ export default function Hero({ config }: { config: typeof Cfg }) {
           </div>
         </div>
 
-        {/* Phone Mockup */}
+        {/* Phone Mockup — JS-animated float + parallax */}
         <div className="hero-right">
           <div className="phone-glow" />
           <div className="phone-wrap" ref={phoneRef}>
             <div className="float-card float-card-1">
               <div className="fc-label">Weight lost</div>
               <div className="fc-value">
-                −<AnimatedNum end={12.4} decimals={1} duration={1600} drift={0.3} driftInterval={3500} /> kg
+                −<AnimatedNum end={12.4} decimals={1} duration={1600} drift={0.3} driftInterval={2500} /> kg
               </div>
             </div>
             <div className="float-card float-card-2">
               <div className="fc-label">Week streak</div>
-              <div className="fc-value">🔥 14 days</div>
+              <div className="fc-value fc-value-streak">
+                <AnimatedNum end={14} decimals={0} duration={1200} drift={0} /> days
+              </div>
             </div>
 
             <div className="phone">
@@ -70,13 +92,13 @@ export default function Hero({ config }: { config: typeof Cfg }) {
                 <div className="phone-stat-row">
                   <div className="phone-stat">
                     <div className="phone-stat-val">
-                      <AnimatedNum end={94.2} decimals={1} duration={1400} drift={0.4} driftInterval={4000} />
+                      <AnimatedNum end={94.2} decimals={1} duration={1400} drift={0.4} driftInterval={2000} />
                     </div>
                     <div className="phone-stat-lbl">Weight kg</div>
                   </div>
                   <div className="phone-stat">
                     <div className="phone-stat-val" style={{ color: '#6366f1' }}>
-                      <AnimatedNum end={2.5} decimals={1} duration={1200} suffix="mg" />
+                      <AnimatedNum end={2.5} decimals={1} duration={1200} suffix=" mg" />
                     </div>
                     <div className="phone-stat-lbl">Dose</div>
                   </div>

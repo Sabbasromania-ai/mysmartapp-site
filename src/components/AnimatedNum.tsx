@@ -6,84 +6,80 @@ interface Props {
   duration?: number
   prefix?: string
   suffix?: string
-  drift?: number       // random drift range after initial animation
-  driftInterval?: number // ms between drifts
+  drift?: number
+  driftInterval?: number
 }
 
 export default function AnimatedNum({
   end,
   decimals = 0,
-  duration = 1600,
+  duration = 1400,
   prefix = '',
   suffix = '',
   drift = 0,
-  driftInterval = 3000,
+  driftInterval = 2500,
 }: Props) {
-  const [display, setDisplay] = useState('0')
-  const ref = useRef<HTMLSpanElement>(null)
+  const [text, setText] = useState('0')
+  const elRef = useRef<HTMLSpanElement>(null)
   const started = useRef(false)
-  const currentVal = useRef(0)
+  const val = useRef(0)
 
+  // Count-up on first viewport entry
   useEffect(() => {
-    const el = ref.current
+    const el = elRef.current
     if (!el) return
 
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started.current) {
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || started.current) return
         started.current = true
-        const start = performance.now()
-
-        const tick = (now: number) => {
-          const elapsed = now - start
-          const progress = Math.min(elapsed / duration, 1)
-          const eased = 1 - Math.pow(1 - progress, 3)
-          currentVal.current = eased * end
-          setDisplay(currentVal.current.toFixed(decimals))
-          if (progress < 1) requestAnimationFrame(tick)
-        }
-
-        requestAnimationFrame(tick)
         io.disconnect()
-      }
-    }, { threshold: 0.5 })
 
+        const t0 = performance.now()
+        function tick(now: number) {
+          const p = Math.min((now - t0) / duration, 1)
+          // Cubic ease-out
+          const e = 1 - Math.pow(1 - p, 3)
+          val.current = e * end
+          setText(val.current.toFixed(decimals))
+          if (p < 1) requestAnimationFrame(tick)
+        }
+        requestAnimationFrame(tick)
+      },
+      { threshold: 0.3 }
+    )
     io.observe(el)
     return () => io.disconnect()
   }, [end, duration, decimals])
 
-  // Subtle drift after initial animation
+  // Ongoing drift: small random ticks
   useEffect(() => {
-    if (drift === 0) return
+    if (!drift || drift === 0) return
 
-    const interval = setInterval(() => {
+    const iv = setInterval(() => {
       if (!started.current) return
       const offset = (Math.random() - 0.5) * drift
-      const newVal = end + offset
-      currentVal.current = newVal
+      const target = end + offset
 
-      // Smooth transition over 600ms
-      const from = parseFloat(display)
-      const to = newVal
-      const start = performance.now()
-      const dur = 600
-
-      const tick = (now: number) => {
-        const p = Math.min((now - start) / dur, 1)
-        const eased = 1 - Math.pow(1 - p, 2)
-        const v = from + (to - from) * eased
-        setDisplay(v.toFixed(decimals))
+      // Smooth 500ms transition to new value
+      const from = val.current
+      const t0 = performance.now()
+      function tick(now: number) {
+        const p = Math.min((now - t0) / 500, 1)
+        const e = 1 - Math.pow(1 - p, 2)
+        val.current = from + (target - from) * e
+        setText(val.current.toFixed(decimals))
         if (p < 1) requestAnimationFrame(tick)
       }
-
       requestAnimationFrame(tick)
     }, driftInterval)
 
-    return () => clearInterval(interval)
-  }, [drift, driftInterval, end, decimals, display])
+    return () => clearInterval(iv)
+  }, [drift, driftInterval, end, decimals])
 
   return (
-    <span ref={ref} className="animated-num">
-      {prefix}{display}{suffix}
+    <span ref={elRef} className="animated-num">
+      {prefix}{text}{suffix}
     </span>
   )
 }
