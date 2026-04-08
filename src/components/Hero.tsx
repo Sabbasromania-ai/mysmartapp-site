@@ -1,6 +1,5 @@
 import { config as Cfg } from '../config'
-
-const BAR_HEIGHTS = [30, 55, 70, 65, 80, 75, 90]
+import PhoneChart from './PhoneChart'
 
 export default function Hero({ config }: { config: typeof Cfg }) {
   return (
@@ -53,14 +52,7 @@ export default function Hero({ config }: { config: typeof Cfg }) {
                     <div className="phone-stat-lbl">Dose</div>
                   </div>
                 </div>
-                <div className="phone-chart">
-                  <div className="phone-chart-title">Drug level (7 days)</div>
-                  <div className="mini-bars">
-                    {BAR_HEIGHTS.map((h, i) => (
-                      <div key={i} className="mini-bar" style={{ height: `${h}%` }} />
-                    ))}
-                  </div>
-                </div>
+                <PhoneChart />
                 <div className="phone-mini-log">
                   {[
                     { label: 'Injection logged', val: '✓', color: 'var(--accent)' },
