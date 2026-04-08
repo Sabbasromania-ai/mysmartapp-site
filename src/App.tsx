@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import Apps from './components/Apps'
 import About from './components/About'
 import Contact from './components/Contact'
+import NeuralBg from './components/NeuralBg'
 
 export default function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function App() {
 
   return (
     <>
+      <NeuralBg />
       <Nav brand={config.brand} />
       <Hero config={config} />
       <Apps apps={config.apps} />
