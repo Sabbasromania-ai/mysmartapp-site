@@ -30,7 +30,7 @@ export default function App() {
     <>
       <NeuralBg />
       <Nav brand={config.brand} />
-      <Hero config={config} />
+      <Hero />
       <TrustStrip />
       <div className="section-divider" />
       <Features />
