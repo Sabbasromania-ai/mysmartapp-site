@@ -8,13 +8,16 @@ export default function About({
   return (
     <section className="about-section" id="about">
       <div className="container">
-        <div className="sec-eyebrow reveal">
-          <div className="eyebrow-line" />
-          <span className="eyebrow-text">About</span>
+        <div className="section-header reveal">
+          <div className="section-label">
+            <span className="section-label-dot" />
+            About
+          </div>
+          <h2 className="section-title">
+            The person behind the apps.<br />
+            <span className="dim">Solo developer. Full stack.</span>
+          </h2>
         </div>
-        <h2 className="sec-title reveal">
-          The person<br /><span>behind the apps.</span>
-        </h2>
 
         <div className="about-card reveal">
           <div className="about-left">
