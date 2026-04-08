@@ -1,5 +1,6 @@
 import { config as Cfg } from '../config'
 import PhoneChart from './PhoneChart'
+import AnimatedNum from './AnimatedNum'
 
 export default function Hero({ config }: { config: typeof Cfg }) {
   return (
@@ -44,11 +45,15 @@ export default function Hero({ config }: { config: typeof Cfg }) {
                 <div className="phone-header">Dashboard</div>
                 <div className="phone-stat-row">
                   <div className="phone-stat">
-                    <div className="phone-stat-val">94.2</div>
+                    <div className="phone-stat-val">
+                      <AnimatedNum end={94.2} decimals={1} duration={1400} />
+                    </div>
                     <div className="phone-stat-lbl">Weight kg</div>
                   </div>
                   <div className="phone-stat">
-                    <div className="phone-stat-val" style={{ color: '#6366f1' }}>2.5mg</div>
+                    <div className="phone-stat-val" style={{ color: '#6366f1' }}>
+                      <AnimatedNum end={2.5} decimals={1} duration={1200} suffix="mg" />
+                    </div>
                     <div className="phone-stat-lbl">Dose</div>
                   </div>
                 </div>
