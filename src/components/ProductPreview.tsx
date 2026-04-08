@@ -19,7 +19,7 @@ export default function ProductPreview() {
           </div>
           <h2 className="section-title">
             See it in action.<br />
-            <span className="dim">Real interface, real data.</span>
+            <span className="dim">Real interface. Real data.</span>
           </h2>
         </div>
 
@@ -27,9 +27,9 @@ export default function ProductPreview() {
           <div className="preview-text">
             <h3>Your health dashboard, reimagined</h3>
             <p>
-              Track medications, log nutrition with AI-powered photo recognition,
-              and get personalized coaching — all in one clean interface designed
-              for daily use.
+              Track medications, log nutrition with AI photo recognition,
+              and get personalized coaching — all in one clean interface
+              designed for daily use.
             </p>
             <div className="preview-stats">
               <div>

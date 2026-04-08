@@ -17,11 +17,11 @@ export default function App() {
     const io = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('on'), i * 60)
+          setTimeout(() => e.target.classList.add('on'), i * 50)
           io.unobserve(e.target)
         }
       })
-    }, { threshold: 0.06 })
+    }, { threshold: 0.05 })
     reveals.forEach(el => io.observe(el))
     return () => io.disconnect()
   }, [])
@@ -32,10 +32,15 @@ export default function App() {
       <Nav brand={config.brand} />
       <Hero config={config} />
       <TrustStrip />
+      <div className="section-divider" />
       <Features />
+      <div className="section-divider" />
       <ProductPreview />
+      <div className="section-divider" />
       <Apps apps={config.apps} />
+      <div className="section-divider" />
       <About bio={config.bio} tech={config.tech} name={config.name} />
+      <div className="section-divider" />
       <Contact email={config.contact.email} />
       <footer>
         <span>&copy; 2025 {config.brand}</span>

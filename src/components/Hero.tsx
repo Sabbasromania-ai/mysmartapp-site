@@ -6,16 +6,16 @@ import AnimatedNum from './AnimatedNum'
 export default function Hero({ config }: { config: typeof Cfg }) {
   const phoneRef = useRef<HTMLDivElement>(null)
 
-  // JS-driven floating animation (requestAnimationFrame)
+  // JS float + subtle rotation at 60fps
   useEffect(() => {
     let raf = 0
     let t = 0
     function tick() {
-      t += 0.012
+      t += 0.01
       if (phoneRef.current) {
-        const y = Math.sin(t) * 12
-        const r = Math.sin(t * 0.6) * 1
-        phoneRef.current.style.transform = `translateY(${y}px) rotate(${r}deg)`
+        const y = Math.sin(t) * 14
+        const rx = Math.sin(t * 0.6) * 1.5
+        phoneRef.current.style.transform = `translateY(${y}px) rotate(${rx}deg)`
       }
       raf = requestAnimationFrame(tick)
     }
@@ -29,16 +29,16 @@ export default function Hero({ config }: { config: typeof Cfg }) {
         <div className="hero-left">
           <div className="hero-badge">
             <span className="badge-dot" />
-            {config.contact.available ? 'Available for projects' : 'Currently unavailable'}
+            AI-Powered Health Apps
           </div>
 
           <h1 className="hero-h1">
-            AI-powered apps<br />
-            built for <span className="text-gradient">real people.</span>
+            Smart apps<br />
+            for <span className="text-gradient">real people.</span>
           </h1>
 
           <p className="hero-p">
-            Smart mobile applications with AI coaching, health tracking, and real-time data analysis. Designed, built, and shipped by a solo developer.
+            AI coaching, health tracking, and real-time analytics. Built by a solo developer. Shipped to the App Store.
           </p>
 
           <div className="hero-actions">
@@ -57,7 +57,7 @@ export default function Hero({ config }: { config: typeof Cfg }) {
               </div>
             </div>
             <div className="float-card float-card-2">
-              <div className="fc-label">Week streak</div>
+              <div className="fc-label">Streak</div>
               <div className="fc-value">
                 <AnimatedNum end={14} decimals={0} duration={1200} /> days
               </div>
@@ -86,10 +86,10 @@ export default function Hero({ config }: { config: typeof Cfg }) {
                 <PhoneChart />
                 <div className="phone-mini-log">
                   {[
-                    { label: 'Injection logged', val: '✓', color: 'var(--accent)' },
+                    { label: 'Injection logged', val: '✓', color: '#00d4ff' },
                     { label: 'Calories today', val: '1,240', color: '#6366f1' },
                     { label: 'Steps', val: '8,432', color: '#10b981' },
-                  ].map((r) => (
+                  ].map(r => (
                     <div key={r.label} className="log-row">
                       <div className="log-dot" style={{ background: r.color }} />
                       <span className="log-text">{r.label}</span>

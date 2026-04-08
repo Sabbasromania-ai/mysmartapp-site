@@ -1,8 +1,8 @@
 export default function TrustStrip() {
   const items = [
-    { icon: '⚡', title: 'AI-powered analysis', desc: 'Smart coaching driven by GPT-4o and real-time health data.' },
-    { icon: '👤', title: 'Built for real users', desc: 'Every feature designed around actual user needs, not theory.' },
-    { icon: '📊', title: 'Real data, not guesswork', desc: 'Live tracking, trend analysis, and actionable health insights.' },
+    { icon: '⚡', title: 'AI-powered analysis', desc: 'GPT-4o coaching with memory that adapts to your health data in real time.' },
+    { icon: '👤', title: 'Built for real users', desc: 'Every feature validated by actual users. No bloat, no theory, just utility.' },
+    { icon: '📊', title: 'Real data, not guesswork', desc: 'Live tracking, trend curves, and actionable insights from day one.' },
   ]
 
   return (
