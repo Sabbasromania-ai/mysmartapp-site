@@ -1,13 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function Nav({ brand }: { brand: string }) {
+const links = [
+  { id: 'features', label: 'Features' },
+  { id: 'preview', label: 'App' },
+  { id: 'how', label: 'How It Works' },
+  { id: 'support', label: 'Support' },
+]
+
+export default function Nav() {
   const [active, setActive] = useState('')
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
-      const sections = document.querySelectorAll('section[id], div[id]')
+      setScrolled(window.scrollY > 20)
+      const sections = document.querySelectorAll('section[id]')
       sections.forEach(s => {
-        if (window.scrollY >= (s as HTMLElement).offsetTop - 120)
+        if (window.scrollY >= (s as HTMLElement).offsetTop - 140)
           setActive(s.id)
       })
     }
@@ -17,24 +26,20 @@ export default function Nav({ brand }: { brand: string }) {
 
   return (
     <>
-      <div className="nav-backdrop" />
+      <div className={`nav-backdrop${scrolled ? ' scrolled' : ''}`} />
       <nav>
         <a href="#" className="logo">
           <div className="logo-dot" />
-          {brand.slice(0, 5)}<span className="logo-accent">{brand.slice(5)}</span>
+          Smart<span className="logo-accent">Apps</span>
         </a>
         <div className="nav-links">
-          {['apps', 'about', 'contact'].map(id => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={`nav-link${active === id ? ' active' : ''}`}
-            >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
+          {links.map(l => (
+            <a key={l.id} href={`#${l.id}`} className={`nav-link${active === l.id ? ' active' : ''}`}>
+              {l.label}
             </a>
           ))}
-          <a href="#contact" className="nav-cta">Get in touch</a>
         </div>
+        <a href="#support" className="btn-nav">Get Started</a>
       </nav>
     </>
   )
