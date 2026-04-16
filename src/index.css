@@ -2037,3 +2037,142 @@ button.feature-card {
 }
 .app-page-feat-title { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
 .app-page-feat-desc { font-size: 0.78rem; color: var(--muted2); line-height: 1.6; }
+
+/* ===================== MOBILE — max-width 768px ===================== */
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  html, body { overflow-x: hidden; max-width: 100%; }
+
+  /* Container */
+  .container { padding: 0 16px; }
+  nav { padding: 0 16px; height: 56px; }
+  .nav-backdrop { height: 56px; }
+
+  /* Nav: hide links, keep logo + CTA */
+  .nav-links { display: none; }
+  .btn-nav {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    min-height: 36px;
+  }
+
+  /* Hero */
+  .hero-platform { padding: 80px 0 40px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hero-right-split {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .hero-cards-col {
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-p {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.9rem;
+  }
+
+  /* Sections spacing */
+  .combined-section { padding: 40px 0 32px; }
+  .bottom-section { padding: 20px 0 40px; }
+  .features-section,
+  .apps-section,
+  .preview-section,
+  .about-section { padding: 40px 0; }
+
+  /* Combined grid: stack vertically */
+  .combined-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* App cards: 1 column on mobile */
+  .combined-left .apps-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Platform grid: 1 column on mobile */
+  .platform-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Compact cards: full width, readable text */
+  .compact-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .cc-desc {
+    font-size: 0.78rem;
+  }
+  .cc-name {
+    font-size: 0.82rem;
+  }
+
+  /* Bottom grid: stack */
+  .bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Buttons full width */
+  .bc-btn {
+    width: 100%;
+    text-align: center;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Features grid */
+  .features-grid { grid-template-columns: 1fr; gap: 12px; }
+  .apps-grid { grid-template-columns: 1fr; gap: 12px; }
+  .trust-grid { grid-template-columns: 1fr; gap: 10px; }
+
+  /* Footer */
+  footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 20px 16px;
+  }
+
+  /* App page */
+  .app-page-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 0;
+  }
+  .app-page-hero-right {
+    transform: scale(1);
+    margin-right: 0;
+    justify-content: center;
+  }
+  .app-page-features-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* No elements touching edges */
+  * { max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}
