@@ -1,30 +1,30 @@
 import { useState } from 'react'
 import { apps, PhoneMockup } from './Features'
+import appLogo from '../applogo.png'
 
 const previewApps = [
   {
-    icon: '🏥',
+    logo: appLogo,
     name: 'AI Health Tracker',
     tag: 'Live · iOS & Android',
-    tagColor: '#22d3ee',
     desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
     rows: ['Weight: 94.1 kg', 'Mounjaro 5mg ✓', 'AI Coach active'],
     appIndex: 0,
   },
   {
-    icon: '🧘',
+    logo: null,
+    emoji: '🧘',
     name: 'AI Wellness Coach',
     tag: 'Coming Soon',
-    tagColor: '#22d3ee',
     desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
     rows: ['Sleep: 7.2h', 'Stress: Low', 'Mood tracked'],
     appIndex: 1,
   },
   {
-    icon: '🍎',
+    logo: null,
+    emoji: '🍎',
     name: 'AI Nutrition',
-    tag: 'In Development',
-    tagColor: '#22d3ee',
+    tag: 'Coming Soon',
     desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
     rows: ['Protein: 142g', 'Calories: 1,820', 'Meal logged'],
     appIndex: 2,
@@ -87,7 +87,12 @@ export default function Hero({ onOpenApp }: HeroProps) {
                 onClick={() => onOpenApp(app.appIndex)}
               >
                 <div className="hac-top">
-                  <span className="hac-icon">{app.icon}</span>
+                  <span className="hac-icon">
+                    {app.logo
+                      ? <img src={app.logo} alt={app.name} style={{ width: 20, height: 20, borderRadius: 5, objectFit: 'cover' }} />
+                      : <span>{(app as any).emoji}</span>
+                    }
+                  </span>
                   <div>
                     <div className="hac-name">{app.name}</div>
                     <div className="hac-tag">{app.tag}</div>

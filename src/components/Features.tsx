@@ -1,11 +1,17 @@
 import { useState } from 'react'
+import appLogo from '../applogo.png'
+
+// Same color system for ALL cards
+const CYAN = '#00d4ff'
+const GRADIENT = 'linear-gradient(135deg, #0a1628 0%, #0c2040 50%, #0e2d52 100%)'
+const GLOW = 'rgba(0,212,255,0.15)'
 
 export const apps = [
   {
-    icon: '🏥',
-    color: '#00d4ff',
-    gradient: 'linear-gradient(135deg, #0a1628 0%, #0c2040 50%, #0e2d52 100%)',
-    glow: 'rgba(0,212,255,0.15)',
+    logo: appLogo,
+    color: CYAN,
+    gradient: GRADIENT,
+    glow: GLOW,
     name: 'AI Health Tracker',
     tag: 'Live',
     tagColor: '#10b981',
@@ -21,18 +27,19 @@ export const apps = [
       { icon: '🔔', title: 'Smart Reminders', desc: 'Contextual notifications for injections, weight logging, and hydration.' },
     ],
     phone: [
-      { dot: '#00d4ff', label: 'Weight', value: '94.1 kg' },
+      { dot: CYAN, label: 'Weight', value: '94.1 kg' },
       { dot: '#6366f1', label: 'Mounjaro 5mg', value: 'Injected ✓' },
       { dot: '#10b981', label: 'Calories', value: '1,280 kcal' },
       { dot: '#f59e0b', label: 'Steps', value: '8,432' },
-      { dot: '#00d4ff', label: 'AI Coach', value: 'Active 🟢' },
+      { dot: CYAN, label: 'AI Coach', value: 'Active 🟢' },
     ],
   },
   {
-    icon: '🧘',
-    color: '#6366f1',
-    gradient: 'linear-gradient(135deg, #0d0a28 0%, #130f3a 50%, #1a1450 100%)',
-    glow: 'rgba(99,102,241,0.15)',
+    logo: null,
+    emoji: '🧘',
+    color: CYAN,
+    gradient: GRADIENT,
+    glow: GLOW,
     name: 'AI Wellness Coach',
     tag: 'Coming Soon',
     tagColor: '#f59e0b',
@@ -46,21 +53,22 @@ export const apps = [
       { icon: '🧠', title: 'AI Coach', desc: 'Personalized mental wellness coaching with memory.' },
     ],
     phone: [
-      { dot: '#6366f1', label: 'Sleep', value: '7.2h' },
-      { dot: '#10b981', label: 'Stress', value: 'Low ✓' },
-      { dot: '#f59e0b', label: 'Mood', value: 'Good' },
-      { dot: '#6366f1', label: 'AI Session', value: 'Ready' },
+      { dot: CYAN, label: 'Sleep', value: '7.2h' },
+      { dot: CYAN, label: 'Stress', value: 'Low ✓' },
+      { dot: CYAN, label: 'Mood', value: 'Good' },
+      { dot: CYAN, label: 'AI Session', value: 'Ready' },
     ],
   },
   {
-    icon: '🍎',
-    color: '#10b981',
-    gradient: 'linear-gradient(135deg, #071a14 0%, #0a2a1e 50%, #0e3828 100%)',
-    glow: 'rgba(16,185,129,0.15)',
+    logo: null,
+    emoji: '🍎',
+    color: CYAN,
+    gradient: GRADIENT,
+    glow: GLOW,
     name: 'AI Nutrition',
-    tag: 'In Development',
-    tagColor: '#6366f1',
-    tagBg: 'rgba(99,102,241,0.12)',
+    tag: 'Coming Soon',
+    tagColor: '#f59e0b',
+    tagBg: 'rgba(245,158,11,0.12)',
     short: 'Photo-based meal analysis, macro tracking, and AI-driven diet optimization.',
     platforms: ['iOS', 'Android'],
     features: [
@@ -70,13 +78,20 @@ export const apps = [
       { icon: '📅', title: 'Meal Planning', desc: 'Weekly plans generated and adjusted by AI.' },
     ],
     phone: [
-      { dot: '#10b981', label: 'Protein', value: '142g' },
-      { dot: '#00d4ff', label: 'Calories', value: '1,820' },
-      { dot: '#f59e0b', label: 'Meal logged', value: '✓' },
-      { dot: '#10b981', label: 'AI Tip', value: 'View →' },
+      { dot: CYAN, label: 'Protein', value: '142g' },
+      { dot: CYAN, label: 'Calories', value: '1,820' },
+      { dot: CYAN, label: 'Meal logged', value: '✓' },
+      { dot: CYAN, label: 'AI Tip', value: 'View →' },
     ],
   },
 ]
+
+function AppIcon({ app, size = 40 }: { app: typeof apps[0], size?: number }) {
+  if (app.logo) {
+    return <img src={app.logo} alt={app.name} style={{ width: size, height: size, borderRadius: 10, objectFit: 'cover' }} />
+  }
+  return <span style={{ fontSize: size * 0.6 }}>{(app as any).emoji}</span>
+}
 
 export function PhoneMockup({ app }: { app: typeof apps[0] }) {
   return (
@@ -86,7 +101,12 @@ export function PhoneMockup({ app }: { app: typeof apps[0] }) {
         <div className="pm-notch" />
         <div className="pm-screen">
           <div className="pm-header">
-            <span className="pm-title">{app.icon} {app.name.split(' ')[1]}</span>
+            <span className="pm-title">
+              {app.logo
+                ? <img src={app.logo} alt="" style={{ width: 12, height: 12, borderRadius: 3, verticalAlign: 'middle', marginRight: 3 }} />
+                : (app as any).emoji + ' '}
+              {app.name.split(' ').slice(1).join(' ')}
+            </span>
             <span className="pm-time">9:41</span>
           </div>
           <div className="pm-card" style={{ borderColor: app.color + '30' }}>
@@ -124,7 +144,9 @@ export function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () =>
         <button className="modal-close" onClick={onClose}>✕</button>
 
         <div className="amd-header">
-          <span className="amd-icon" style={{ background: app.color + '18', fontSize: '1.8rem' }}>{app.icon}</span>
+          <span className="amd-icon" style={{ background: app.color + '18' }}>
+            <AppIcon app={app} size={36} />
+          </span>
           <div>
             <div className="amd-name">{app.name}</div>
             <div className="amd-platforms">{app.platforms.join(' · ')}</div>
@@ -211,7 +233,9 @@ export default function Features({ onOpenApp }: FeaturesProps) {
               onMouseLeave={() => setHovered(null)}
             >
               <div className="acp-top">
-                <span className="acp-icon" style={{ background: app.color + '20', border: `1px solid ${app.color}30` }}>{app.icon}</span>
+                <span className="acp-icon" style={{ background: app.color + '20', border: `1px solid ${app.color}30` }}>
+                  <AppIcon app={app} size={28} />
+                </span>
                 <span className="acp-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
               </div>
               <div className="acp-name">{app.name}</div>
