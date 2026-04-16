@@ -293,8 +293,9 @@ nav {
 .hero-left {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0;
+  padding: 8px 0;
 }
 .hero-trust {
   display: flex;
