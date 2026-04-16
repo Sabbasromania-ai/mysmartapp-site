@@ -199,9 +199,9 @@ export default function Features({ onOpenApp }: FeaturesProps) {
           {apps.map((app, i) => (
             <div
               key={app.name}
-              className={`app-card-premium reveal${hovered === i ? ' hovered' : ''}`}
+              className={`app-card-premium${hovered === i ? ' hovered' : ''}`}
               style={{
-                transitionDelay: `${i * 0.08}s`,
+                animationDelay: `${i * 0.12}s`,
                 background: app.gradient,
                 boxShadow: hovered === i ? `0 0 40px ${app.glow}, 0 20px 60px rgba(0,0,0,0.4)` : `0 0 20px ${app.glow}`,
                 borderColor: hovered === i ? app.color + '50' : app.color + '20',
