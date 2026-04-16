@@ -1786,6 +1786,37 @@ footer {
 }
 .btn-nav:hover { opacity: 0.85; }
 
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 2px;
+}
+.lang-btn {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: rgba(255,255,255,0.35);
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.lang-btn.active {
+  background: rgba(0,212,255,0.14);
+  color: var(--accent);
+}
+.lang-btn:hover:not(.active) {
+  color: rgba(255,255,255,0.7);
+}
+
 /* Hero trust bar */
 .hero-trust {
   display: flex;

@@ -1,4 +1,8 @@
+import { useLang } from '../LangContext'
+
 export default function Footer() {
+  const { t } = useLang()
+
   return (
     <footer className="footer">
       <div className="container footer-inner">
@@ -7,11 +11,11 @@ export default function Footer() {
           Smart<span className="logo-accent">Apps</span>
         </div>
         <div className="footer-links">
-          <a href="#support" className="footer-link">Privacy</a>
-          <a href="#support" className="footer-link">Terms</a>
-          <a href="mailto:sabbasromania@icloud.com" className="footer-link">Contact</a>
+          <a href="#support" className="footer-link">{t('footer_privacy')}</a>
+          <a href="#support" className="footer-link">{t('footer_terms')}</a>
+          <a href="mailto:sabbasromania@icloud.com" className="footer-link">{t('footer_contact')}</a>
         </div>
-        <div className="footer-copy">© 2026 SmartApps. All rights reserved.</div>
+        <div className="footer-copy">{t('footer_copy')}</div>
       </div>
     </footer>
   )

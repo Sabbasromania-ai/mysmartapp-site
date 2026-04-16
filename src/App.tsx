@@ -1,6 +1,7 @@
 import './index.css'
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { LangProvider } from './LangContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -60,17 +61,19 @@ function HomePage() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/apps/:slug" element={
-          <>
-            <Nav />
-            <AppPage />
-            <Footer />
-          </>
-        } />
-      </Routes>
-    </BrowserRouter>
+    <LangProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/apps/:slug" element={
+            <>
+              <Nav />
+              <AppPage />
+              <Footer />
+            </>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </LangProvider>
   )
 }

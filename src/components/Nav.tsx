@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react'
 import navLogo from '../navlogo.png'
-
-const links = [
-  { id: 'apps', label: 'Apps' },
-  { id: 'platform', label: 'Platform' },
-  { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
-]
+import { useLang } from '../LangContext'
 
 export default function Nav() {
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { lang, setLang, t } = useLang()
+
+  const links = [
+    { id: 'apps', label: t('nav_apps') },
+    { id: 'platform', label: t('nav_platform') },
+    { id: 'about', label: t('nav_about') },
+    { id: 'contact', label: t('nav_contact') },
+  ]
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,7 +42,19 @@ export default function Nav() {
             </a>
           ))}
         </div>
-        <a href="#contact" className="btn-nav">Get Started</a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div className="lang-toggle">
+            <button
+              className={`lang-btn${lang === 'en' ? ' active' : ''}`}
+              onClick={() => setLang('en')}
+            >EN</button>
+            <button
+              className={`lang-btn${lang === 'el' ? ' active' : ''}`}
+              onClick={() => setLang('el')}
+            >GR</button>
+          </div>
+          <a href="#contact" className="btn-nav">{t('nav_cta')}</a>
+        </div>
       </nav>
     </>
   )

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import appLogo from '../applogo.png'
+import { useLang } from '../LangContext'
+import { TKey } from '../translations'
 
 // Same color system for ALL cards
 const CYAN = '#00d4ff'
@@ -136,86 +138,24 @@ export function PhoneMockup({ app }: { app: typeof apps[0] }) {
   )
 }
 
-export function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }) {
-  const [tab, setTab] = useState<'features' | 'preview'>('features')
-
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal modal-large" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>✕</button>
-
-        <div className="amd-header">
-          <span className="amd-icon" style={{ background: app.color + '18' }}>
-            <AppIcon app={app} size={36} />
-          </span>
-          <div>
-            <div className="amd-name">{app.name}</div>
-            <div className="amd-platforms">{app.platforms.join(' · ')}</div>
-          </div>
-          <span className="amd-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
-        </div>
-
-        <p className="amd-desc">{app.short}</p>
-
-        <div className="amd-tabs">
-          <button className={`amd-tab${tab === 'features' ? ' active' : ''}`} style={tab === 'features' ? { color: app.color, borderBottomColor: app.color } : {}} onClick={() => setTab('features')}>Features</button>
-          <button className={`amd-tab${tab === 'preview' ? ' active' : ''}`} style={tab === 'preview' ? { color: app.color, borderBottomColor: app.color } : {}} onClick={() => setTab('preview')}>Preview</button>
-        </div>
-
-        {tab === 'features' && (
-          <div className="amd-2col">
-            <div className="amd-features">
-              {app.features.map(f => (
-                <div key={f.title} className="amd-feat">
-                  <span className="amd-feat-icon">{f.icon}</span>
-                  <div>
-                    <div className="amd-feat-title">{f.title}</div>
-                    <div className="amd-feat-desc">{f.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <PhoneMockup app={app} />
-          </div>
-        )}
-
-        {tab === 'preview' && (
-          <div className="amd-preview">
-            <PhoneMockup app={app} />
-          </div>
-        )}
-
-        {app.tag === 'Live' ? (
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-            <a href="#contact" className="btn-primary" onClick={onClose}>Download App</a>
-            <a href="#contact" className="btn-ghost" onClick={onClose}>Learn More</a>
-          </div>
-        ) : (
-          <a href="#contact" className="btn-ghost" style={{ marginTop: '1.5rem', display: 'inline-block' }} onClick={onClose}>
-            Notify me when ready →
-          </a>
-        )}
-      </div>
-    </div>
-  )
-}
-
+const shortKeys: TKey[] = ['app0_short', 'app1_short', 'app2_short']
 const slugs = ['ai-health-tracker', 'ai-wellness-coach', 'ai-nutrition']
 
 export default function Features() {
   const [hovered, setHovered] = useState<number | null>(null)
   const navigate = useNavigate()
+  const { t } = useLang()
 
   return (
     <>
       <div className="col-section-header reveal">
         <div className="section-label">
           <span className="section-label-dot" />
-          Our Apps
+          {t('feat_label')}
         </div>
         <h2 className="col-section-title">
-          AI tools for real life.<br />
-          <span className="dim">Each one built to solve something specific.</span>
+          {t('feat_title1')}<br />
+          <span className="dim">{t('feat_title2')}</span>
         </h2>
       </div>
       <div className="apps-grid">
@@ -232,9 +172,11 @@ export default function Features() {
                 <AppIcon app={app} size={16} />
               </span>
               <span className="cc-name">{app.name}</span>
-              <span className={`cc-tag ${app.tag === 'Live' ? 'cc-tag-live' : 'cc-tag-soon'}`}>{app.tag}</span>
+              <span className={`cc-tag ${app.tag === 'Live' ? 'cc-tag-live' : 'cc-tag-soon'}`}>
+                {app.tag === 'Live' ? t('tag_live') : t('tag_soon')}
+              </span>
             </div>
-            <div className="cc-desc cc-desc--clamp">{app.short}</div>
+            <div className="cc-desc cc-desc--clamp">{t(shortKeys[i])}</div>
           </div>
         ))}
       </div>

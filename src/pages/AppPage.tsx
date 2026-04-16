@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from '../components/Features'
 import appScreenshot from '../app-screenshot.png'
+import { useLang } from '../LangContext'
 
 const slugMap: Record<string, number> = {
   'ai-health-tracker': 0,
@@ -29,6 +30,7 @@ function GhostPhone({ color }: { color: string }) {
 export default function AppPage() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
+  const { t } = useLang()
   const index = slug ? slugMap[slug] : undefined
   const app = index !== undefined ? apps[index] : null
 
@@ -39,8 +41,8 @@ export default function AppPage() {
   if (!app) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', gap: 16 }}>
-        <div style={{ fontSize: '2rem', color: '#fff' }}>App not found</div>
-        <button className="btn-primary" onClick={() => navigate('/')}>Back to Home</button>
+        <div style={{ fontSize: '2rem', color: '#fff' }}>{t('apppage_notfound')}</div>
+        <button className="btn-primary" onClick={() => navigate('/')}>{t('apppage_back_home')}</button>
       </div>
     )
   }
@@ -64,7 +66,7 @@ export default function AppPage() {
           onMouseEnter={e => { (e.target as HTMLElement).style.borderColor = app.color; (e.target as HTMLElement).style.color = app.color }}
           onMouseLeave={e => { (e.target as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.target as HTMLElement).style.color = 'rgba(255,255,255,0.45)' }}
         >
-          ← Back to Apps
+          {t('apppage_back')}
         </button>
       </div>
 
@@ -113,9 +115,9 @@ export default function AppPage() {
 
             {isHealthTracker && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '0.7rem', color: '#f59e0b', fontWeight: 700 }}>★ 4.8 user rating</span>
+                <span style={{ fontSize: '0.7rem', color: '#f59e0b', fontWeight: 700 }}>{t('apppage_rating')}</span>
                 <span style={{ width: 1, height: 10, background: 'rgba(255,255,255,0.1)' }} />
-                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>Built for real GLP-1 users</span>
+                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>{t('apppage_glp1')}</span>
                 <span style={{ width: 1, height: 10, background: 'rgba(255,255,255,0.1)' }} />
                 <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>iOS & Android</span>
               </div>
@@ -129,11 +131,11 @@ export default function AppPage() {
 
             {app.tag === 'Live' ? (
               <div style={{ display: 'flex', gap: 12 }}>
-                <a href="/#contact" className="btn-primary">Download App</a>
-                <a href="/#contact" className="btn-ghost">Learn More</a>
+                <a href="/#contact" className="btn-primary">{t('apppage_download')}</a>
+                <a href="/#contact" className="btn-ghost">{t('apppage_learn')}</a>
               </div>
             ) : (
-              <a href="/#contact" className="btn-ghost">Notify me when ready →</a>
+              <a href="/#contact" className="btn-ghost">{t('apppage_notify')}</a>
             )}
           </div>
 
@@ -203,7 +205,7 @@ export default function AppPage() {
 
       {/* Features — marginTop reduced ~20% (32 → 26) */}
       <div className="container" style={{ marginTop: 26 }}>
-        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 14 }}>Features</h2>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 14 }}>{t('apppage_features')}</h2>
 
         {(() => {
           const featured = app.features.find(f => f.title === 'AI Coach with Memory')
@@ -248,7 +250,7 @@ export default function AppPage() {
                         fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.06em',
                         textTransform: 'uppercase', padding: '2px 8px', borderRadius: 100,
                         background: app.color + '18', color: app.color, border: `1px solid ${app.color}30`,
-                      }}>Core Feature</span>
+                      }}>{t('apppage_core')}</span>
                     </div>
                     <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.52)', lineHeight: 1.6, maxWidth: 600 }}>{featured.desc}</div>
                   </div>

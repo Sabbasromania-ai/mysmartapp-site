@@ -1,43 +1,49 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { apps } from './Features'
 import appLogo from '../applogo.png'
 import appScreenshot from '../app-screenshot.png'
-
-const previewApps = [
-  {
-    logo: appLogo,
-    name: 'AI Health Tracker',
-    tag: 'Live · iOS & Android',
-    desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
-    rows: ['Weight: 94.1 kg', 'Mounjaro 5mg ✓', 'AI Coach active'],
-    appIndex: 0,
-  },
-  {
-    logo: null,
-    emoji: '🧘',
-    name: 'AI Wellness Coach',
-    tag: 'Coming Soon',
-    desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
-    rows: ['Sleep: 7.2h', 'Stress: Low', 'Mood tracked'],
-    appIndex: 1,
-  },
-  {
-    logo: null,
-    emoji: '🍎',
-    name: 'AI Nutrition',
-    tag: 'Coming Soon',
-    desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
-    rows: ['Protein: 142g', 'Calories: 1,820', 'Meal logged'],
-    appIndex: 2,
-  },
-]
+import { useLang } from '../LangContext'
+import { TKey } from '../translations'
 
 const slugs = ['ai-health-tracker', 'ai-wellness-coach', 'ai-nutrition']
 
 export default function Hero() {
   const [hovered, setHovered] = useState<number | null>(null)
   const navigate = useNavigate()
+  const { t } = useLang()
+
+  const previewApps = [
+    {
+      logo: appLogo,
+      emoji: null,
+      nameKey: 'app0_name' as TKey,
+      tagKey: 'app0_tag' as TKey,
+      descKey: 'app0_desc' as TKey,
+      rowKeys: ['app0_row0', 'app0_row1', 'app0_row2'] as TKey[],
+      isLive: true,
+      appIndex: 0,
+    },
+    {
+      logo: null,
+      emoji: '🧘',
+      nameKey: 'app1_name' as TKey,
+      tagKey: 'app1_tag' as TKey,
+      descKey: 'app1_desc' as TKey,
+      rowKeys: ['app1_row0', 'app1_row1', 'app1_row2'] as TKey[],
+      isLive: false,
+      appIndex: 1,
+    },
+    {
+      logo: null,
+      emoji: '🍎',
+      nameKey: 'app2_name' as TKey,
+      tagKey: 'app2_tag' as TKey,
+      descKey: 'app2_desc' as TKey,
+      rowKeys: ['app2_row0', 'app2_row1', 'app2_row2'] as TKey[],
+      isLive: false,
+      appIndex: 2,
+    },
+  ]
 
   return (
     <section className="hero-platform" id="home">
@@ -47,27 +53,24 @@ export default function Hero() {
         <div className="hero-left">
           <div className="hero-badge">
             <span className="badge-dot" />
-            AI-Powered Platform
+            {t('hero_badge')}
           </div>
           <h1 className="hero-h1">
-            AI-powered apps<br />
-            built for <span className="text-gradient">real&nbsp;use.</span>
+            {t('hero_h1_1')}<br />
+            {t('hero_h1_2')} <span className="text-gradient">{t('hero_h1_3')}</span>
           </h1>
-          <p className="hero-p">
-            A platform creating smart, AI-driven tools for health,
-            productivity, and real-world use. Designed and built by a solo developer.
-          </p>
+          <p className="hero-p">{t('hero_p')}</p>
           <div className="hero-actions">
-            <a href="#apps" className="btn-primary">Explore Apps</a>
-            <a href="#platform" className="btn-ghost">View Platform →</a>
+            <a href="#apps" className="btn-primary">{t('hero_btn_explore')}</a>
+            <a href="#platform" className="btn-ghost">{t('hero_btn_platform')}</a>
           </div>
           <div className="hero-trust">
             <span className="trust-dot" />
-            <span>iOS & Android</span>
+            <span>{t('hero_trust_ios')}</span>
             <span className="trust-sep">·</span>
-            <span>Powered by Claude AI</span>
+            <span>{t('hero_trust_ai')}</span>
             <span className="trust-sep">·</span>
-            <span>Built by 1 developer</span>
+            <span>{t('hero_trust_dev')}</span>
           </div>
         </div>
 
@@ -75,7 +78,6 @@ export default function Hero() {
         <div className="hero-right hero-right-split">
 
           <div className="hero-mockup-col" onClick={() => navigate('/apps/ai-health-tracker')} style={{ cursor: 'pointer', position: 'relative' }}>
-            {/* Glow behind screenshot */}
             <div style={{
               position: 'absolute',
               top: '50%', left: '50%',
@@ -101,7 +103,7 @@ export default function Hero() {
           <div className="hero-cards-col">
             {previewApps.map((app, i) => (
               <div
-                key={app.name}
+                key={i}
                 className={`hac${hovered === i ? ' hovered' : ''}`}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
@@ -110,21 +112,21 @@ export default function Hero() {
                 <div className="hac-top">
                   <span className="hac-icon">
                     {app.logo
-                      ? <img src={app.logo} alt={app.name} style={{ width: 20, height: 20, borderRadius: 5, objectFit: 'cover' }} />
-                      : <span>{(app as any).emoji}</span>
+                      ? <img src={app.logo} alt={t(app.nameKey)} style={{ width: 20, height: 20, borderRadius: 5, objectFit: 'cover' }} />
+                      : <span>{app.emoji}</span>
                     }
                   </span>
                   <div>
-                    <div className="hac-name">{app.name}</div>
-                    <div className={`hac-tag${app.tag.startsWith('Live') ? ' hac-tag-live' : ''}`}>{app.tag}</div>
+                    <div className="hac-name">{t(app.nameKey)}</div>
+                    <div className={`hac-tag${app.isLive ? ' hac-tag-live' : ''}`}>{t(app.tagKey)}</div>
                   </div>
                 </div>
-                <p className="hac-desc">{app.desc}</p>
+                <p className="hac-desc">{t(app.descKey)}</p>
                 <div className="hac-rows">
-                  {app.rows.map(r => (
-                    <div key={r} className="hac-row">
+                  {app.rowKeys.map(rk => (
+                    <div key={rk} className="hac-row">
                       <span className="hac-dot" />
-                      <span>{r}</span>
+                      <span>{t(rk)}</span>
                     </div>
                   ))}
                 </div>
