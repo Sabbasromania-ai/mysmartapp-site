@@ -1539,86 +1539,78 @@ footer {
   gap: 8px;
   align-items: start;
 }
-.platform-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  transition: border-color 0.25s, background 0.25s;
-}
-.platform-card:hover {
-  border-color: var(--border-hover);
-  background: var(--card);
-}
-.pc-icon {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-}
-.pc-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 3px;
-  letter-spacing: -0.01em;
-}
-.pc-desc {
-  font-size: 0.7rem;
-  color: var(--muted2);
-  line-height: 1.5;
-}
-
-/* apps-grid inside combined-left: 1-col stack, same size as platform cards */
+/* apps-grid inside combined-left: 1-col stack */
 .combined-left .apps-grid {
   grid-template-columns: 1fr;
   gap: 8px;
 }
 
-/* Compact app card — matches platform-card size exactly */
-.app-card-compact {
+/* ===== UNIFIED COMPACT CARD (glass style) — used by BOTH columns ===== */
+.compact-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   padding: 12px 14px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-.app-card-compact.hovered {
+.compact-card:hover,
+.compact-card--hovered {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
   transform: translateY(-2px);
 }
-.acc-top {
+
+/* Icon row with optional tag */
+.cc-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
-.acc-icon {
-  width: 28px; height: 28px;
-  border-radius: 7px;
+.cc-icon {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  font-size: 0.85rem;
 }
-.acc-tag {
-  font-size: 0.58rem;
+.cc-icon--emoji {
+  width: auto; height: auto;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.cc-tag {
+  font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 100px;
 }
-.acc-name {
+.cc-title {
   font-size: 0.78rem;
   font-weight: 700;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.92);
   letter-spacing: -0.01em;
+  line-height: 1.3;
 }
-.acc-desc {
+.cc-desc {
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.45);
   line-height: 1.5;
 }
 

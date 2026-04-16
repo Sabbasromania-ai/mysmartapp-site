@@ -222,25 +222,19 @@ export default function Features() {
         {apps.map((app, i) => (
           <div
             key={app.name}
-            className={`app-card-compact${hovered === i ? ' hovered' : ''}`}
-            style={{
-              background: app.gradient,
-              border: `1px solid ${hovered === i ? app.color + '50' : app.color + '20'}`,
-              boxShadow: hovered === i ? `0 0 24px ${app.glow}` : `0 0 10px ${app.glow}`,
-            }}
+            className={`compact-card${hovered === i ? ' compact-card--hovered' : ''}`}
             onClick={() => navigate(`/apps/${slugs[i]}`)}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
           >
-            <div className="acc-top">
-              <span className="acc-icon" style={{ background: app.color + '20', border: `1px solid ${app.color}30` }}>
-                <AppIcon app={app} size={18} />
+            <div className="cc-top">
+              <span className="cc-icon">
+                <AppIcon app={app} size={16} />
               </span>
-              <span className="acc-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
+              <span className="cc-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
             </div>
-            <div className="acc-name">{app.name}</div>
-            <div className="acc-desc">{app.short}</div>
-            <div className="acp-bar" style={{ background: `linear-gradient(90deg, ${app.color}00, ${app.color}60, ${app.color}00)` }} />
+            <div className="cc-title">{app.name}</div>
+            <div className="cc-desc">{app.short}</div>
           </div>
         ))}
       </div>

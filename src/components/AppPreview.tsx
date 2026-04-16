@@ -21,10 +21,10 @@ export default function AppPreview() {
           { icon: '⚡', title: 'Fast & Offline', desc: 'Core features work offline. Data syncs when reconnected.' },
           { icon: '🔄', title: 'Continuous Updates', desc: 'Actively maintained. User feedback drives every release.' },
         ].map((p, i) => (
-          <div key={p.title} className="platform-card" style={{ animationDelay: `${i * 0.06}s` }}>
-            <div className="pc-icon">{p.icon}</div>
-            <div className="pc-title">{p.title}</div>
-            <div className="pc-desc">{p.desc}</div>
+          <div key={p.title} className="compact-card" style={{ animationDelay: `${i * 0.06}s` }}>
+            <div className="cc-icon cc-icon--emoji">{p.icon}</div>
+            <div className="cc-title">{p.title}</div>
+            <div className="cc-desc">{p.desc}</div>
           </div>
         ))}
       </div>
