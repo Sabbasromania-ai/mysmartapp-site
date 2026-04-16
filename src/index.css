@@ -1536,27 +1536,11 @@ footer {
 .platform-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  gap: 8px;
   align-items: start;
 }
 
-/* Extra-compact override for platform cards */
-.platform-compact {
-  padding: 10px 12px;
-  gap: 3px;
-}
-.platform-compact .cc-icon {
-  width: 22px;
-  height: 22px;
-  font-size: 0.75rem;
-}
-.platform-compact .cc-name {
-  font-size: 0.72rem;
-}
-.platform-compact .cc-desc {
-  font-size: 0.64rem;
-  line-height: 1.45;
-}
+/* platform-compact — same as compact-card, no overrides */
 
 /* Trust line below platform grid */
 .platform-trust {
