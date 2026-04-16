@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from './Features'
 import appLogo from '../applogo.png'
 
@@ -31,12 +32,11 @@ const previewApps = [
   },
 ]
 
-interface HeroProps {
-  onOpenApp: (index: number) => void
-}
+const slugs = ['ai-health-tracker', 'ai-wellness-coach', 'ai-nutrition']
 
-export default function Hero({ onOpenApp }: HeroProps) {
+export default function Hero() {
   const [hovered, setHovered] = useState<number | null>(null)
+  const navigate = useNavigate()
 
   return (
     <section className="hero-platform" id="home">
@@ -73,7 +73,7 @@ export default function Hero({ onOpenApp }: HeroProps) {
         {/* RIGHT — Phone mockup + App Cards */}
         <div className="hero-right hero-right-split">
 
-          <div className="hero-mockup-col" onClick={() => onOpenApp(0)}>
+          <div className="hero-mockup-col" onClick={() => navigate('/apps/ai-health-tracker')}>
             <PhoneMockup app={apps[0]} />
           </div>
 
@@ -84,7 +84,7 @@ export default function Hero({ onOpenApp }: HeroProps) {
                 className={`hac${hovered === i ? ' hovered' : ''}`}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
-                onClick={() => onOpenApp(app.appIndex)}
+                onClick={() => navigate(`/apps/${slugs[app.appIndex]}`)}
               >
                 <div className="hac-top">
                   <span className="hac-icon">

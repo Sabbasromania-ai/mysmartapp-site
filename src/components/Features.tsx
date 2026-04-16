@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import appLogo from '../applogo.png'
 
 // Same color system for ALL cards
@@ -199,10 +200,11 @@ export function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () =>
   )
 }
 
-interface FeaturesProps { onOpenApp: (index: number) => void }
+const slugs = ['ai-health-tracker', 'ai-wellness-coach', 'ai-nutrition']
 
-export default function Features({ onOpenApp }: FeaturesProps) {
+export default function Features() {
   const [hovered, setHovered] = useState<number | null>(null)
+  const navigate = useNavigate()
 
   return (
     <section className="features-section" id="apps">
@@ -228,7 +230,7 @@ export default function Features({ onOpenApp }: FeaturesProps) {
                 boxShadow: hovered === i ? `0 0 40px ${app.glow}, 0 20px 60px rgba(0,0,0,0.4)` : `0 0 20px ${app.glow}`,
                 borderColor: hovered === i ? app.color + '50' : app.color + '20',
               }}
-              onClick={() => onOpenApp(i)}
+              onClick={() => navigate(`/apps/${slugs[i]}`)}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
             >

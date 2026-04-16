@@ -1,5 +1,6 @@
 import './index.css'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -8,11 +9,9 @@ import HowItWorks from './components/HowItWorks'
 import Support from './components/Support'
 import Footer from './components/Footer'
 import NeuralBg from './components/NeuralBg'
-import { AppModal, apps } from './components/Features'
+import AppPage from './pages/AppPage'
 
-export default function App() {
-  const [openApp, setOpenApp] = useState<number | null>(null)
-
+function HomePage() {
   useEffect(() => {
     const reveals = document.querySelectorAll('.reveal')
     const io = new IntersectionObserver(entries => {
@@ -27,26 +26,35 @@ export default function App() {
     return () => io.disconnect()
   }, [])
 
-  // ESC to close modal
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpenApp(null) }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
   return (
     <>
       <NeuralBg />
       <Nav />
       <main>
-        <Hero onOpenApp={setOpenApp} />
-        <Features onOpenApp={setOpenApp} />
+        <Hero />
+        <Features />
         <AppPreview />
         <HowItWorks />
         <Support />
       </main>
       <Footer />
-      {openApp !== null && <AppModal app={apps[openApp]} onClose={() => setOpenApp(null)} />}
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/apps/:slug" element={
+          <>
+            <Nav />
+            <AppPage />
+            <Footer />
+          </>
+        } />
+      </Routes>
+    </BrowserRouter>
   )
 }
