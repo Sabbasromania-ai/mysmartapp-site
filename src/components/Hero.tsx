@@ -41,10 +41,10 @@ export default function Hero() {
 
   return (
     <section className="hero-platform" id="home">
-      <div className="container hero-inner">
+      <div className="container hero-inner" style={{ alignItems: 'stretch' }}>
 
         {/* LEFT */}
-        <div className="hero-left">
+        <div className="hero-left" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <div className="hero-badge">
             <span className="badge-dot" />
             AI-Powered Platform
