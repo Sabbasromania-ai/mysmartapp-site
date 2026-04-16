@@ -1567,10 +1567,59 @@ footer {
   line-height: 1.5;
 }
 
-/* apps-grid inside combined-left: stack to 1 col */
+/* apps-grid inside combined-left: 1-col stack, same size as platform cards */
 .combined-left .apps-grid {
   grid-template-columns: 1fr;
   gap: 8px;
+}
+
+/* Compact app card — matches platform-card size exactly */
+.app-card-compact {
+  border-radius: 10px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.app-card-compact.hovered {
+  transform: translateY(-2px);
+}
+.acc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.acc-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.acc-tag {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+.acc-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.acc-desc {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
 }
 
 /* Responsive: stack on smaller screens */

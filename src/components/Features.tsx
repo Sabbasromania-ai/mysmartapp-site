@@ -222,39 +222,24 @@ export default function Features() {
         {apps.map((app, i) => (
           <div
             key={app.name}
-            className={`app-card-premium${hovered === i ? ' hovered' : ''}`}
+            className={`app-card-compact${hovered === i ? ' hovered' : ''}`}
             style={{
-              animationDelay: `${i * 0.12}s`,
               background: app.gradient,
-              boxShadow: hovered === i ? `0 0 40px ${app.glow}, 0 20px 60px rgba(0,0,0,0.4)` : `0 0 20px ${app.glow}`,
-              borderColor: hovered === i ? app.color + '50' : app.color + '20',
+              border: `1px solid ${hovered === i ? app.color + '50' : app.color + '20'}`,
+              boxShadow: hovered === i ? `0 0 24px ${app.glow}` : `0 0 10px ${app.glow}`,
             }}
             onClick={() => navigate(`/apps/${slugs[i]}`)}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
           >
-            <div className="acp-top">
-              <span className="acp-icon" style={{ background: app.color + '20', border: `1px solid ${app.color}30` }}>
-                <AppIcon app={app} size={28} />
+            <div className="acc-top">
+              <span className="acc-icon" style={{ background: app.color + '20', border: `1px solid ${app.color}30` }}>
+                <AppIcon app={app} size={18} />
               </span>
-              <span className="acp-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
+              <span className="acc-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
             </div>
-            <div className="acp-name">{app.name}</div>
-            <div className="acp-desc">{app.short}</div>
-            <div className="acp-feats">
-              {app.features.slice(0, 3).map(f => (
-                <div key={f.title} className="acp-feat-row">
-                  <span>{f.icon}</span>
-                  <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>{f.title}</span>
-                </div>
-              ))}
-            </div>
-            <div className="acp-footer">
-              <div className="acp-platforms">
-                {app.platforms.map(p => <span key={p} className="acp-platform">{p}</span>)}
-              </div>
-              <span className="acp-cta" style={{ color: app.color }}>View App →</span>
-            </div>
+            <div className="acc-name">{app.name}</div>
+            <div className="acc-desc">{app.short}</div>
             <div className="acp-bar" style={{ background: `linear-gradient(90deg, ${app.color}00, ${app.color}60, ${app.color}00)` }} />
           </div>
         ))}
