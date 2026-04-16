@@ -4,33 +4,27 @@ import { apps, PhoneMockup } from './Features'
 const previewApps = [
   {
     icon: '🏥',
-    color: '#00d4ff',
-    gradient: 'linear-gradient(135deg, #0a1628 0%, #0c2040 50%, #0e2d52 100%)',
     name: 'AI Health Tracker',
     tag: 'Live · iOS & Android',
-    tagColor: '#10b981',
+    tagColor: '#22d3ee',
     desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
     rows: ['Weight: 94.1 kg', 'Mounjaro 5mg ✓', 'AI Coach active'],
     appIndex: 0,
   },
   {
     icon: '🧘',
-    color: '#6366f1',
-    gradient: 'linear-gradient(135deg, #0d0a28 0%, #130f3a 50%, #1a1450 100%)',
     name: 'AI Wellness Coach',
     tag: 'Coming Soon',
-    tagColor: '#f59e0b',
+    tagColor: '#22d3ee',
     desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
     rows: ['Sleep: 7.2h', 'Stress: Low', 'Mood tracked'],
     appIndex: 1,
   },
   {
     icon: '🍎',
-    color: '#10b981',
-    gradient: 'linear-gradient(135deg, #071a14 0%, #0a2a1e 50%, #0e3828 100%)',
     name: 'AI Nutrition',
     tag: 'In Development',
-    tagColor: '#6366f1',
+    tagColor: '#22d3ee',
     desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
     rows: ['Protein: 142g', 'Calories: 1,820', 'Meal logged'],
     appIndex: 2,
@@ -79,51 +73,40 @@ export default function Hero({ onOpenApp }: HeroProps) {
         {/* RIGHT — Phone mockup + App Cards */}
         <div className="hero-right hero-right-split">
 
-          {/* Phone mockup */}
-          <div className="hero-mockup-col" onClick={() => onOpenApp(0)} style={{ cursor: 'pointer' }}>
+          <div className="hero-mockup-col" onClick={() => onOpenApp(0)}>
             <PhoneMockup app={apps[0]} />
           </div>
 
-          {/* 3 App cards */}
           <div className="hero-cards-col">
             {previewApps.map((app, i) => (
               <div
                 key={app.name}
-                className={`hero-app-card${hovered === i ? ' hovered' : ''}`}
-                style={{
-                  background: app.gradient,
-                  borderColor: hovered === i ? app.color + '55' : app.color + '20',
-                  cursor: 'pointer',
-                }}
+                className={`hac${hovered === i ? ' hovered' : ''}`}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => onOpenApp(app.appIndex)}
               >
                 <div className="hac-top">
-                  <span className="hac-icon" style={{ background: app.color + '22' }}>{app.icon}</span>
+                  <span className="hac-icon">{app.icon}</span>
                   <div>
                     <div className="hac-name">{app.name}</div>
-                    <div className="hac-tag" style={{ color: app.tagColor }}>{app.tag}</div>
+                    <div className="hac-tag">{app.tag}</div>
                   </div>
                 </div>
                 <p className="hac-desc">{app.desc}</p>
                 <div className="hac-rows">
                   {app.rows.map(r => (
-                    <div key={r} className="hac-row" style={{ borderColor: app.color + '22' }}>
-                      <span className="hac-dot" style={{ background: app.color }} />
+                    <div key={r} className="hac-row">
+                      <span className="hac-dot" />
                       <span>{r}</span>
                     </div>
                   ))}
-                </div>
-                <div style={{ fontSize: '0.72rem', color: app.color, marginTop: '0.6rem', opacity: hovered === i ? 1 : 0, transition: 'opacity 0.2s' }}>
-                  View details →
                 </div>
               </div>
             ))}
           </div>
 
         </div>
-
       </div>
     </section>
   )
