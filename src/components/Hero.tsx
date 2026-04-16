@@ -74,6 +74,7 @@ export default function Hero() {
               style={{ borderColor: hovered === i ? app.color + '55' : undefined }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
+              onClick={() => { const el = document.getElementById('apps'); if(el) el.scrollIntoView({behavior:'smooth'}); }}
             >
               <div className="hac-top">
                 <span className="hac-icon" style={{ background: app.color + '18' }}>{app.icon}</span>
