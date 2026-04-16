@@ -1,45 +1,44 @@
-const steps = [
-  {
-    num: '01',
-    title: 'Track',
-    desc: 'Log your weight, injections, meals, and symptoms. Takes 30 seconds a day. Syncs automatically with Apple Health and Google Health Connect.',
-  },
-  {
-    num: '02',
-    title: 'Analyze',
-    desc: 'The AI processes your data to find patterns — how your dose affects appetite, which foods impact your progress, when you\'re most likely to miss a log.',
-  },
-  {
-    num: '03',
-    title: 'Improve',
-    desc: 'Get specific, personalized recommendations. Not generic tips — real guidance based on your history, your medication, and your goals.',
-  },
-]
-
 export default function HowItWorks() {
   return (
-    <section className="how-section" id="how">
+    <section className="about-section" id="about">
       <div className="container">
-        <div className="section-header reveal">
-          <div className="section-label">
+        <div className="about-card reveal">
+          <div className="section-label" style={{ marginBottom: '1.5rem' }}>
             <span className="section-label-dot" />
-            How It Works
+            About
           </div>
-          <h2 className="section-title">
-            Three steps.<br />
-            <span className="dim">Real results.</span>
-          </h2>
-        </div>
-
-        <div className="how-grid">
-          {steps.map((s, i) => (
-            <div key={s.num} className="how-card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
-              <div className="how-num">{s.num}</div>
-              <div className="how-connector" />
-              <h3 className="how-title">{s.title}</h3>
-              <p className="how-desc">{s.desc}</p>
+          <div className="about-grid">
+            <div className="about-left">
+              <h2 className="about-title">
+                One developer.<br />
+                <span className="text-gradient">Real products.</span>
+              </h2>
+              <p className="about-desc">
+                SmartApps is built by a solo developer focused on creating
+                AI-powered tools that actually solve real problems — not demos,
+                not experiments. Apps that ship, that work, and that improve
+                people's lives.
+              </p>
+              <p className="about-desc">
+                Every app on this platform is designed with the same principles:
+                clean UI, powerful AI, strong privacy, and continuous improvement
+                based on real user feedback.
+              </p>
             </div>
-          ))}
+            <div className="about-stats">
+              {[
+                { num: '2+', label: 'Apps shipped' },
+                { num: 'Claude', label: 'AI engine' },
+                { num: '100%', label: 'Privacy focused' },
+                { num: '1', label: 'Developer' },
+              ].map(s => (
+                <div key={s.label} className="about-stat">
+                  <div className="about-stat-num">{s.num}</div>
+                  <div className="about-stat-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

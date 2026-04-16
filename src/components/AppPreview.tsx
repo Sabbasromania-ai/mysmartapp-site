@@ -1,74 +1,33 @@
 export default function AppPreview() {
-  const rows = [
-    { dot: '#00d4ff', label: 'Weight logged', value: '94.1 kg' },
-    { dot: '#6366f1', label: 'Mounjaro 5mg', value: 'Injected ✓' },
-    { dot: '#10b981', label: 'Calories today', value: '1,280 kcal' },
-    { dot: '#f59e0b', label: 'Steps', value: '8,432' },
-    { dot: '#00d4ff', label: 'AI Coach insight', value: 'View →' },
-  ]
-
   return (
-    <section className="preview-section" id="preview">
+    <section className="platform-section" id="platform">
       <div className="container">
         <div className="section-header reveal">
           <div className="section-label">
             <span className="section-label-dot" />
-            App Preview
+            Platform
           </div>
           <h2 className="section-title">
-            Built for daily use.<br />
-            <span className="dim">Designed to feel effortless.</span>
+            Built on a shared foundation.<br />
+            <span className="dim">Every app, same quality bar.</span>
           </h2>
         </div>
 
-        <div className="preview-layout reveal">
-          <div className="preview-text">
-            <h3 className="preview-h3">Your health data, unified.</h3>
-            <p className="preview-p">
-              One clean dashboard for weight, medication, nutrition, and AI coaching.
-              Syncs with Apple Health and Google Health Connect automatically.
-            </p>
-            <div className="preview-bullets">
-              {[
-                'Automatic sync with Apple Health & Google Fit',
-                'AI coach that remembers your full history',
-                'Blood test interpretation built in',
-                'Works offline — no internet required for logging',
-              ].map(b => (
-                <div key={b} className="preview-bullet">
-                  <span className="bullet-check">✓</span>
-                  <span>{b}</span>
-                </div>
-              ))}
+        <div className="platform-grid reveal">
+          {[
+            { icon: '🤖', title: 'Claude AI Core', desc: 'All apps powered by Anthropic\'s Claude — context-aware, personalized, and continuously improving.' },
+            { icon: '🔒', title: 'Privacy First', desc: 'Supabase auth with row-level security. Your data is yours. No ads, no third-party sharing.' },
+            { icon: '📱', title: 'Cross-Platform', desc: 'Every app ships on iOS and Android via Capacitor. One codebase, native performance.' },
+            { icon: '☁️', title: 'Cloud Sync', desc: 'Real-time sync across devices. Integrates with Apple Health and Google Health Connect.' },
+            { icon: '⚡', title: 'Fast & Offline', desc: 'Core features work offline. Data syncs when connection is restored.' },
+            { icon: '🔄', title: 'Continuous Updates', desc: 'Apps are actively maintained and improved. User feedback drives every release.' },
+          ].map((p, i) => (
+            <div key={p.title} className="platform-card" style={{ animationDelay: `${i * 0.06}s` }}>
+              <div className="pc-icon">{p.icon}</div>
+              <div className="pc-title">{p.title}</div>
+              <div className="pc-desc">{p.desc}</div>
             </div>
-            <a href="#support" className="btn-primary" style={{ display: 'inline-block', marginTop: '2rem' }}>
-              Try the App
-            </a>
-          </div>
-
-          <div className="preview-phone-wrap">
-            <div className="preview-phone">
-              <div className="phone-notch" />
-              <div className="phone-screen">
-                <div className="phone-header">
-                  <span className="phone-title">Dashboard</span>
-                  <span className="phone-date">Thu, 16 Apr</span>
-                </div>
-                {rows.map(r => (
-                  <div key={r.label} className="phone-row">
-                    <div className="phone-dot" style={{ background: r.dot }} />
-                    <span className="phone-label">{r.label}</span>
-                    <span className="phone-value">{r.value}</span>
-                  </div>
-                ))}
-                <div className="phone-chart">
-                  {[60, 80, 55, 90, 70, 85, 65].map((h, i) => (
-                    <div key={i} className="chart-bar" style={{ height: `${h}%` }} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

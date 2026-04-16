@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 
 const links = [
-  { id: 'features', label: 'Features' },
-  { id: 'preview', label: 'App' },
-  { id: 'how', label: 'How It Works' },
-  { id: 'support', label: 'Support' },
+  { id: 'apps', label: 'Apps' },
+  { id: 'platform', label: 'Platform' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 export default function Nav() {
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
@@ -39,7 +40,7 @@ export default function Nav() {
             </a>
           ))}
         </div>
-        <a href="#support" className="btn-nav">Get Started</a>
+        <a href="#contact" className="btn-nav">Get Started</a>
       </nav>
     </>
   )

@@ -1,25 +1,25 @@
 export default function Support() {
   return (
-    <section className="support-section" id="support">
+    <section className="support-section" id="contact">
       <div className="container">
         <div className="support-card reveal">
           <div className="section-label" style={{ marginBottom: '1rem' }}>
             <span className="section-label-dot" />
-            Support
+            Contact & Support
           </div>
-          <h2 className="support-title">We're here to help.</h2>
+          <h2 className="support-title">Get in touch.</h2>
           <p className="support-sub">
-            For any questions, feedback, or support requests, reach out directly:
+            For questions, app support, collaborations, or feedback — reach out directly:
           </p>
           <a href="mailto:sabbasromanaia@icloud.com" className="support-email">
             sabbasromanaia@icloud.com
           </a>
           <a href="mailto:sabbasromanaia@icloud.com" className="btn-primary" style={{ marginTop: '1.5rem', display: 'inline-block' }}>
-            Contact Support
+            Send a Message
           </a>
           <div className="support-disclaimer">
             <span className="disclaimer-icon">ℹ️</span>
-            This app provides informational and tracking purposes only and does not provide medical advice.
+            AI Health Tracker provides informational and tracking purposes only and does not provide medical advice.
             Always consult your healthcare provider for medical decisions.
           </div>
         </div>
