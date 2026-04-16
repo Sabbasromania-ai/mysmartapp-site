@@ -44,8 +44,14 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <HowItWorks />
-        <Support />
+        <section className="bottom-section" id="about">
+          <div className="container">
+            <div className="bottom-grid">
+              <HowItWorks />
+              <Support />
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

@@ -1638,6 +1638,99 @@ footer {
   }
 }
 
+/* ===================== BOTTOM ROW (Developer + Contact side by side) ===================== */
+.bottom-section {
+  padding: 24px 0 36px;
+}
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.bottom-card {
+  background: rgba(14, 165, 233, 0.06);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.25s ease;
+}
+.bottom-card:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+}
+.bc-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.bc-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
+.bc-desc {
+  font-size: 0.78rem;
+  color: var(--muted2);
+  line-height: 1.6;
+  margin: 0;
+}
+.bc-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+.bc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.bc-stat-num {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.bc-stat-label {
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.bc-email {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,212,255,0.25);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: border-color 0.2s;
+}
+.bc-email:hover {
+  border-color: var(--accent);
+}
+.bc-btn {
+  margin-top: 4px;
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 8px 18px;
+  width: fit-content;
+}
+@media (max-width: 640px) {
+  .bottom-grid { grid-template-columns: 1fr; }
+}
+
 /* ===================== NEW LAYOUT ADDITIONS ===================== */
 
 /* Nav button */
