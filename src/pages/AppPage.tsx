@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from '../components/Features'
+import appScreenshot from '../app-screenshot.png'
 
 const slugMap: Record<string, number> = {
   'ai-health-tracker': 0,
@@ -133,12 +134,53 @@ export default function AppPage() {
             )}
           </div>
 
-          {/* Right — Phone mockup with ghost behind */}
+          {/* Right — Real screenshot (Health Tracker) or Phone mockup */}
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-            <GhostPhone color={app.color} />
-            <div style={{ transform: 'scale(1.5)', transformOrigin: 'center', margin: '20px 40px' }}>
-              <PhoneMockup app={app} />
-            </div>
+            {isHealthTracker ? (
+              <>
+                {/* Cyan glow behind */}
+                <div style={{
+                  position: 'absolute',
+                  top: '50%', left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 260, height: 440,
+                  background: `radial-gradient(ellipse at center, ${app.color}25 0%, transparent 70%)`,
+                  pointerEvents: 'none',
+                  zIndex: 0,
+                }} />
+                {/* Ghost phone shadow behind */}
+                <div style={{
+                  position: 'absolute',
+                  top: 22, right: -18,
+                  width: 170, height: 340,
+                  background: 'linear-gradient(160deg, #111827, #0a0e1f)',
+                  border: `1px solid ${app.color}15`,
+                  borderRadius: 34,
+                  opacity: 0.35,
+                  filter: 'blur(2px)',
+                  zIndex: 0,
+                }} />
+                <img
+                  src={appScreenshot}
+                  alt="AI Health Tracker App"
+                  style={{
+                    width: 230,
+                    borderRadius: 40,
+                    boxShadow: `0 0 0 1px ${app.color}20, 0 32px 80px rgba(0,0,0,0.65), 0 0 60px ${app.color}18`,
+                    position: 'relative',
+                    zIndex: 1,
+                    display: 'block',
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <GhostPhone color={app.color} />
+                <div style={{ transform: 'scale(1.5)', transformOrigin: 'center', margin: '20px 40px' }}>
+                  <PhoneMockup app={app} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { apps, PhoneMockup } from './Features'
+import { apps } from './Features'
 import appLogo from '../applogo.png'
+import appScreenshot from '../app-screenshot.png'
 
 const previewApps = [
   {
@@ -73,8 +74,29 @@ export default function Hero() {
         {/* RIGHT — Phone mockup + App Cards */}
         <div className="hero-right hero-right-split">
 
-          <div className="hero-mockup-col" onClick={() => navigate('/apps/ai-health-tracker')}>
-            <PhoneMockup app={apps[0]} />
+          <div className="hero-mockup-col" onClick={() => navigate('/apps/ai-health-tracker')} style={{ cursor: 'pointer', position: 'relative' }}>
+            {/* Glow behind screenshot */}
+            <div style={{
+              position: 'absolute',
+              top: '50%', left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 220, height: 380,
+              background: 'radial-gradient(ellipse at center, rgba(0,212,255,0.28) 0%, transparent 70%)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }} />
+            <img
+              src={appScreenshot}
+              alt="AI Health Tracker App"
+              style={{
+                width: 210,
+                borderRadius: 36,
+                boxShadow: '0 0 0 1px rgba(0,212,255,0.18), 0 24px 60px rgba(0,0,0,0.55), 0 0 40px rgba(0,212,255,0.15)',
+                position: 'relative',
+                zIndex: 1,
+                display: 'block',
+              }}
+            />
           </div>
 
           <div className="hero-cards-col">
