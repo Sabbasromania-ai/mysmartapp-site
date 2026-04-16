@@ -37,8 +37,8 @@ export default function AppPage() {
           <div className="app-page-hero-left">
             <div className="app-page-icon-row">
               {(app as any).logo
-                ? <img src={(app as any).logo} alt={app.name} className="app-page-logo" />
-                : <span className="app-page-emoji">{(app as any).emoji}</span>
+                ? <img src={(app as any).logo} alt={app.name} style={{ width: 52, height: 52, borderRadius: 14, objectFit: 'cover', display: 'block' }} />
+                : <span style={{ fontSize: '2.4rem' }}>{(app as any).emoji}</span>
               }
               <span className="app-page-tag" style={{ color: app.tagColor, background: app.tagBg }}>
                 {app.tag}
