@@ -164,9 +164,8 @@ export default function AppPage() {
                   src={appScreenshot}
                   alt="AI Health Tracker App"
                   style={{
-                    width: 230,
-                    borderRadius: 40,
-                    boxShadow: `0 0 0 1px ${app.color}20, 0 32px 80px rgba(0,0,0,0.65), 0 0 60px ${app.color}18`,
+                    width: 240,
+                    filter: `drop-shadow(0 0 36px ${app.color}30) drop-shadow(0 32px 64px rgba(0,0,0,0.7))`,
                     position: 'relative',
                     zIndex: 1,
                     display: 'block',

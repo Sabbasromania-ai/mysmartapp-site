@@ -90,8 +90,7 @@ export default function Hero() {
               alt="AI Health Tracker App"
               style={{
                 width: 210,
-                borderRadius: 36,
-                boxShadow: '0 0 0 1px rgba(0,212,255,0.18), 0 24px 60px rgba(0,0,0,0.55), 0 0 40px rgba(0,212,255,0.15)',
+                filter: 'drop-shadow(0 0 28px rgba(0,212,255,0.22)) drop-shadow(0 24px 48px rgba(0,0,0,0.6))',
                 position: 'relative',
                 zIndex: 1,
                 display: 'block',
