@@ -101,7 +101,7 @@ export const translations = {
     footer_privacy: 'Privacy',
     footer_terms: 'Terms',
     footer_contact: 'Contact',
-    footer_copy: '© 2026 SmartApps. All rights reserved.',
+    footer_copy: '© 2026 mysmartsapp. All rights reserved.',
   },
 
   el: {
@@ -204,7 +204,7 @@ export const translations = {
     footer_privacy: 'Ιδιωτικότητα',
     footer_terms: 'Όροι',
     footer_contact: 'Επικοινωνία',
-    footer_copy: '© 2026 SmartApps. Όλα τα δικαιώματα διατηρούνται.',
+    footer_copy: '© 2026 mysmartsapp. Όλα τα δικαιώματα διατηρούνται.',
   },
 } as const
 

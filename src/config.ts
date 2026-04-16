@@ -4,7 +4,7 @@
 
 export const config = {
   name: 'Savvas',
-  brand: 'SmartApps',
+  brand: 'mysmartsapp',
   tagline: 'Smart apps built for real people.',
   bio: [
     "I'm Savvas — a solo indie developer based in Greece. I build mobile apps that solve everyday problems with smart, clean design and AI-powered features.",
@@ -60,6 +60,3 @@ export const config = {
     Frontend: ['React', 'TypeScript', 'Vite', 'Capacitor'],
     'Backend & Data': ['Supabase', 'Node.js', 'PostgreSQL'],
     'AI & Integrations': ['GPT-4o', 'Claude API', 'Google Vision', 'RevenueCat', 'FCM'],
-    Deploy: ['Vercel', 'Codemagic', 'GitHub Actions'],
-  },
-}

@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <div className="logo-dot" style={{ display: 'inline-block', marginRight: '6px' }} />
-          Smart<span className="logo-accent">Apps</span>
+          mysmartsapp
         </div>
         <div className="footer-links">
           <a href="#support" className="footer-link">{t('footer_privacy')}</a>
