@@ -172,7 +172,7 @@ export default function Features() {
 
         <div className="apps-grid">
           {apps.map((app, i) => (
-            <div key={app.name} className="app-card reveal" style={{ transitionDelay: `${i * 0.08}s` }}>
+            <div key={app.name} className="app-card reveal" style={{ transitionDelay: `${i * 0.08}s`, cursor: 'pointer' }} onClick={() => setOpen(i)}>
               <div className="ac-top">
                 <span className="ac-icon" style={{ background: app.color + '18' }}>{app.icon}</span>
                 <span className="ac-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
