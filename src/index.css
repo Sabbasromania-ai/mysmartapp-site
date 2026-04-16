@@ -288,11 +288,12 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: center;
+  align-items: stretch;
 }
 .hero-left {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0;
 }
 .hero-trust {
