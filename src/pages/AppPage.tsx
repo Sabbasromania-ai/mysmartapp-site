@@ -14,8 +14,7 @@ function GhostPhone({ color }: { color: string }) {
     <div style={{
       position: 'absolute',
       top: 18, right: -22,
-      width: 180,
-      height: 360,
+      width: 180, height: 360,
       background: 'linear-gradient(160deg, #111827, #0a0e1f)',
       border: `1px solid ${color}18`,
       borderRadius: 32,
@@ -75,7 +74,7 @@ export default function AppPage() {
           background: app.gradient,
           border: `1px solid ${app.color}22`,
           borderRadius: 20,
-          padding: '32px 48px 32px 48px',
+          padding: '32px 48px',
           display: 'grid',
           gridTemplateColumns: '1fr auto',
           gap: 32,
@@ -83,15 +82,15 @@ export default function AppPage() {
           overflow: 'hidden',
           position: 'relative',
         }}>
-          {/* Subtle glow behind phone */}
+          {/* Background glow blob */}
           <div style={{
             position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',
-            width: 320, height: 320,
-            background: `radial-gradient(circle, ${app.color}12 0%, transparent 70%)`,
+            width: 360, height: 360,
+            background: `radial-gradient(circle, ${app.color}15 0%, transparent 70%)`,
             pointerEvents: 'none',
           }} />
 
-          {/* Left */}
+          {/* Left content */}
           <div style={{ zIndex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               {(app as any).logo
@@ -112,7 +111,6 @@ export default function AppPage() {
               {app.short}
             </p>
 
-            {/* Trust badges */}
             {isHealthTracker && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: '0.7rem', color: '#f59e0b', fontWeight: 700 }}>★ 4.8 user rating</span>
@@ -139,52 +137,55 @@ export default function AppPage() {
             )}
           </div>
 
-          {/* Right — Real screenshot (Health Tracker) or Phone mockup */}
+          {/* Right — phone */}
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
             {isHealthTracker ? (
               <>
-                {/* Cyan glow — intensifies on hover */}
+                {/* Layered glow — outer soft + inner core */}
                 <div style={{
                   position: 'absolute',
                   top: '50%', left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: phoneHovered ? 300 : 260,
-                  height: phoneHovered ? 500 : 440,
-                  background: `radial-gradient(ellipse at center, ${app.color}${phoneHovered ? '35' : '22'} 0%, transparent 70%)`,
+                  width: phoneHovered ? 320 : 280,
+                  height: phoneHovered ? 520 : 480,
+                  background: `radial-gradient(ellipse at 50% 60%, ${app.color}${phoneHovered ? '3a' : '28'} 0%, ${app.color}08 50%, transparent 72%)`,
                   pointerEvents: 'none',
                   zIndex: 0,
-                  transition: 'width 0.4s ease, height 0.4s ease, background 0.4s ease',
+                  transition: 'width 0.45s ease, height 0.45s ease, background 0.45s ease',
+                  borderRadius: '50%',
                 }} />
-                {/* Ghost phone shadow */}
+                {/* Ghost phone behind for depth */}
                 <div style={{
                   position: 'absolute',
-                  top: 22, right: -18,
-                  width: 170, height: 340,
-                  background: 'linear-gradient(160deg, #111827, #0a0e1f)',
-                  border: `1px solid ${app.color}15`,
+                  top: 20, right: -20,
+                  width: 168, height: 336,
+                  background: 'linear-gradient(160deg, #0d1b33, #070d1a)',
+                  border: `1px solid ${app.color}12`,
                   borderRadius: 34,
-                  opacity: 0.35,
-                  filter: 'blur(2px)',
+                  opacity: 0.4,
+                  filter: 'blur(2.5px)',
                   zIndex: 0,
                 }} />
+                {/* Main screenshot */}
                 <img
                   src={appScreenshot}
                   alt="AI Health Tracker App"
                   onMouseEnter={() => setPhoneHovered(true)}
                   onMouseLeave={() => setPhoneHovered(false)}
                   style={{
-                    width: 240,
+                    width: 242,
                     position: 'relative',
                     zIndex: 1,
                     display: 'block',
                     cursor: 'pointer',
-                    transition: 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), filter 0.4s ease',
+                    willChange: 'transform, filter',
+                    transition: 'transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), filter 0.45s ease',
                     transform: phoneHovered
-                      ? 'perspective(900px) rotateY(0deg) rotateX(0deg) scale(1.04)'
-                      : 'perspective(900px) rotateY(-5deg) rotateX(2deg) scale(1)',
+                      ? 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-4px) scale(1.04)'
+                      : 'perspective(1000px) rotateY(-4deg) rotateX(2deg) translateY(0px) scale(1)',
                     filter: phoneHovered
-                      ? `drop-shadow(0 0 48px ${app.color}45) drop-shadow(0 40px 80px rgba(0,0,0,0.75))`
-                      : `drop-shadow(0 0 28px ${app.color}28) drop-shadow(0 28px 56px rgba(0,0,0,0.65))`,
+                      ? `drop-shadow(0 2px 2px rgba(0,0,0,0.4)) drop-shadow(0 12px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 50px ${app.color}40)`
+                      : `drop-shadow(0 2px 2px rgba(0,0,0,0.35)) drop-shadow(0 16px 48px rgba(0,0,0,0.7)) drop-shadow(0 0 28px ${app.color}22)`,
                   }}
                 />
               </>
@@ -200,27 +201,27 @@ export default function AppPage() {
         </div>
       </div>
 
-      {/* Features */}
-      <div className="container" style={{ marginTop: 32 }}>
-        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 16 }}>Features</h2>
+      {/* Features — marginTop reduced ~20% (32 → 26) */}
+      <div className="container" style={{ marginTop: 26 }}>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 14 }}>Features</h2>
 
         {(() => {
           const featured = app.features.find(f => f.title === 'AI Coach with Memory')
           const rest = app.features.filter(f => f.title !== 'AI Coach with Memory')
           return (
             <>
-              {/* Featured card */}
+              {/* Featured card — bigger padding, stronger border at rest */}
               {featured && (
                 <div
                   onMouseEnter={() => setHoveredFeatured(true)}
                   onMouseLeave={() => setHoveredFeatured(false)}
                   style={{
                     background: hoveredFeatured
-                      ? `linear-gradient(135deg, ${app.color}18 0%, rgba(255,255,255,0.04) 100%)`
-                      : `linear-gradient(135deg, ${app.color}10 0%, rgba(255,255,255,0.02) 100%)`,
-                    border: `1px solid ${hoveredFeatured ? app.color + '55' : app.color + '30'}`,
+                      ? `linear-gradient(135deg, ${app.color}1e 0%, rgba(255,255,255,0.04) 100%)`
+                      : `linear-gradient(135deg, ${app.color}14 0%, rgba(255,255,255,0.025) 100%)`,
+                    border: `1px solid ${hoveredFeatured ? app.color + '60' : app.color + '3a'}`,
                     borderRadius: 14,
-                    padding: '24px 28px',
+                    padding: '26px 32px',
                     marginBottom: 10,
                     display: 'grid',
                     gridTemplateColumns: 'auto 1fr',
@@ -230,27 +231,31 @@ export default function AppPage() {
                     transition: 'transform 0.25s ease-in-out, border-color 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out',
                     transform: hoveredFeatured ? 'scale(1.018)' : 'scale(1)',
                     boxShadow: hoveredFeatured
-                      ? `0 8px 32px rgba(0,0,0,0.3), 0 0 20px ${app.color}12`
-                      : '0 2px 12px rgba(0,0,0,0.15)',
+                      ? `0 8px 32px rgba(0,0,0,0.28), 0 0 24px ${app.color}14`
+                      : `0 2px 16px rgba(0,0,0,0.18), 0 0 8px ${app.color}08`,
                   }}
                 >
                   <div style={{
-                    width: 52, height: 52, borderRadius: 13,
-                    background: app.color + '18', border: `1px solid ${app.color}30`,
+                    width: 54, height: 54, borderRadius: 14,
+                    background: app.color + '1c', border: `1px solid ${app.color}35`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1.5rem', flexShrink: 0,
+                    fontSize: '1.55rem', flexShrink: 0,
                   }}>{featured.icon}</div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
                       <span style={{ fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>{featured.title}</span>
-                      <span style={{ fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 100, background: app.color + '18', color: app.color, border: `1px solid ${app.color}30` }}>Core Feature</span>
+                      <span style={{
+                        fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.06em',
+                        textTransform: 'uppercase', padding: '2px 8px', borderRadius: 100,
+                        background: app.color + '18', color: app.color, border: `1px solid ${app.color}30`,
+                      }}>Core Feature</span>
                     </div>
                     <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.52)', lineHeight: 1.6, maxWidth: 600 }}>{featured.desc}</div>
                   </div>
                 </div>
               )}
 
-              {/* Regular feature cards grid */}
+              {/* Regular feature cards */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
                 {rest.map((f, i) => (
                   <div
@@ -258,27 +263,25 @@ export default function AppPage() {
                     onMouseEnter={() => setHoveredCard(i)}
                     onMouseLeave={() => setHoveredCard(null)}
                     style={{
-                      background: hoveredCard === i
-                        ? 'rgba(255,255,255,0.045)'
-                        : 'rgba(255,255,255,0.025)',
-                      border: `1px solid ${hoveredCard === i ? app.color + '40' : 'rgba(255,255,255,0.07)'}`,
+                      background: hoveredCard === i ? 'rgba(255,255,255,0.042)' : 'rgba(255,255,255,0.024)',
+                      border: `1px solid ${hoveredCard === i ? app.color + '42' : 'rgba(255,255,255,0.07)'}`,
                       borderRadius: 12,
                       padding: '16px 18px',
                       cursor: 'default',
-                      transition: 'transform 0.22s ease-in-out, border-color 0.22s ease-in-out, background 0.22s ease-in-out, box-shadow 0.22s ease-in-out',
+                      transition: 'transform 0.25s ease-in-out, border-color 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out',
                       transform: hoveredCard === i ? 'scale(1.03)' : 'scale(1)',
                       boxShadow: hoveredCard === i
-                        ? `0 6px 24px rgba(0,0,0,0.25), 0 0 14px ${app.color}0e`
+                        ? `0 6px 20px rgba(0,0,0,0.22), 0 0 12px ${app.color}0d`
                         : 'none',
                     }}
                   >
                     <div style={{
                       width: 34, height: 34, borderRadius: 8,
-                      background: hoveredCard === i ? app.color + '20' : app.color + '12',
-                      border: `1px solid ${hoveredCard === i ? app.color + '35' : app.color + '20'}`,
+                      background: hoveredCard === i ? app.color + '1e' : app.color + '12',
+                      border: `1px solid ${hoveredCard === i ? app.color + '38' : app.color + '1e'}`,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: '1rem', marginBottom: 10,
-                      transition: 'background 0.22s ease-in-out, border-color 0.22s ease-in-out',
+                      transition: 'background 0.25s ease-in-out, border-color 0.25s ease-in-out',
                     }}>{f.icon}</div>
                     <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#fff', marginBottom: 4 }}>{f.title}</div>
                     <div style={{ fontSize: '0.73rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.55 }}>{f.desc}</div>
