@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import navLogo from '../navlogo.png'
 
 const links = [
   { id: 'apps', label: 'Apps' },
@@ -29,9 +30,8 @@ export default function Nav() {
     <>
       <div className={`nav-backdrop${scrolled ? ' scrolled' : ''}`} />
       <nav>
-        <a href="#" className="logo">
-          <div className="logo-dot" />
-          Smart<span className="logo-accent">Apps</span>
+        <a href="#" className="logo-img-link">
+          <img src={navLogo} alt="mysmartsapp logo" className="nav-logo-img" />
         </a>
         <div className="nav-links">
           {links.map(l => (
