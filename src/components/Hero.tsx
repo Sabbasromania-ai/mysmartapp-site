@@ -95,7 +95,7 @@ export default function Hero({ onOpenApp }: HeroProps) {
                   </span>
                   <div>
                     <div className="hac-name">{app.name}</div>
-                    <div className="hac-tag">{app.tag}</div>
+                    <div className={`hac-tag${app.tag.startsWith('Live') ? ' hac-tag-live' : ''}`}>{app.tag}</div>
                   </div>
                 </div>
                 <p className="hac-desc">{app.desc}</p>
