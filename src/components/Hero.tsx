@@ -9,6 +9,7 @@ const previewApps = [
     tagColor: '#10b981',
     desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
     rows: ['Weight: 94.1 kg', 'Mounjaro 5mg ✓', 'AI Coach active'],
+    appIndex: 0,
   },
   {
     icon: '🧘',
@@ -18,6 +19,7 @@ const previewApps = [
     tagColor: '#f59e0b',
     desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
     rows: ['Sleep: 7.2h', 'Stress: Low', 'Mood tracked'],
+    appIndex: 1,
   },
   {
     icon: '🍎',
@@ -27,10 +29,15 @@ const previewApps = [
     tagColor: '#6366f1',
     desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
     rows: ['Protein: 142g', 'Calories: 1,820', 'Meal logged'],
+    appIndex: 2,
   },
 ]
 
-export default function Hero() {
+interface HeroProps {
+  onOpenApp: (index: number) => void
+}
+
+export default function Hero({ onOpenApp }: HeroProps) {
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
@@ -65,16 +72,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — App Cards Grid */}
+        {/* RIGHT — App Cards Grid, each opens modal */}
         <div className="hero-right">
           {previewApps.map((app, i) => (
             <div
               key={app.name}
               className={`hero-app-card${hovered === i ? ' hovered' : ''}`}
-              style={{ borderColor: hovered === i ? app.color + '55' : undefined }}
+              style={{
+                borderColor: hovered === i ? app.color + '55' : undefined,
+                cursor: 'pointer',
+              }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              onClick={() => { const el = document.getElementById('apps'); if(el) el.scrollIntoView({behavior:'smooth'}); }}
+              onClick={() => onOpenApp(app.appIndex)}
             >
               <div className="hac-top">
                 <span className="hac-icon" style={{ background: app.color + '18' }}>{app.icon}</span>
@@ -91,6 +101,9 @@ export default function Hero() {
                     <span>{r}</span>
                   </div>
                 ))}
+              </div>
+              <div style={{ fontSize: '0.72rem', color: app.color, marginTop: '0.6rem', opacity: hovered === i ? 1 : 0, transition: 'opacity 0.2s' }}>
+                View details →
               </div>
             </div>
           ))}

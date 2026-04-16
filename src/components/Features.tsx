@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const apps = [
+export const apps = [
   {
     icon: '🏥',
     color: '#00d4ff',
@@ -71,15 +71,13 @@ const apps = [
   },
 ]
 
-function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }) {
+export function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }) {
   const [tab, setTab] = useState<'features' | 'preview'>('features')
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal modal-large" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
-
-        {/* Header */}
         <div className="amd-header">
           <span className="amd-icon" style={{ background: app.color + '18' }}>{app.icon}</span>
           <div>
@@ -88,15 +86,11 @@ function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }
           </div>
           <span className="amd-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
         </div>
-
         <p className="amd-desc">{app.short}</p>
-
-        {/* Tabs */}
         <div className="amd-tabs">
           <button className={`amd-tab${tab === 'features' ? ' active' : ''}`} onClick={() => setTab('features')}>Features</button>
           <button className={`amd-tab${tab === 'preview' ? ' active' : ''}`} onClick={() => setTab('preview')}>Preview</button>
         </div>
-
         {tab === 'features' && (
           <div className="amd-features">
             {app.features.map(f => (
@@ -110,7 +104,6 @@ function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }
             ))}
           </div>
         )}
-
         {tab === 'preview' && (
           <div className="amd-preview">
             <div className="preview-phone" style={{ margin: '0 auto' }}>
@@ -136,14 +129,12 @@ function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }
             </div>
           </div>
         )}
-
-        {app.tag === 'Live' && (
+        {app.tag === 'Live' ? (
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
             <a href="#contact" className="btn-primary" onClick={onClose}>Download App</a>
             <a href="#contact" className="btn-ghost" onClick={onClose}>Learn More</a>
           </div>
-        )}
-        {app.tag !== 'Live' && (
+        ) : (
           <a href="#contact" className="btn-ghost" style={{ marginTop: '1.5rem', display: 'inline-block' }} onClick={onClose}>
             Notify me when ready →
           </a>
@@ -153,9 +144,11 @@ function AppModal({ app, onClose }: { app: typeof apps[0], onClose: () => void }
   )
 }
 
-export default function Features() {
-  const [open, setOpen] = useState<number | null>(null)
+interface FeaturesProps {
+  onOpenApp: (index: number) => void
+}
 
+export default function Features({ onOpenApp }: FeaturesProps) {
   return (
     <section className="features-section" id="apps">
       <div className="container">
@@ -169,10 +162,14 @@ export default function Features() {
             <span className="dim">Each one built to solve something specific.</span>
           </h2>
         </div>
-
         <div className="apps-grid">
           {apps.map((app, i) => (
-            <div key={app.name} className="app-card reveal" style={{ transitionDelay: `${i * 0.08}s`, cursor: 'pointer' }} onClick={() => setOpen(i)}>
+            <div
+              key={app.name}
+              className="app-card reveal"
+              style={{ transitionDelay: `${i * 0.08}s`, cursor: 'pointer' }}
+              onClick={() => onOpenApp(i)}
+            >
               <div className="ac-top">
                 <span className="ac-icon" style={{ background: app.color + '18' }}>{app.icon}</span>
                 <span className="ac-tag" style={{ color: app.tagColor, background: app.tagBg }}>{app.tag}</span>
@@ -182,15 +179,13 @@ export default function Features() {
               <div className="ac-platforms">
                 {app.platforms.map(p => <span key={p} className="ac-platform">{p}</span>)}
               </div>
-              <button className="ac-btn" style={{ color: app.color, borderColor: app.color + '40' }} onClick={() => setOpen(i)}>
+              <div className="ac-btn" style={{ color: app.color, borderColor: app.color + '40' }}>
                 View App →
-              </button>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {open !== null && <AppModal app={apps[open]} onClose={() => setOpen(null)} />}
     </section>
   )
 }
