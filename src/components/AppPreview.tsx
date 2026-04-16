@@ -22,8 +22,10 @@ export default function AppPreview() {
           { icon: '🔄', title: 'Continuous Updates', desc: 'Actively maintained. User feedback drives every release.' },
         ].map((p, i) => (
           <div key={p.title} className="compact-card" style={{ animationDelay: `${i * 0.06}s` }}>
-            <div className="cc-icon cc-icon--emoji">{p.icon}</div>
-            <div className="cc-title">{p.title}</div>
+            <div className="cc-top">
+              <span className="cc-icon">{p.icon}</span>
+              <span className="cc-name">{p.title}</span>
+            </div>
             <div className="cc-desc">{p.desc}</div>
           </div>
         ))}
