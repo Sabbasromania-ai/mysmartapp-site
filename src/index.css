@@ -666,7 +666,7 @@ nav {
 
 .section-header {
   text-align: center;
-  margin-bottom: 44px;
+  margin-bottom: 24px;
 }
 
 .section-label {
@@ -700,7 +700,7 @@ nav {
 
 /* ===================== TRUST STRIP ===================== */
 .trust-section {
-  padding: 56px 0;
+  padding: 28px 0;
   position: relative;
   z-index: 2;
 }
@@ -713,7 +713,7 @@ nav {
 
 .trust-item {
   text-align: center;
-  padding: 32px 20px;
+  padding: 18px 16px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -763,7 +763,7 @@ nav {
 
 /* ===================== FEATURES ===================== */
 .features-section {
-  padding: 72px 0;
+  padding: 36px 0;
   position: relative;
 }
 
@@ -774,7 +774,7 @@ nav {
 }
 
 .feature-card {
-  padding: 28px 24px;
+  padding: 18px 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -837,7 +837,7 @@ nav {
 
 /* ===================== PRODUCT PREVIEW ===================== */
 .preview-section {
-  padding: 72px 0;
+  padding: 36px 0;
   position: relative;
 }
 
@@ -845,7 +845,7 @@ nav {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 48px;
+  padding: 28px 36px;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
@@ -984,7 +984,7 @@ nav {
 .app-card-premium {
   border-radius: 20px;
   border: 1px solid transparent;
-  padding: 28px 24px;
+  padding: 20px 18px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -1293,7 +1293,7 @@ nav {
 
 /* ===================== ABOUT ===================== */
 .about-section {
-  padding: 72px 0;
+  padding: 36px 0;
   position: relative;
 }
 
@@ -1309,7 +1309,7 @@ nav {
 .about-card:hover { border-color: var(--border-hover); }
 
 .about-left {
-  padding: 44px;
+  padding: 28px 32px;
   border-right: 1px solid var(--border);
 }
 .about-left p {
@@ -1323,10 +1323,10 @@ nav {
 .about-left p:last-child { margin-bottom: 0; }
 
 .about-right {
-  padding: 44px;
+  padding: 28px 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .tech-group-label {
@@ -1360,7 +1360,7 @@ nav {
 
 /* ===================== CONTACT ===================== */
 .contact-section {
-  margin: 0 auto 72px;
+  margin: 0 auto 40px;
   max-width: var(--max-w);
   padding: 0 40px;
 }
@@ -1369,7 +1369,7 @@ nav {
   background: linear-gradient(135deg, rgba(0,200,255,0.04), rgba(99,102,241,0.04));
   border: 1px solid rgba(0,200,255,0.1);
   border-radius: 20px;
-  padding: 56px 52px;
+  padding: 36px 44px;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   align-items: center;
@@ -1630,13 +1630,13 @@ button.feature-card {
 .chart-bar { flex: 1; background: linear-gradient(to top, var(--accent2), var(--accent)); border-radius: 3px; opacity: 0.7; }
 
 /* How It Works */
-.how-section { padding: 6rem 0; }
-.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.how-section { padding: 3rem 0; }
+.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 .how-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 1.25rem 1.5rem;
   position: relative;
   transition: border-color 0.3s;
 }
@@ -1646,12 +1646,12 @@ button.feature-card {
 .how-desc { color: var(--text2); font-size: 0.9rem; line-height: 1.8; }
 
 /* Support */
-.support-section { padding: 6rem 0; }
+.support-section { padding: 3rem 0; }
 .support-card {
   background: linear-gradient(135deg, var(--card) 0%, #0d1230 100%);
   border: 1px solid var(--border-hover);
   border-radius: var(--radius);
-  padding: 4rem;
+  padding: 2.5rem;
   text-align: center;
   max-width: 640px;
   margin: 0 auto;
