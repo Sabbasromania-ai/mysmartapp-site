@@ -7,6 +7,25 @@ const slugMap: Record<string, number> = {
   'ai-nutrition': 2,
 }
 
+// Second ghost phone behind the main one for premium depth effect
+function GhostPhone({ color }: { color: string }) {
+  return (
+    <div style={{
+      position: 'absolute',
+      top: 18, right: -22,
+      width: 180,
+      height: 360,
+      background: 'linear-gradient(160deg, #111827, #0a0e1f)',
+      border: `1px solid ${color}18`,
+      borderRadius: 32,
+      opacity: 0.45,
+      filter: 'blur(1px)',
+      zIndex: 0,
+      boxShadow: `0 16px 48px rgba(0,0,0,0.4), 0 0 30px ${color}10`,
+    }} />
+  )
+}
+
 export default function AppPage() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
@@ -25,42 +44,52 @@ export default function AppPage() {
   const isHealthTracker = index === 0
 
   return (
-    <div style={{ paddingBottom: 60, minHeight: '80vh' }}>
+    <div style={{ paddingBottom: 56, minHeight: '80vh' }}>
 
       {/* Back button */}
-      <div className="container" style={{ paddingTop: 90 }}>
+      <div className="container" style={{ paddingTop: 88 }}>
         <button
           onClick={() => navigate('/')}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             background: 'none', border: '1px solid rgba(255,255,255,0.1)',
-            color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 500,
-            padding: '7px 14px', borderRadius: 8, cursor: 'pointer',
+            color: 'rgba(255,255,255,0.45)', fontSize: '0.78rem', fontWeight: 500,
+            padding: '6px 14px', borderRadius: 8, cursor: 'pointer',
           }}
           onMouseEnter={e => { (e.target as HTMLElement).style.borderColor = app.color; (e.target as HTMLElement).style.color = app.color }}
-          onMouseLeave={e => { (e.target as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.target as HTMLElement).style.color = 'rgba(255,255,255,0.5)' }}
+          onMouseLeave={e => { (e.target as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.target as HTMLElement).style.color = 'rgba(255,255,255,0.45)' }}
         >
           ← Back to Apps
         </button>
       </div>
 
       {/* Hero */}
-      <div className="container" style={{ marginTop: 16 }}>
+      <div className="container" style={{ marginTop: 14 }}>
         <div style={{
           background: app.gradient,
-          border: `1px solid ${app.color}25`,
+          border: `1px solid ${app.color}22`,
           borderRadius: 20,
-          padding: '36px 48px',
+          padding: '32px 48px 32px 48px',
           display: 'grid',
           gridTemplateColumns: '1fr auto',
-          gap: 40,
+          gap: 32,
           alignItems: 'center',
+          overflow: 'hidden',
+          position: 'relative',
         }}>
+          {/* Subtle glow behind phone */}
+          <div style={{
+            position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',
+            width: 320, height: 320,
+            background: `radial-gradient(circle, ${app.color}12 0%, transparent 70%)`,
+            pointerEvents: 'none',
+          }} />
+
           {/* Left */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+          <div style={{ zIndex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               {(app as any).logo
-                ? <img src={(app as any).logo} alt={app.name} style={{ width: 48, height: 48, borderRadius: 12, objectFit: 'cover' }} />
+                ? <img src={(app as any).logo} alt={app.name} style={{ width: 46, height: 46, borderRadius: 12, objectFit: 'cover' }} />
                 : <span style={{ fontSize: '2rem' }}>{(app as any).emoji}</span>
               }
               <span style={{
@@ -70,25 +99,25 @@ export default function AppPage() {
               }}>{app.tag}</span>
             </div>
 
-            <h1 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.6rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', marginBottom: 10, lineHeight: 1.1 }}>
+            <h1 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', marginBottom: 10, lineHeight: 1.1 }}>
               {app.name}
             </h1>
-            <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.58)', lineHeight: 1.65, maxWidth: 460, marginBottom: 14 }}>
+            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.65, maxWidth: 440, marginBottom: 12 }}>
               {app.short}
             </p>
 
-            {/* Trust badges — Health Tracker only */}
+            {/* Trust badges */}
             {isHealthTracker && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 18, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '0.72rem', color: '#f59e0b', fontWeight: 600 }}>★ 4.8 user rating</span>
-                <span style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.12)' }} />
-                <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>Built for real GLP-1 users</span>
-                <span style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.12)' }} />
-                <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>iOS & Android</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.7rem', color: '#f59e0b', fontWeight: 700 }}>★ 4.8 user rating</span>
+                <span style={{ width: 1, height: 10, background: 'rgba(255,255,255,0.1)' }} />
+                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>Built for real GLP-1 users</span>
+                <span style={{ width: 1, height: 10, background: 'rgba(255,255,255,0.1)' }} />
+                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>iOS & Android</span>
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: 8, marginBottom: 22 }}>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
               {app.platforms.map(p => (
                 <span key={p} className="acp-platform">{p}</span>
               ))}
@@ -104,35 +133,75 @@ export default function AppPage() {
             )}
           </div>
 
-          {/* Right — Phone mockup 30% larger */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', transform: 'scale(1.3)', transformOrigin: 'center', margin: '0 24px' }}>
-            <PhoneMockup app={app} />
+          {/* Right — Phone mockup with ghost behind */}
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+            <GhostPhone color={app.color} />
+            <div style={{ transform: 'scale(1.5)', transformOrigin: 'center', margin: '20px 40px' }}>
+              <PhoneMockup app={app} />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Features */}
-      <div className="container" style={{ marginTop: 40 }}>
-        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: 20 }}>Features</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
-          {app.features.map(f => (
-            <div key={f.title} style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.07)',
-              borderRadius: 12,
-              padding: '18px 20px',
-            }}>
-              <div style={{
-                width: 36, height: 36, borderRadius: 9,
-                background: app.color + '15', border: `1px solid ${app.color}25`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '1.1rem', marginBottom: 10,
-              }}>{f.icon}</div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff', marginBottom: 5 }}>{f.title}</div>
-              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.48)', lineHeight: 1.55 }}>{f.desc}</div>
-            </div>
-          ))}
-        </div>
+      <div className="container" style={{ marginTop: 32 }}>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 16 }}>Features</h2>
+
+        {/* Featured card — AI Coach with Memory spans full width top */}
+        {(() => {
+          const featured = app.features.find(f => f.title === 'AI Coach with Memory')
+          const rest = app.features.filter(f => f.title !== 'AI Coach with Memory')
+          return (
+            <>
+              {featured && (
+                <div style={{
+                  background: `linear-gradient(135deg, ${app.color}10 0%, rgba(255,255,255,0.02) 100%)`,
+                  border: `1px solid ${app.color}30`,
+                  borderRadius: 14,
+                  padding: '24px 28px',
+                  marginBottom: 10,
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  gap: 20,
+                  alignItems: 'center',
+                }}>
+                  <div style={{
+                    width: 52, height: 52, borderRadius: 13,
+                    background: app.color + '18', border: `1px solid ${app.color}30`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '1.5rem', flexShrink: 0,
+                  }}>{featured.icon}</div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                      <span style={{ fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>{featured.title}</span>
+                      <span style={{ fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 100, background: app.color + '18', color: app.color, border: `1px solid ${app.color}30` }}>Core Feature</span>
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.52)', lineHeight: 1.6, maxWidth: 600 }}>{featured.desc}</div>
+                  </div>
+                </div>
+              )}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+                {rest.map(f => (
+                  <div key={f.title} style={{
+                    background: 'rgba(255,255,255,0.025)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    borderRadius: 12,
+                    padding: '16px 18px',
+                  }}>
+                    <div style={{
+                      width: 34, height: 34, borderRadius: 8,
+                      background: app.color + '12', border: `1px solid ${app.color}20`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '1rem', marginBottom: 10,
+                    }}>{f.icon}</div>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#fff', marginBottom: 4 }}>{f.title}</div>
+                    <div style={{ fontSize: '0.73rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.55 }}>{f.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )
+        })()}
       </div>
 
     </div>
