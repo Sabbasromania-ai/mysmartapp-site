@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer-links">
           <a href="#support" className="footer-link">Privacy</a>
           <a href="#support" className="footer-link">Terms</a>
-          <a href="mailto:sabbasromanaia@icloud.com" className="footer-link">Contact</a>
+          <a href="mailto:sabbasromania@icloud.com" className="footer-link">Contact</a>
         </div>
         <div className="footer-copy">© 2026 SmartApps. All rights reserved.</div>
       </div>
