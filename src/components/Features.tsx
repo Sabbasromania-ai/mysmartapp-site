@@ -234,15 +234,7 @@ export default function Features() {
               <span className="cc-name">{app.name}</span>
               <span className={`cc-tag ${app.tag === 'Live' ? 'cc-tag-live' : 'cc-tag-soon'}`}>{app.tag}</span>
             </div>
-            <div className="cc-desc">{app.short}</div>
-            <div className="cc-rows">
-              {app.phone.slice(0, 3).map(r => (
-                <div key={r.label} className="cc-row">
-                  <span className="cc-dot" />
-                  <span>{r.label}: {r.value}</span>
-                </div>
-              ))}
-            </div>
+            <div className="cc-desc cc-desc--clamp">{app.short}</div>
           </div>
         ))}
       </div>

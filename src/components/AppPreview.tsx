@@ -26,7 +26,7 @@ export default function AppPreview() {
               <span className="cc-icon">{p.icon}</span>
               <span className="cc-name">{p.title}</span>
             </div>
-            <div className="cc-desc">{p.desc}</div>
+            <div className="cc-desc cc-desc--clamp">{p.desc}</div>
           </div>
         ))}
       </div>
