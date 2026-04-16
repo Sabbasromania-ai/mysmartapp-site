@@ -7,21 +7,21 @@ export default function AppPreview() {
           Platform
         </div>
         <h2 className="col-section-title">
-          Built on a shared foundation.<br />
-          <span className="dim">Every app, same quality bar.</span>
+          Your data. Always safe.<br />
+          <span className="dim">Always available.</span>
         </h2>
       </div>
 
       <div className="platform-grid reveal">
         {[
-          { icon: '🤖', title: 'Claude AI Core', desc: 'All apps powered by Anthropic\'s Claude — context-aware and personalized.' },
-          { icon: '🔒', title: 'Privacy First', desc: 'Supabase auth with row-level security. Your data is yours. No ads.' },
-          { icon: '📱', title: 'Cross-Platform', desc: 'iOS and Android via Capacitor. One codebase, native performance.' },
-          { icon: '☁️', title: 'Cloud Sync', desc: 'Real-time sync. Integrates with Apple Health and Health Connect.' },
-          { icon: '⚡', title: 'Fast & Offline', desc: 'Core features work offline. Data syncs when reconnected.' },
-          { icon: '🔄', title: 'Continuous Updates', desc: 'Actively maintained. User feedback drives every release.' },
+          { icon: '🤖', title: 'AI that actually adapts to you', desc: 'Your data improves recommendations over time.' },
+          { icon: '🔒', title: 'Your data is private', desc: 'No ads. No selling. You own everything.' },
+          { icon: '📱', title: 'Works on all your devices', desc: 'iPhone & Android always in sync.' },
+          { icon: '☁️', title: 'Never lose your progress', desc: 'Cloud backup + real-time sync.' },
+          { icon: '⚡', title: 'Works even offline', desc: 'Track anytime. Sync when online.' },
+          { icon: '🔄', title: 'Always improving', desc: 'Frequent updates based on real users.' },
         ].map((p, i) => (
-          <div key={p.title} className="compact-card" style={{ animationDelay: `${i * 0.06}s` }}>
+          <div key={p.title} className="compact-card platform-compact" style={{ animationDelay: `${i * 0.06}s` }}>
             <div className="cc-top">
               <span className="cc-icon">{p.icon}</span>
               <span className="cc-name">{p.title}</span>
@@ -30,6 +30,8 @@ export default function AppPreview() {
           </div>
         ))}
       </div>
+
+      <p className="platform-trust">Trusted by real users tracking real health data</p>
     </>
   )
 }

@@ -1536,8 +1536,35 @@ footer {
 .platform-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 6px;
   align-items: start;
+}
+
+/* Extra-compact override for platform cards */
+.platform-compact {
+  padding: 10px 12px;
+  gap: 3px;
+}
+.platform-compact .cc-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+}
+.platform-compact .cc-name {
+  font-size: 0.72rem;
+}
+.platform-compact .cc-desc {
+  font-size: 0.64rem;
+  line-height: 1.45;
+}
+
+/* Trust line below platform grid */
+.platform-trust {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.02em;
 }
 /* apps-grid inside combined-left: 2-col same as platform grid */
 .combined-left .apps-grid {
