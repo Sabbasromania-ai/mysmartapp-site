@@ -1506,7 +1506,7 @@ footer {
 }
 .combined-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
   align-items: start;
 }
@@ -1539,9 +1539,9 @@ footer {
   gap: 8px;
   align-items: start;
 }
-/* apps-grid inside combined-left: 1-col stack */
+/* apps-grid inside combined-left: 2-col same as platform grid */
 .combined-left .apps-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
 
