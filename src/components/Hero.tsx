@@ -1,45 +1,10 @@
-import { useState } from 'react'
-
-const previewApps = [
-  {
-    icon: '🏥',
-    color: '#00d4ff',
-    name: 'AI Health Tracker',
-    tag: 'Live · iOS & Android',
-    tagColor: '#10b981',
-    desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
-    rows: ['Weight: 94.1 kg', 'Mounjaro 5mg ✓', 'AI Coach active'],
-    appIndex: 0,
-  },
-  {
-    icon: '🧘',
-    color: '#6366f1',
-    name: 'AI Wellness Coach',
-    tag: 'Coming Soon',
-    tagColor: '#f59e0b',
-    desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
-    rows: ['Sleep: 7.2h', 'Stress: Low', 'Mood tracked'],
-    appIndex: 1,
-  },
-  {
-    icon: '🍎',
-    color: '#10b981',
-    name: 'AI Nutrition',
-    tag: 'In Development',
-    tagColor: '#6366f1',
-    desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
-    rows: ['Protein: 142g', 'Calories: 1,820', 'Meal logged'],
-    appIndex: 2,
-  },
-]
+import { apps, PhoneMockup } from './Features'
 
 interface HeroProps {
   onOpenApp: (index: number) => void
 }
 
 export default function Hero({ onOpenApp }: HeroProps) {
-  const [hovered, setHovered] = useState<number | null>(null)
-
   return (
     <section className="hero-platform" id="home">
       <div className="container hero-inner">
@@ -72,41 +37,17 @@ export default function Hero({ onOpenApp }: HeroProps) {
           </div>
         </div>
 
-        {/* RIGHT — App Cards Grid, each opens modal */}
-        <div className="hero-right">
-          {previewApps.map((app, i) => (
-            <div
-              key={app.name}
-              className={`hero-app-card${hovered === i ? ' hovered' : ''}`}
-              style={{
-                borderColor: hovered === i ? app.color + '55' : undefined,
-                cursor: 'pointer',
-              }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              onClick={() => onOpenApp(app.appIndex)}
-            >
-              <div className="hac-top">
-                <span className="hac-icon" style={{ background: app.color + '18' }}>{app.icon}</span>
-                <div>
-                  <div className="hac-name">{app.name}</div>
-                  <div className="hac-tag" style={{ color: app.tagColor }}>{app.tag}</div>
-                </div>
-              </div>
-              <p className="hac-desc">{app.desc}</p>
-              <div className="hac-rows">
-                {app.rows.map(r => (
-                  <div key={r} className="hac-row" style={{ borderColor: app.color + '22' }}>
-                    <span className="hac-dot" style={{ background: app.color }} />
-                    <span>{r}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ fontSize: '0.72rem', color: app.color, marginTop: '0.6rem', opacity: hovered === i ? 1 : 0, transition: 'opacity 0.2s' }}>
-                View details →
-              </div>
-            </div>
-          ))}
+        {/* RIGHT — Phone Mockup */}
+        <div className="hero-right hero-phone-right">
+          <div className="hero-phone-label" style={{ color: apps[0].color }}>
+            {apps[0].icon} {apps[0].name}
+          </div>
+          <div className="hero-phone-scale" onClick={() => onOpenApp(0)} style={{ cursor: 'pointer' }}>
+            <PhoneMockup app={apps[0]} />
+          </div>
+          <div className="hero-phone-hint" style={{ color: apps[0].color }}>
+            Tap to explore →
+          </div>
         </div>
 
       </div>

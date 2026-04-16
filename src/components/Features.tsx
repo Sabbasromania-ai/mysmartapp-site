@@ -78,7 +78,7 @@ export const apps = [
   },
 ]
 
-function PhoneMockup({ app }: { app: typeof apps[0] }) {
+export function PhoneMockup({ app }: { app: typeof apps[0] }) {
   return (
     <div className="phone-mockup-wrap">
       <div className="phone-glow" style={{ background: `radial-gradient(ellipse at center, ${app.color}30 0%, transparent 70%)` }} />
