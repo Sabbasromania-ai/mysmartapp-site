@@ -22,19 +22,20 @@ export default function AppPage() {
     )
   }
 
+  const isHealthTracker = index === 0
+
   return (
-    <div style={{ paddingBottom: 80, minHeight: '80vh' }}>
+    <div style={{ paddingBottom: 60, minHeight: '80vh' }}>
 
       {/* Back button */}
-      <div className="container" style={{ paddingTop: 100 }}>
+      <div className="container" style={{ paddingTop: 90 }}>
         <button
           onClick={() => navigate('/')}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             background: 'none', border: '1px solid rgba(255,255,255,0.1)',
-            color: 'rgba(255,255,255,0.5)', fontSize: '0.82rem', fontWeight: 500,
-            padding: '8px 16px', borderRadius: 8, cursor: 'pointer',
-            transition: 'all 0.2s',
+            color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 500,
+            padding: '7px 14px', borderRadius: 8, cursor: 'pointer',
           }}
           onMouseEnter={e => { (e.target as HTMLElement).style.borderColor = app.color; (e.target as HTMLElement).style.color = app.color }}
           onMouseLeave={e => { (e.target as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.target as HTMLElement).style.color = 'rgba(255,255,255,0.5)' }}
@@ -44,38 +45,50 @@ export default function AppPage() {
       </div>
 
       {/* Hero */}
-      <div className="container" style={{ marginTop: 24 }}>
+      <div className="container" style={{ marginTop: 16 }}>
         <div style={{
           background: app.gradient,
           border: `1px solid ${app.color}25`,
-          borderRadius: 24,
-          padding: '48px 56px',
+          borderRadius: 20,
+          padding: '36px 48px',
           display: 'grid',
-          gridTemplateColumns: '1fr 220px',
-          gap: 48,
+          gridTemplateColumns: '1fr auto',
+          gap: 40,
           alignItems: 'center',
         }}>
           {/* Left */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
               {(app as any).logo
-                ? <img src={(app as any).logo} alt={app.name} style={{ width: 52, height: 52, borderRadius: 14, objectFit: 'cover' }} />
-                : <span style={{ fontSize: '2.2rem' }}>{(app as any).emoji}</span>
+                ? <img src={(app as any).logo} alt={app.name} style={{ width: 48, height: 48, borderRadius: 12, objectFit: 'cover' }} />
+                : <span style={{ fontSize: '2rem' }}>{(app as any).emoji}</span>
               }
               <span style={{
-                fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.08em',
-                textTransform: 'uppercase', padding: '5px 14px', borderRadius: 100,
+                fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.08em',
+                textTransform: 'uppercase', padding: '4px 12px', borderRadius: 100,
                 color: app.tagColor, background: app.tagBg,
               }}>{app.tag}</span>
             </div>
 
-            <h1 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', marginBottom: 14, lineHeight: 1.1 }}>
+            <h1 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.6rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', marginBottom: 10, lineHeight: 1.1 }}>
               {app.name}
             </h1>
-            <p style={{ fontSize: '0.98rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, maxWidth: 480, marginBottom: 20 }}>
+            <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.58)', lineHeight: 1.65, maxWidth: 460, marginBottom: 14 }}>
               {app.short}
             </p>
-            <div style={{ display: 'flex', gap: 8, marginBottom: 28 }}>
+
+            {/* Trust badges — Health Tracker only */}
+            {isHealthTracker && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 18, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.72rem', color: '#f59e0b', fontWeight: 600 }}>★ 4.8 user rating</span>
+                <span style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.12)' }} />
+                <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>Built for real GLP-1 users</span>
+                <span style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.12)' }} />
+                <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>iOS & Android</span>
+              </div>
+            )}
+
+            <div style={{ display: 'flex', gap: 8, marginBottom: 22 }}>
               {app.platforms.map(p => (
                 <span key={p} className="acp-platform">{p}</span>
               ))}
@@ -91,37 +104,32 @@ export default function AppPage() {
             )}
           </div>
 
-          {/* Right — Phone */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          {/* Right — Phone mockup 30% larger */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', transform: 'scale(1.3)', transformOrigin: 'center', margin: '0 24px' }}>
             <PhoneMockup app={app} />
           </div>
         </div>
       </div>
 
       {/* Features */}
-      <div className="container" style={{ marginTop: 60 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#fff', marginBottom: 28 }}>Features</h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 16,
-        }}>
+      <div className="container" style={{ marginTop: 40 }}>
+        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: 20 }}>Features</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
           {app.features.map(f => (
             <div key={f.title} style={{
               background: 'rgba(255,255,255,0.03)',
               border: '1px solid rgba(255,255,255,0.07)',
-              borderRadius: 14,
-              padding: '20px 22px',
-              transition: 'border-color 0.2s',
+              borderRadius: 12,
+              padding: '18px 20px',
             }}>
               <div style={{
-                width: 40, height: 40, borderRadius: 10,
+                width: 36, height: 36, borderRadius: 9,
                 background: app.color + '15', border: `1px solid ${app.color}25`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '1.2rem', marginBottom: 12,
+                fontSize: '1.1rem', marginBottom: 10,
               }}>{f.icon}</div>
-              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: 6 }}>{f.title}</div>
-              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6 }}>{f.desc}</div>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff', marginBottom: 5 }}>{f.title}</div>
+              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.48)', lineHeight: 1.55 }}>{f.desc}</div>
             </div>
           ))}
         </div>
