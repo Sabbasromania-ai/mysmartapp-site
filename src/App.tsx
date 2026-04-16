@@ -32,8 +32,18 @@ function HomePage() {
       <Nav />
       <main>
         <Hero />
-        <Features />
-        <AppPreview />
+        <section className="combined-section" id="apps">
+          <div className="container">
+            <div className="combined-grid">
+              <div className="combined-left">
+                <Features />
+              </div>
+              <div className="combined-right" id="platform">
+                <AppPreview />
+              </div>
+            </div>
+          </div>
+        </section>
         <HowItWorks />
         <Support />
       </main>

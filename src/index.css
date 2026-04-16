@@ -1500,6 +1500,86 @@ footer {
   footer { flex-direction: column; gap: 6px; text-align: center; padding: 18px 16px; }
 }
 
+/* ===================== COMBINED SECTION (Features + Platform side by side) ===================== */
+.combined-section {
+  padding: 36px 0 32px;
+}
+.combined-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.combined-left,
+.combined-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Column section header (replaces centered section-header inside columns) */
+.col-section-header {
+  margin-bottom: 12px;
+}
+.col-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text);
+  margin-top: 6px;
+}
+.col-section-title .dim { color: var(--muted); font-weight: 400; }
+
+/* Platform cards grid — 2 cols inside right column */
+.platform-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: start;
+}
+.platform-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: border-color 0.25s, background 0.25s;
+}
+.platform-card:hover {
+  border-color: var(--border-hover);
+  background: var(--card);
+}
+.pc-icon {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.pc-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.pc-desc {
+  font-size: 0.7rem;
+  color: var(--muted2);
+  line-height: 1.5;
+}
+
+/* apps-grid inside combined-left: stack to 1 col */
+.combined-left .apps-grid {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+  .combined-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===================== NEW LAYOUT ADDITIONS ===================== */
 
 /* Nav button */
