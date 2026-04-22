@@ -11,6 +11,7 @@ import Support from './components/Support'
 import Footer from './components/Footer'
 import NeuralBg from './components/NeuralBg'
 import AppPage from './pages/AppPage'
+import Privacy from './pages/Privacy'
 
 function HomePage() {
   useEffect(() => {
@@ -69,6 +70,13 @@ export default function App() {
             <>
               <Nav />
               <AppPage />
+              <Footer />
+            </>
+          } />
+          <Route path="/privacy" element={
+            <>
+              <Nav />
+              <Privacy />
               <Footer />
             </>
           } />

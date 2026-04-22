@@ -11,8 +11,7 @@ export default function Footer() {
           mysmartsapp
         </div>
         <div className="footer-links">
-          <a href="#support" className="footer-link">{t('footer_privacy')}</a>
-          <a href="#support" className="footer-link">{t('footer_terms')}</a>
+          <a href="/privacy" className="footer-link">{t('footer_privacy')}</a>
           <a href="mailto:sabbasromania@icloud.com" className="footer-link">{t('footer_contact')}</a>
         </div>
         <div className="footer-copy">{t('footer_copy')}</div>
