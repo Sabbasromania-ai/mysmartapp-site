@@ -32,7 +32,7 @@ export default function Nav() {
     <>
       <div className={`nav-backdrop${scrolled ? ' scrolled' : ''}`} />
       <nav>
-        <a href="#" className="logo-img-link">
+        <a href="/" className="logo-img-link">
           <img src={navLogo} alt="mysmartsapp logo" className="nav-logo-img" />
         </a>
         <div className="nav-links">

@@ -9,6 +9,26 @@ export default function Privacy() {
   return (
     <main className="privacy-page">
       <div className="container" style={{ maxWidth: 820, margin: '0 auto', padding: '48px 20px 120px', color: '#e4e4e7', lineHeight: 1.7 }}>
+        <a href="/" style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          padding: '8px 14px',
+          marginBottom: 24,
+          background: 'rgba(255,255,255,0.06)',
+          border: '1px solid rgba(255,255,255,0.12)',
+          borderRadius: 10,
+          color: '#e4e4e7',
+          fontSize: 14,
+          textDecoration: 'none',
+          transition: 'all 0.2s',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+        >
+          <span style={{ fontSize: 18, lineHeight: 1 }}>&larr;</span>
+          <span>Back to home</span>
+        </a>
         <h1 style={{ fontSize: 36, fontWeight: 800, marginBottom: 8, color: '#fff' }}>Privacy Policy</h1>
         <p style={{ color: '#a1a1aa', marginBottom: 32 }}>
           <strong>App:</strong> Mounjaro &amp; Ozempic AI Tracker (Google Play) / AIHealth Trackerapp (App Store)<br />
