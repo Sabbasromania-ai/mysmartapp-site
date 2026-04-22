@@ -37,10 +37,11 @@ export default function Nav() {
         </a>
         <div className="nav-links">
           {links.map(l => (
-            <a key={l.id} href={`#${l.id}`} className={`nav-link${active === l.id ? ' active' : ''}`}>
+            <a key={l.id} href={`/#${l.id}`} className={`nav-link${active === l.id ? ' active' : ''}`}>
               {l.label}
             </a>
           ))}
+          <a href="/privacy" className="nav-link">{t('footer_privacy')}</a>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div className="lang-toggle">
