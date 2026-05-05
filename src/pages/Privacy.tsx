@@ -32,7 +32,7 @@ export default function Privacy() {
         <h1 style={{ fontSize: 36, fontWeight: 800, marginBottom: 8, color: '#fff' }}>Privacy Policy</h1>
         <p style={{ color: '#a1a1aa', marginBottom: 32 }}>
           <strong>App:</strong> Mounjaro &amp; Ozempic AI Tracker (Google Play) / AIHealth Trackerapp (App Store)<br />
-          <strong>Last Updated:</strong> 22 April 2026<br />
+          <strong>Last Updated:</strong> 6 May 2026<br />
           <strong>Effective Date:</strong> Upon the App&rsquo;s first public release
         </p>
 
@@ -201,7 +201,25 @@ export default function Privacy() {
           <li><strong>Android:</strong> Settings &rarr; Health Connect &rarr; App permissions &rarr; Mounjaro &amp; Ozempic AI Tracker</li>
         </ul>
 
-        <h2>10. Subscriptions and Payments</h2>
+        <h2>10. AI Features and Third-Party AI Processing (OpenAI)</h2>
+        <p>The App uses <strong>OpenAI, L.L.C.</strong> (&ldquo;OpenAI&rdquo;), a third-party AI service provider based in the United States, to generate AI-powered responses and health-related insights. OpenAI provides data protection equivalent to this policy through its <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF9F' }}>Privacy Policy</a> and API Data Processing Agreement.</p>
+        <p>When you use the <strong>AI Coach</strong> or <strong>Blood Test features</strong> (including uploading blood test images, entering blood test values manually, or requesting automatic analysis), the information you choose to enter, upload, or include may be sent to OpenAI for processing. This may include:</p>
+        <ul>
+          <li>Your AI chat messages and health questions</li>
+          <li>Blood test values or uploaded blood test information</li>
+          <li>Medication, dose, glucose, weight, lifestyle, and progress data</li>
+          <li>Other health-related information you manually provide</li>
+        </ul>
+        <p>This data is used only to generate AI responses and app-related analysis inside the app. <strong>The AI features do not provide medical diagnosis, treatment, emergency advice, or a replacement for professional medical care.</strong></p>
+        <p><strong>Before any data is sent to OpenAI, the App asks for your explicit consent.</strong> You may revoke your consent at any time from the App Settings &rarr; Account &rarr; Revoke AI Data Sharing Consent. Revoking consent will block all AI-powered features until consent is re-granted.</p>
+        <p>Using AI features is entirely optional. No data is sent to OpenAI unless you agree and actively use an AI-powered feature.</p>
+        <ul>
+          <li><strong>Data sent:</strong> Messages you type, blood test values or images you upload, and health context you include (weight, glucose, injections, lifestyle logs).</li>
+          <li><strong>Data NOT sent:</strong> HealthKit or Health Connect data synced in the background is only included if you explicitly reference it in your message.</li>
+          <li><strong>Retention:</strong> OpenAI may retain submitted data per their own data retention policies. We do not control OpenAI&rsquo;s retention practices.</li>
+        </ul>
+
+        <h2>11. Subscriptions and Payments</h2>
         <p>Premium features (AI Advisor, Blood Test analysis) require an active subscription:</p>
         <ul>
           <li><strong>PRO:</strong> &euro;4.99 / month or &euro;49.99 / year</li>
@@ -211,7 +229,7 @@ export default function Privacy() {
         <p>Payments are processed <strong>exclusively</strong> by Apple In-App Purchase (iOS) or Google Play Billing (Android). We never see or store your payment card or bank details. Subscription status is mirrored to our backend through RevenueCat so the App can unlock the correct features on all your devices.</p>
         <p>Subscriptions auto-renew unless canceled at least 24 hours before the end of the current period.</p>
 
-        <h2 style={{ color: '#f87171' }}>11. Medical Disclaimer &mdash; IMPORTANT</h2>
+        <h2 style={{ color: '#f87171' }}>12. Medical Disclaimer &mdash; IMPORTANT</h2>
         <div style={{ background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 12, padding: 16, margin: '16px 0' }}>
           <p><strong>This App is not a medical device. It does not provide medical advice, diagnosis, or treatment.</strong></p>
           <ul>
@@ -223,10 +241,10 @@ export default function Privacy() {
           <p>By using the App you acknowledge and accept these limitations.</p>
         </div>
 
-        <h2>12. Age Restriction</h2>
+        <h2>13. Age Restriction</h2>
         <p>The App is intended for adults aged <strong>18 years or older</strong>. It is not directed at children and we do not knowingly collect personal data from individuals under 18. If you are a parent or guardian and believe your child has provided data, please contact us at <a href="mailto:sabbasromania@icloud.com">sabbasromania@icloud.com</a> and we will promptly delete it.</p>
 
-        <h2>13. Security</h2>
+        <h2>14. Security</h2>
         <ul>
           <li><strong>TLS 1.2+</strong> encryption for all traffic</li>
           <li><strong>Encryption at rest</strong> (AES-256) by Supabase</li>
@@ -238,15 +256,15 @@ export default function Privacy() {
         </ul>
         <p>No transmission over the Internet is 100% secure. We cannot guarantee absolute security, but we work continuously to reduce risk.</p>
 
-        <h2>14. Cookies, Tracking, and Analytics</h2>
+        <h2>15. Cookies, Tracking, and Analytics</h2>
         <p>The App does <strong>not</strong> use cookies, advertising SDKs, cross-app tracking, or third-party analytics. It is declared as <strong>not tracking</strong> under Apple App Tracking Transparency and its iOS Privacy Manifest declares no tracking domains.</p>
         <p>This Privacy Policy is hosted exclusively at <strong><a href="https://mysmartsapp.com/privacy">https://mysmartsapp.com/privacy</a></strong>. The same page may set strictly-necessary cookies only (for language preference). No advertising or analytics cookies are set.</p>
 
-        <h2>15. Changes to This Policy</h2>
+        <h2>16. Changes to This Policy</h2>
         <p>We may update this Privacy Policy from time to time to reflect changes to the App, legal requirements, or sub-processors. The updated policy is always posted at <strong><a href="https://mysmartsapp.com/privacy">https://mysmartsapp.com/privacy</a></strong> with a new &ldquo;Last Updated&rdquo; date. For material changes we will notify you inside the App and, where feasible, by email, before they take effect.</p>
         <p>Continued use of the App after a material change constitutes acceptance of the revised policy.</p>
 
-        <h2>16. Contact</h2>
+        <h2>17. Contact</h2>
         <ul>
           <li><strong>Email:</strong> <a href="mailto:sabbasromania@icloud.com">sabbasromania@icloud.com</a></li>
           <li><strong>Developer:</strong> Savvas Alexiou</li>
