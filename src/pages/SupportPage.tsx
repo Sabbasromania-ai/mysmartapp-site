@@ -1,92 +1,93 @@
 import { useEffect, useState, FormEvent } from 'react'
+import navLogo from '../navlogo.png'
 
-type FormState = {
-  name: string
-  email: string
-  subject: string
-  message: string
-}
-
+/* ─── Types ────────────────────────────────────────────────── */
+type FormState = { name: string; email: string; subject: string; message: string }
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
-const FAQ_ITEMS = [
+/* ─── FAQ data ──────────────────────────────────────────────── */
+const FAQ = [
   {
-    category: 'Account & Subscription',
-    icon: '👤',
-    questions: [
-      {
-        q: 'How do I manage or cancel my subscription?',
-        a: 'On iOS, go to Settings → Apple ID → Subscriptions → AIHealth Trackerapp. On Android, open Play Store → Profile → Payments & subscriptions → Subscriptions.',
-      },
-      {
-        q: 'I was charged but the app still shows no subscription.',
-        a: 'This usually resolves within a few minutes. Force-close and reopen the app. If it persists after 10 minutes, contact us with your purchase receipt so we can investigate.',
-      },
-      {
-        q: 'Can I use my subscription on multiple devices?',
-        a: 'Yes. Sign in with the same Google or Apple account on any device and your subscription will be restored automatically.',
-      },
-    ],
+    id: 'account',
+    title: 'Account & Subscription',
+    desc: 'Questions about your account, subscription, billing, or payments.',
+    answer:
+      'Manage your subscription through App Store (iOS: Settings → Apple ID → Subscriptions) or Google Play (Profile → Payments & subscriptions). For billing issues, contact us with your purchase receipt and we will resolve it within 24 hours.',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+      </svg>
+    ),
   },
   {
-    category: 'App Usage',
-    icon: '📱',
-    questions: [
-      {
-        q: 'How do I log a dose?',
-        a: 'Tap the Syringe tab → tap "Log Dose" → select your medication, date, and dose amount. Your dose history is stored securely and syncs across your devices.',
-      },
-      {
-        q: 'The app is not syncing with Apple Health / Google Health Connect.',
-        a: 'Go to Settings inside the app and check that Health Sync is enabled. On iOS, verify permissions under Settings → Privacy → Health → AIHealth Trackerapp. On Android, open Health Connect and confirm the app has read/write access.',
-      },
-      {
-        q: 'How do I delete my account?',
-        a: 'Go to Settings → Account → Delete Account. All your data is permanently erased from our servers within 30 days, as required by Apple and GDPR.',
-      },
-    ],
+    id: 'usage',
+    title: 'App Usage',
+    desc: 'Help with using the app, features, or syncing your data.',
+    answer:
+      'The app syncs with Apple Health on iOS and Google Health Connect on Android. Go to Settings → Health Sync to enable. For dose logging, tap the Syringe tab → Log Dose. If sync fails, verify permissions in your phone\'s health app settings.',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" />
+        <line x1="12" y1="18" x2="12.01" y2="18" />
+      </svg>
+    ),
   },
   {
-    category: 'AI Coach',
-    icon: '✨',
-    questions: [
-      {
-        q: 'What can the AI Coach help me with?',
-        a: 'The AI Coach can answer general questions about GLP-1 medications, help you understand your progress data, suggest lifestyle habits, and interpret blood test results. It is an informational tool and does not replace your doctor.',
-      },
-      {
-        q: 'Is the AI Coach advice medically accurate?',
-        a: 'The AI Coach provides general health information only. It is not a medical professional and its responses should never replace a consultation with your doctor or pharmacist.',
-      },
-    ],
+    id: 'ai',
+    title: 'AI Coach',
+    desc: 'Questions about the AI Coach, insights, and recommendations.',
+    answer:
+      'The AI Coach provides general health information based on your tracked data. It is not a substitute for professional medical advice. Always consult your doctor for medication changes. Premium users get unlimited AI Coach access; Pro users get a monthly allowance.',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
+      </svg>
+    ),
   },
   {
-    category: 'Data & Privacy',
-    icon: '🔒',
-    questions: [
-      {
-        q: 'Where is my health data stored?',
-        a: 'All data is stored on secure Supabase servers in the EU. We never sell your data to third parties. Full details are in our Privacy Policy.',
-      },
-      {
-        q: 'Is my data shared with drug manufacturers or advertisers?',
-        a: 'No. We do not share your personal or health data with pharmaceutical companies, advertisers, or any third parties beyond what is required for app functionality (see Privacy Policy).',
-      },
-    ],
+    id: 'privacy',
+    title: 'Data & Privacy',
+    desc: 'Information about your data, privacy, security, and account deletion.',
+    answer:
+      'All data is stored on secure EU-based Supabase servers. We never sell your data. You can delete your account from Settings → Account → Delete Account — all data is permanently erased within 30 days, in compliance with GDPR and Apple guidelines.',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+    ),
   },
 ]
 
+/* ─── Chevron SVG ───────────────────────────────────────────── */
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+      style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', flexShrink: 0 }}
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  )
+}
+
+/* ─── Component ─────────────────────────────────────────────── */
 export default function SupportPage() {
   const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Partial<FormState>>({})
   const [status, setStatus] = useState<Status>('idle')
   const [serverError, setServerError] = useState('')
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
 
   useEffect(() => {
     document.title = 'Support — mysmartsapp'
     window.scrollTo(0, 0)
   }, [])
 
+  /* Validation — unchanged */
   function validate(): boolean {
     const e: Partial<FormState> = {}
     if (!form.name.trim()) e.name = 'Your name is required.'
@@ -99,6 +100,7 @@ export default function SupportPage() {
     return Object.keys(e).length === 0
   }
 
+  /* Submit — unchanged: POST to /api/support */
   async function handleSubmit(ev: FormEvent) {
     ev.preventDefault()
     if (!validate()) return
@@ -130,244 +132,357 @@ export default function SupportPage() {
     }
   }
 
-  function field(
-    id: keyof FormState,
-    label: string,
-    type: 'text' | 'email' | 'textarea' = 'text',
-    placeholder = '',
-  ) {
-    const hasError = !!errors[id]
-    const base: React.CSSProperties = {
+  /* Field helper */
+  function inputStyle(id: keyof FormState): React.CSSProperties {
+    return {
       width: '100%',
-      background: 'rgba(255,255,255,0.04)',
-      border: `1px solid ${hasError ? '#f87171' : 'rgba(255,255,255,0.1)'}`,
-      borderRadius: 10,
+      background: 'rgba(255,255,255,0.05)',
+      border: `1px solid ${errors[id] ? '#f87171' : 'rgba(255,255,255,0.12)'}`,
+      borderRadius: 8,
       color: '#f0f2f8',
-      fontSize: 15,
+      fontSize: 14,
       outline: 'none',
+      fontFamily: 'inherit',
       transition: 'border-color 0.2s',
     }
+  }
 
-    return (
-      <div style={{ marginBottom: 20 }}>
-        <label htmlFor={id} style={{ display: 'block', marginBottom: 6, fontSize: 13, fontWeight: 600, color: '#c4c9d9', letterSpacing: '0.02em' }}>
-          {label}
-        </label>
-        {type === 'textarea' ? (
-          <textarea
-            id={id}
-            rows={5}
-            placeholder={placeholder}
-            value={form[id]}
-            onChange={e => { setForm(f => ({ ...f, [id]: e.target.value })); if (errors[id]) setErrors(er => ({ ...er, [id]: undefined })) }}
-            style={{ ...base, padding: '12px 14px', resize: 'vertical', minHeight: 120 }}
-          />
-        ) : (
-          <input
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            value={form[id]}
-            onChange={e => { setForm(f => ({ ...f, [id]: e.target.value })); if (errors[id]) setErrors(er => ({ ...er, [id]: undefined })) }}
-            style={{ ...base, padding: '12px 14px', height: 46 }}
-          />
-        )}
-        {hasError && <p style={{ marginTop: 5, fontSize: 13, color: '#f87171' }}>{errors[id]}</p>}
-      </div>
-    )
+  function labelStyle(): React.CSSProperties {
+    return { display: 'block', marginBottom: 6, fontSize: 13, fontWeight: 600, color: '#8892b0' }
   }
 
   return (
-    <main style={{ paddingTop: 80, minHeight: '100vh', background: 'var(--bg)' }}>
-      <div style={{ maxWidth: 820, margin: '0 auto', padding: '48px 24px 120px' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
 
-        {/* Back link */}
-        <a href="/" style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          padding: '8px 14px', marginBottom: 40,
-          background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)',
-          borderRadius: 10, color: '#e4e4e7', fontSize: 14, textDecoration: 'none',
-          transition: 'all 0.2s',
-        }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
-        >
-          <span style={{ fontSize: 18, lineHeight: 1 }}>&larr;</span>
-          <span>Back to home</span>
-        </a>
-
-        {/* Header */}
-        <div style={{ marginBottom: 48, textAlign: 'center' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            width: 60, height: 60, borderRadius: 16,
-            background: 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(99,102,241,0.15))',
-            border: '1px solid rgba(0,212,255,0.2)', marginBottom: 20,
-          }}>
-            <span style={{ fontSize: 28 }}>🛟</span>
-          </div>
-          <h1 style={{ fontSize: 36, fontWeight: 800, color: '#fff', marginBottom: 12, letterSpacing: '-0.02em' }}>
-            Mounjaro Tracker: AI Health
-          </h1>
-          <p style={{ color: '#8892b0', fontSize: 16, maxWidth: 520, margin: '0 auto', lineHeight: 1.65 }}>
-            We're here to help. Browse the FAQ below or send us a message and we'll get back to you as soon as possible.
-          </p>
-        </div>
-
-        {/* Pharmaceutical disclaimer */}
-        <div style={{
-          background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.2)',
-          borderRadius: 12, padding: '14px 18px', marginBottom: 48,
-          display: 'flex', gap: 12, alignItems: 'flex-start',
+      {/* ── Hero ── */}
+      <section style={{ textAlign: 'center', padding: '100px 24px 48px' }}>
+        <h1 style={{
+          fontSize: 'clamp(36px, 6vw, 52px)', fontWeight: 800,
+          color: '#fff', letterSpacing: '-0.03em', marginBottom: 16,
         }}>
-          <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>⚕️</span>
-          <p style={{ fontSize: 13, color: '#fbbf24', margin: 0, lineHeight: 1.6 }}>
-            <strong>Medical disclaimer:</strong> This app is an informational tracking tool only. It does not provide medical advice, diagnosis, or treatment. Always consult your doctor or pharmacist before changing your medication regimen.
+          Support
+        </h1>
+        <p style={{ color: '#8892b0', fontSize: 16, lineHeight: 1.7, maxWidth: 480, margin: '0 auto 24px' }}>
+          Need help with the app, your subscription, or your account?<br />
+          Send us a message and we&rsquo;ll respond as soon as possible.
+        </p>
+        <a
+          href="mailto:info@mysmartsapp.com"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            color: '#00d4ff', fontSize: 15, textDecoration: 'none', fontWeight: 500,
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Email: info@mysmartsapp.com
+        </a>
+      </section>
+
+      {/* ── Main content ── */}
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 24px 80px' }}>
+
+        {/* Contact form card */}
+        <div style={{
+          background: 'rgba(255,255,255,0.03)',
+          border: '1px solid rgba(255,255,255,0.09)',
+          borderRadius: 16, padding: '36px 36px 32px',
+          marginBottom: 48,
+        }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>
+            Contact Us
+          </h2>
+          <p style={{ color: '#5e6888', fontSize: 14, marginBottom: 28 }}>
+            We typically reply within 24 hours on business days.
           </p>
+
+          {status === 'success' ? (
+            <div style={{
+              background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)',
+              borderRadius: 12, padding: '28px 20px', textAlign: 'center',
+            }}>
+              <div style={{ fontSize: 32, marginBottom: 10 }}>✅</div>
+              <h3 style={{ color: '#4ade80', fontWeight: 700, fontSize: 17, marginBottom: 8 }}>Message sent!</h3>
+              <p style={{ color: '#86efac', fontSize: 14, lineHeight: 1.6, marginBottom: 20 }}>
+                Thanks for reaching out. We&rsquo;ll reply as soon as possible.
+              </p>
+              <button
+                onClick={() => setStatus('idle')}
+                style={{
+                  padding: '10px 22px', borderRadius: 8,
+                  border: '1px solid rgba(74,222,128,0.3)',
+                  background: 'rgba(34,197,94,0.08)', color: '#4ade80',
+                  fontSize: 14, fontWeight: 600, cursor: 'pointer',
+                }}
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate>
+              {/* Name + Email row */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 20px' }}>
+                <div style={{ marginBottom: 20 }}>
+                  <label htmlFor="name" style={labelStyle()}>Name</label>
+                  <input
+                    id="name" type="text" placeholder="Your name"
+                    value={form.name}
+                    onChange={e => { setForm(f => ({ ...f, name: e.target.value })); if (errors.name) setErrors(er => ({ ...er, name: undefined })) }}
+                    style={{ ...inputStyle('name'), padding: '11px 14px', height: 44 }}
+                  />
+                  {errors.name && <p style={{ marginTop: 4, fontSize: 12, color: '#f87171' }}>{errors.name}</p>}
+                </div>
+                <div style={{ marginBottom: 20 }}>
+                  <label htmlFor="email" style={labelStyle()}>Email</label>
+                  <input
+                    id="email" type="email" placeholder="Your email address"
+                    value={form.email}
+                    onChange={e => { setForm(f => ({ ...f, email: e.target.value })); if (errors.email) setErrors(er => ({ ...er, email: undefined })) }}
+                    style={{ ...inputStyle('email'), padding: '11px 14px', height: 44 }}
+                  />
+                  {errors.email && <p style={{ marginTop: 4, fontSize: 12, color: '#f87171' }}>{errors.email}</p>}
+                </div>
+              </div>
+
+              {/* Subject */}
+              <div style={{ marginBottom: 20 }}>
+                <label htmlFor="subject" style={labelStyle()}>Subject</label>
+                <input
+                  id="subject" type="text" placeholder="What is this regarding?"
+                  value={form.subject}
+                  onChange={e => { setForm(f => ({ ...f, subject: e.target.value })); if (errors.subject) setErrors(er => ({ ...er, subject: undefined })) }}
+                  style={{ ...inputStyle('subject'), padding: '11px 14px', height: 44 }}
+                />
+                {errors.subject && <p style={{ marginTop: 4, fontSize: 12, color: '#f87171' }}>{errors.subject}</p>}
+              </div>
+
+              {/* Message */}
+              <div style={{ marginBottom: 24 }}>
+                <label htmlFor="message" style={labelStyle()}>Message</label>
+                <textarea
+                  id="message" rows={5} placeholder="How can we help you?"
+                  value={form.message}
+                  onChange={e => { setForm(f => ({ ...f, message: e.target.value })); if (errors.message) setErrors(er => ({ ...er, message: undefined })) }}
+                  style={{ ...inputStyle('message'), padding: '11px 14px', resize: 'vertical', minHeight: 120 }}
+                />
+                {errors.message && <p style={{ marginTop: 4, fontSize: 12, color: '#f87171' }}>{errors.message}</p>}
+              </div>
+
+              {/* Server error */}
+              {status === 'error' && serverError && (
+                <div style={{
+                  background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)',
+                  borderRadius: 8, padding: '11px 14px', marginBottom: 20,
+                  color: '#fca5a5', fontSize: 14,
+                }}>
+                  {serverError}
+                </div>
+              )}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                style={{
+                  width: '100%', padding: '13px', borderRadius: 8, border: 'none',
+                  background: status === 'sending' ? 'rgba(0,212,255,0.35)' : '#00c8f0',
+                  color: '#000', fontWeight: 700, fontSize: 15,
+                  cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+                  letterSpacing: '0.01em', fontFamily: 'inherit',
+                  transition: 'background 0.2s',
+                }}
+              >
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
+              </button>
+
+              {/* Secure note */}
+              <p style={{
+                marginTop: 12, textAlign: 'center', fontSize: 13,
+                color: '#5e6888', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', gap: 6,
+              }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                Your message is sent securely.
+              </p>
+            </form>
+          )}
         </div>
 
         {/* FAQ */}
-        <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 28, letterSpacing: '-0.01em' }}>
+        <section style={{ marginBottom: 40 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 20 }}>
             Frequently Asked Questions
           </h2>
 
-          {FAQ_ITEMS.map(section => (
-            <div key={section.category} style={{ marginBottom: 36 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                <span style={{ fontSize: 18 }}>{section.icon}</span>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: '#00d4ff', letterSpacing: '0.02em', textTransform: 'uppercase', margin: 0 }}>
-                  {section.category}
-                </h3>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {section.questions.map(item => (
-                  <details
-                    key={item.q}
+          <div style={{
+            border: '1px solid rgba(255,255,255,0.09)',
+            borderRadius: 14, overflow: 'hidden',
+          }}>
+            {FAQ.map((item, i) => {
+              const isOpen = openFaq === item.id
+              return (
+                <div
+                  key={item.id}
+                  style={{
+                    borderBottom: i < FAQ.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  }}
+                >
+                  {/* Row header */}
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : item.id)}
                     style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: 12, overflow: 'hidden',
+                      width: '100%', display: 'flex', alignItems: 'center', gap: 16,
+                      padding: '18px 22px', background: 'none', border: 'none',
+                      cursor: 'pointer', textAlign: 'left',
                     }}
                   >
-                    <summary style={{
-                      padding: '14px 18px', cursor: 'pointer', fontWeight: 600, fontSize: 14.5,
-                      color: '#f0f2f8', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                      userSelect: 'none',
+                    {/* Icon box */}
+                    <div style={{
+                      width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                      background: 'rgba(0,212,255,0.08)', border: '1px solid rgba(0,212,255,0.15)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: '#00d4ff',
                     }}>
-                      <span>{item.q}</span>
-                      <span style={{ color: '#5e6888', fontSize: 18, flexShrink: 0, marginLeft: 12 }}>+</span>
-                    </summary>
-                    <div style={{ padding: '0 18px 16px', color: '#8892b0', fontSize: 14, lineHeight: 1.7 }}>
-                      {item.a}
+                      {item.icon}
                     </div>
-                  </details>
-                ))}
-              </div>
-            </div>
-          ))}
-        </section>
 
-        {/* Contact form */}
-        <section>
-          <div style={{
-            background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)',
-            borderRadius: 20, padding: '36px 36px 40px',
-          }}>
-            <h2 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 6, letterSpacing: '-0.01em' }}>
-              Contact Us
-            </h2>
-            <p style={{ color: '#5e6888', fontSize: 14, marginBottom: 30 }}>
-              Can't find what you need? We typically reply within 24 hours on business days.
-            </p>
+                    {/* Text */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontWeight: 600, fontSize: 14.5, color: '#f0f2f8', marginBottom: 2 }}>
+                        {item.title}
+                      </div>
+                      <div style={{ fontSize: 13, color: '#5e6888', lineHeight: 1.5 }}>
+                        {item.desc}
+                      </div>
+                    </div>
 
-            {status === 'success' ? (
-              <div style={{
-                background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.25)',
-                borderRadius: 12, padding: '24px 20px', textAlign: 'center',
-              }}>
-                <div style={{ fontSize: 36, marginBottom: 12 }}>✅</div>
-                <h3 style={{ color: '#4ade80', fontWeight: 700, fontSize: 18, marginBottom: 8 }}>Message sent!</h3>
-                <p style={{ color: '#86efac', fontSize: 14, lineHeight: 1.6 }}>
-                  Thanks for reaching out. We'll reply to <strong>{form.email || 'your email'}</strong> as soon as possible.
-                </p>
-                <button
-                  onClick={() => setStatus('idle')}
-                  style={{
-                    marginTop: 20, padding: '10px 22px', borderRadius: 10, border: '1px solid rgba(74,222,128,0.3)',
-                    background: 'rgba(34,197,94,0.1)', color: '#4ade80', fontSize: 14, fontWeight: 600, cursor: 'pointer',
-                  }}
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 20px' }}>
-                  <div>{field('name', 'Your Name', 'text', 'Jane Smith')}</div>
-                  <div>{field('email', 'Email Address', 'email', 'jane@example.com')}</div>
+                    {/* Chevron */}
+                    <div style={{ color: '#5e6888' }}>
+                      <Chevron open={isOpen} />
+                    </div>
+                  </button>
+
+                  {/* Answer (expanded) */}
+                  {isOpen && (
+                    <div style={{
+                      padding: '0 22px 20px 78px',
+                      fontSize: 14, color: '#8892b0', lineHeight: 1.75,
+                    }}>
+                      {item.answer}
+                    </div>
+                  )}
                 </div>
-                {field('subject', 'Subject', 'text', 'e.g. Subscription not showing after purchase')}
-                {field('message', 'Message', 'textarea', 'Describe your issue in as much detail as possible...')}
-
-                {status === 'error' && serverError && (
-                  <div style={{
-                    background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.25)',
-                    borderRadius: 10, padding: '12px 16px', marginBottom: 20,
-                    color: '#fca5a5', fontSize: 14,
-                  }}>
-                    {serverError}
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === 'sending'}
-                  style={{
-                    width: '100%', padding: '14px', borderRadius: 12, border: 'none',
-                    background: status === 'sending'
-                      ? 'rgba(0,212,255,0.4)'
-                      : 'linear-gradient(135deg, #00d4ff, #6366f1)',
-                    color: '#fff', fontWeight: 700, fontSize: 15, cursor: status === 'sending' ? 'not-allowed' : 'pointer',
-                    transition: 'opacity 0.2s', letterSpacing: '0.01em',
-                  }}
-                >
-                  {status === 'sending' ? 'Sending…' : 'Send Message'}
-                </button>
-
-                <p style={{ marginTop: 14, textAlign: 'center', fontSize: 12, color: '#5e6888' }}>
-                  By submitting this form you agree to our{' '}
-                  <a href="/privacy" style={{ color: '#00d4ff', textDecoration: 'none' }}>Privacy Policy</a>.
-                  Your email is used only to respond to your enquiry.
-                </p>
-              </form>
-            )}
+              )
+            })}
           </div>
         </section>
 
-        {/* Footer links */}
-        <div style={{ marginTop: 60, paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
-            {[
-              { label: 'Privacy Policy', href: '/privacy' },
-              { label: 'Home', href: '/' },
-              { label: 'Contact', href: 'mailto:info@mysmartsapp.com' },
-            ].map(link => (
-              <a key={link.label} href={link.href} style={{ color: '#5e6888', fontSize: 13, textDecoration: 'none', transition: 'color 0.2s' }}
-                onMouseEnter={e => { (e.target as HTMLAnchorElement).style.color = '#00d4ff' }}
-                onMouseLeave={e => { (e.target as HTMLAnchorElement).style.color = '#5e6888' }}
-              >
-                {link.label}
-              </a>
-            ))}
+        {/* Disclaimer */}
+        <div style={{
+          background: 'rgba(255,255,255,0.02)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: 12, padding: '18px 20px',
+          display: 'flex', gap: 14, alignItems: 'flex-start',
+        }}>
+          <div style={{
+            width: 36, height: 36, borderRadius: 8, flexShrink: 0,
+            background: 'rgba(255,255,255,0.05)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: '#8892b0',
+          }}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
           </div>
-          <p style={{ color: '#5e6888', fontSize: 12 }}>
-            &copy; {new Date().getFullYear()} mysmartsapp.com &mdash; Savvas Alexiou. All rights reserved.
+          <p style={{ fontSize: 13.5, color: '#5e6888', margin: 0, lineHeight: 1.7 }}>
+            This app is for informational tracking only and does not provide medical advice, diagnosis, or treatment.
+            Always consult a qualified healthcare professional for medical decisions.
           </p>
         </div>
 
       </div>
-    </main>
+
+      {/* ── Footer ── */}
+      <footer style={{
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        padding: '48px 24px 32px',
+      }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '32px 40px',
+            marginBottom: 40,
+          }}>
+            {/* Brand */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+                <img src={navLogo} alt="mysmartsapp" style={{ height: 28, width: 'auto' }} />
+              </div>
+              <p style={{ fontSize: 13, color: '#5e6888', lineHeight: 1.7, maxWidth: 220 }}>
+                AI-powered apps and tools for health, productivity, and real-life use. Built by independent developers.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h3 style={{ fontSize: 13, fontWeight: 700, color: '#f0f2f8', marginBottom: 14, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                Quick Links
+              </h3>
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'Privacy Policy', href: '/privacy' },
+                { label: 'Contact', href: 'mailto:info@mysmartsapp.com' },
+              ].map(link => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{ display: 'block', fontSize: 14, color: '#5e6888', textDecoration: 'none', marginBottom: 10, transition: 'color 0.2s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#00d4ff' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#5e6888' }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h3 style={{ fontSize: 13, fontWeight: 700, color: '#f0f2f8', marginBottom: 14, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                Contact
+              </h3>
+              <a
+                href="mailto:info@mysmartsapp.com"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  fontSize: 14, color: '#5e6888', textDecoration: 'none', transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#00d4ff' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#5e6888' }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                info@mysmartsapp.com
+              </a>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 24, textAlign: 'center' }}>
+            <p style={{ fontSize: 13, color: '#5e6888' }}>
+              &copy; {new Date().getFullYear()} mysmartsapp.com &mdash; All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   )
 }

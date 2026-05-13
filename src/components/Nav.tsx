@@ -7,6 +7,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { lang, setLang, t } = useLang()
+  const onSupportPage = typeof window !== 'undefined' && window.location.pathname === '/support'
 
   const links = [
     { id: 'apps', label: t('nav_apps') },
@@ -42,7 +43,15 @@ export default function Nav() {
             </a>
           ))}
           <a href="/privacy" className="nav-link">{t('footer_privacy')}</a>
-          <a href="/support" className="nav-link">Support</a>
+          <a
+            href="/support"
+            className="nav-link"
+            style={onSupportPage ? {
+              color: 'var(--accent)',
+              borderBottom: '2px solid var(--accent)',
+              paddingBottom: '2px',
+            } : {}}
+          >Support</a>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div className="lang-toggle">
