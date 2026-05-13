@@ -207,7 +207,7 @@ export default function SupportPage() {
             <span style={{ fontSize: 28 }}>🛟</span>
           </div>
           <h1 style={{ fontSize: 36, fontWeight: 800, color: '#fff', marginBottom: 12, letterSpacing: '-0.02em' }}>
-            Support
+            Mounjaro Tracker: AI Health
           </h1>
           <p style={{ color: '#8892b0', fontSize: 16, maxWidth: 520, margin: '0 auto', lineHeight: 1.65 }}>
             We're here to help. Browse the FAQ below or send us a message and we'll get back to you as soon as possible.

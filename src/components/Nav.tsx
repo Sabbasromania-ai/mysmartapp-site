@@ -42,6 +42,7 @@ export default function Nav() {
             </a>
           ))}
           <a href="/privacy" className="nav-link">{t('footer_privacy')}</a>
+          <a href="/support" className="nav-link">Support</a>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div className="lang-toggle">
