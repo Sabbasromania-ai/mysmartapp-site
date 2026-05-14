@@ -158,10 +158,16 @@ export default function SupportPage() {
       <section style={{ textAlign: 'center', padding: '100px 24px 48px' }}>
         <h1 style={{
           fontSize: 'clamp(36px, 6vw, 52px)', fontWeight: 800,
-          color: '#fff', letterSpacing: '-0.03em', marginBottom: 16,
+          color: '#fff', letterSpacing: '-0.03em', marginBottom: 10,
         }}>
           Support
         </h1>
+        <p style={{
+          fontSize: 17, fontWeight: 600, color: '#00d4ff',
+          letterSpacing: '0.01em', marginBottom: 16,
+        }}>
+          Mounjaro Tracker : AI Health
+        </p>
         <p style={{ color: '#8892b0', fontSize: 16, lineHeight: 1.7, maxWidth: 480, margin: '0 auto 24px' }}>
           Need help with the app, your subscription, or your account?<br />
           Send us a message and we&rsquo;ll respond as soon as possible.
@@ -408,19 +414,20 @@ export default function SupportPage() {
       </div>
 
       {/* ── Footer ── */}
-      <footer style={{
+      {/* Using div instead of footer element to avoid global CSS footer{display:flex} override */}
+      <div role="contentinfo" style={{
         borderTop: '1px solid rgba(255,255,255,0.06)',
         padding: '48px 24px 32px',
       }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '32px 40px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '32px 48px',
             marginBottom: 40,
           }}>
-            {/* Brand */}
-            <div>
+            {/* Brand — flex: 2 so it takes double width vs other cols */}
+            <div style={{ flex: '2 1 240px', minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
                 <img src={navLogo} alt="mysmartsapp" style={{ height: 28, width: 'auto' }} />
               </div>
@@ -430,12 +437,13 @@ export default function SupportPage() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div style={{ flex: '1 1 140px', minWidth: 130 }}>
               <h3 style={{ fontSize: 13, fontWeight: 700, color: '#f0f2f8', marginBottom: 14, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 Quick Links
               </h3>
               {[
                 { label: 'Home', href: '/' },
+                { label: 'Support', href: '/support' },
                 { label: 'Privacy Policy', href: '/privacy' },
                 { label: 'Contact', href: 'mailto:info@mysmartsapp.com' },
               ].map(link => (
@@ -452,7 +460,7 @@ export default function SupportPage() {
             </div>
 
             {/* Contact */}
-            <div>
+            <div style={{ flex: '1 1 160px', minWidth: 150 }}>
               <h3 style={{ fontSize: 13, fontWeight: 700, color: '#f0f2f8', marginBottom: 14, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                 Contact
               </h3>
@@ -481,7 +489,7 @@ export default function SupportPage() {
             </p>
           </div>
         </div>
-      </footer>
+      </div>{/* end footer div */}
 
     </div>
   )
