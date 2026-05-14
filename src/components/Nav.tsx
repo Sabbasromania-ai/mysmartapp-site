@@ -8,12 +8,12 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { lang, setLang, t } = useLang()
   const onSupportPage = typeof window !== 'undefined' && window.location.pathname === '/support'
+  const onContactPage = typeof window !== 'undefined' && window.location.pathname === '/contact'
 
   const links = [
     { id: 'apps', label: t('nav_apps') },
     { id: 'platform', label: t('nav_platform') },
     { id: 'about', label: t('nav_about') },
-    { id: 'contact', label: t('nav_contact') },
   ]
 
   useEffect(() => {
@@ -52,6 +52,15 @@ export default function Nav() {
               paddingBottom: '2px',
             } : {}}
           >Support</a>
+          <a
+            href="/contact"
+            className="nav-link"
+            style={onContactPage ? {
+              color: 'var(--accent)',
+              borderBottom: '2px solid var(--accent)',
+              paddingBottom: '2px',
+            } : {}}
+          >{t('nav_contact')}</a>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div className="lang-toggle">

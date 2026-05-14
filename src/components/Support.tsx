@@ -11,10 +11,10 @@ export default function Support() {
       </div>
       <h3 className="bc-title">{t('contact_title')}</h3>
       <p className="bc-desc">{t('contact_desc')}</p>
-      <a href="mailto:sabbasromania@icloud.com" className="bc-email">
-        sabbasromania@icloud.com
+      <a href="mailto:info@mysmartsapp.com" className="bc-email">
+        info@mysmartsapp.com
       </a>
-      <a href="mailto:sabbasromania@icloud.com" className="btn-primary bc-btn">
+      <a href="/contact" className="btn-primary bc-btn">
         {t('contact_btn')}
       </a>
     </div>

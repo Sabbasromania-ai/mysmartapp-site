@@ -13,6 +13,7 @@ import NeuralBg from './components/NeuralBg'
 import AppPage from './pages/AppPage'
 import Privacy from './pages/Privacy'
 import SupportPage from './pages/SupportPage'
+import ContactPage from './pages/ContactPage'
 
 function HomePage() {
   useEffect(() => {
@@ -85,6 +86,13 @@ export default function App() {
             <>
               <Nav />
               <SupportPage />
+            </>
+          } />
+          <Route path="/contact" element={
+            <>
+              <Nav />
+              <ContactPage />
+              <Footer />
             </>
           } />
         </Routes>
