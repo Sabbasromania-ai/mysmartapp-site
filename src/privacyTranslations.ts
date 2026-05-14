@@ -30,6 +30,7 @@ interface PvContent {
   s15: { title: string; p1: string; p2: string }
   s16: { title: string; p1: string; p2: string }
   s17: { title: string; bullets: B[] }
+  sTikTok: { title: string; p1: string; p2: string; p3: string; p4: string }
   footer: { label: string; p: string; button: string }
   bottomNote: string
 }
@@ -268,15 +269,22 @@ export const pv: Record<'en' | 'el', PvContent> = {
         ['Email:', 'info@mysmartsapp.com'],
         ['Developer:', 'Savvas Alexiou'],
         ['Jurisdiction:', 'European Union / Romania'],
-        ['Romanian DPA:', 'ANSPDCP — www.dataprotection.ro'],
+        [‘Romanian DPA:’, ‘ANSPDCP — www.dataprotection.ro’],
       ],
     },
-    footer: {
-      label: 'Contact',
-      p: 'Have questions or need help? We’re here for you.',
-      button: 'Send a Message',
+    sTikTok: {
+      title: ‘Third-Party Analytics and Advertising Attribution’,
+      p1: ‘We use the TikTok Business SDK on iOS to measure the effectiveness of our advertising campaigns and to attribute app installs, app launches, and subscription purchase events to advertising campaigns.’,
+      p2: ‘The TikTok SDK may receive limited technical and attribution data, such as app launch/install events, subscription tier, platform, device information, operating system version, app version, locale, timezone, IP address, and advertising identifier (IDFA) only if the user grants permission through Apple\’s App Tracking Transparency prompt.’,
+      p3: ‘We do not send health data to TikTok. This includes blood glucose, body weight, BMI, injections, medication schedules, blood test results, OCR results, Apple Health / HealthKit data, AI Coach messages, health goals, medical notes, name, email address, Supabase user ID, RevenueCat app user ID, transaction ID, price, or currency.’,
+      p4: ‘Users can manage tracking permission at any time in iOS Settings > Privacy & Security > Tracking. TikTok processes data according to its own privacy policy: https://www.tiktok.com/legal/privacy-policy’,
     },
-    bottomNote: 'This policy is written in English as the authoritative version. Localized translations may be provided for convenience; in case of conflict, the English version prevails.',
+    footer: {
+      label: ‘Contact’,
+      p: ‘Have questions or need help? We’re here for you.’,
+      button: ‘Send a Message’,
+    },
+    bottomNote: ‘This policy is written in English as the authoritative version. Localized translations may be provided for convenience; in case of conflict, the English version prevails.’,
   },
 
   el: {
@@ -514,6 +522,13 @@ export const pv: Record<'en' | 'el', PvContent> = {
         ['Δικαιοδοσία:', 'Ευρωπαϊκή Ένωση / Ρουμανία'],
         ['Ρουμανική Αρχή Προστασίας Δεδομένων:', 'ANSPDCP — www.dataprotection.ro'],
       ],
+    },
+    sTikTok: {
+      title: 'Analytics και Απόδοση Διαφημίσεων σε Τρίτους',
+      p1: 'Χρησιμοποιούμε το TikTok Business SDK στο iOS για τη μέτρηση της αποτελεσματικότητας των διαφημιστικών μας καμπανιών και για την απόδοση εγκαταστάσεων εφαρμογής, εκκινήσεων και συμβάντων αγοράς συνδρομής σε διαφημιστικές καμπάνιες.',
+      p2: 'Το TikTok SDK ενδέχεται να λαμβάνει περιορισμένα τεχνικά δεδομένα και δεδομένα απόδοσης, όπως συμβάντα εκκίνησης/εγκατάστασης εφαρμογής, επίπεδο συνδρομής, πλατφόρμα, πληροφορίες συσκευής, έκδοση λειτουργικού συστήματος, έκδοση εφαρμογής, locale, ζώνη ώρας, διεύθυνση IP και αναγνωριστικό διαφήμισης (IDFA) μόνο εφόσον ο χρήστης έχει δώσει άδεια μέσω της ειδοποίησης App Tracking Transparency της Apple.',
+      p3: 'Δεν αποστέλλουμε δεδομένα υγείας στο TikTok. Αυτό περιλαμβάνει γλυκόζη αίματος, σωματικό βάρος, ΔΜΣ, ενέσεις, πρόγραμμα φαρμάκων, αποτελέσματα εξετάσεων αίματος, δεδομένα OCR, δεδομένα Apple Health / HealthKit, μηνύματα AI Coach, στόχους υγείας, ιατρικές σημειώσεις, όνομα, email, Supabase user ID, RevenueCat app user ID, αναγνωριστικό συναλλαγής, τιμή ή νόμισμα.',
+      p4: 'Οι χρήστες μπορούν να διαχειριστούν την άδεια παρακολούθησης ανά πάσα στιγμή στις Ρυθμίσεις iOS > Απόρρητο & Ασφάλεια > Παρακολούθηση. Το TikTok επεξεργάζεται δεδομένα σύμφωνα με τη δική του πολιτική απορρήτου: https://www.tiktok.com/legal/privacy-policy',
     },
     footer: {
       label: 'Επικοινωνία',

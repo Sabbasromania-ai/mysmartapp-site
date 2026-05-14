@@ -298,6 +298,17 @@ export default function Privacy() {
           <p style={{ color: '#8892b0', fontSize: 14, marginBottom: 0 }}>{p.s15.p2}</p>
         </Card>
 
+        {/* TikTok / Third-Party Attribution */}
+        <Card>
+          <SectionTitle>{p.sTikTok.title}</SectionTitle>
+          <p style={{ color: '#c4c9d8', lineHeight: 1.7, fontSize: 15, marginBottom: 12 }}>{p.sTikTok.p1}</p>
+          <p style={{ color: '#c4c9d8', lineHeight: 1.7, fontSize: 15, marginBottom: 12 }}>{p.sTikTok.p2}</p>
+          <div style={{ background: 'rgba(0,212,255,0.05)', border: '1px solid rgba(0,212,255,0.15)', borderRadius: 10, padding: '12px 16px', marginBottom: 12 }}>
+            <p style={{ color: '#8892b0', fontSize: 14, lineHeight: 1.7, margin: 0 }}>{p.sTikTok.p3}</p>
+          </div>
+          <p style={{ color: '#8892b0', fontSize: 14, marginBottom: 0 }}>{p.sTikTok.p4}</p>
+        </Card>
+
         {/* 16. Changes */}
         <Card>
           <SectionTitle>{p.s16.title}</SectionTitle>
