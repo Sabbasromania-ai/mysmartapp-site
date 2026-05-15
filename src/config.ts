@@ -12,7 +12,7 @@ export const config = {
     "My focus right now is health & lifestyle apps, but I'm always exploring new ideas.",
   ],
   contact: {
-    email: 'sabbasromania@icloud.com',
+    email: 'info@mysmartsapp.com',
     available: true,
   },
   stats: [

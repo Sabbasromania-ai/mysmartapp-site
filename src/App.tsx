@@ -11,6 +11,7 @@ import Support from './components/Support'
 import Footer from './components/Footer'
 import NeuralBg from './components/NeuralBg'
 import AppPage from './pages/AppPage'
+import AIHealthTrackerPage from './pages/AIHealthTrackerPage'
 import Privacy from './pages/Privacy'
 import SupportPage from './pages/SupportPage'
 import ContactPage from './pages/ContactPage'
@@ -68,6 +69,13 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/apps/ai-health-tracker" element={
+            <>
+              <Nav />
+              <AIHealthTrackerPage />
+              <Footer />
+            </>
+          } />
           <Route path="/apps/:slug" element={
             <>
               <Nav />
