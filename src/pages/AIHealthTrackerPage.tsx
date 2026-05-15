@@ -1,6 +1,5 @@
-import appLogo          from '../applogo.png'
-// @ts-ignore
-import heroPhoneCutout  from '@ob/hero-phone-cutout.png'
+import appLogo         from '../applogo.png'
+import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 
 const chips = [
   { icon: '✏️', label: 'Dose Log'    },
