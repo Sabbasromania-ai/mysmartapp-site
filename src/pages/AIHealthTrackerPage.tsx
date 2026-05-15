@@ -1,5 +1,19 @@
-import appLogo         from '../applogo.png'
-import heroPhoneCutout from '../screens/hero-phone-cutout.png'
+import { useState, useEffect } from 'react'
+import appLogo              from '../applogo.png'
+import heroPhoneCutout      from '../screens/hero-phone-cutout.png'
+import mock01 from '../screens/onboarding/01_mock_phone.png'
+import mock02 from '../screens/onboarding/02_mock_phone.png'
+import mock03 from '../screens/onboarding/03_mock_phone.png'
+import mock04 from '../screens/onboarding/04_mock_phone.png'
+import mock05 from '../screens/onboarding/05_mock_phone.png'
+import mock06 from '../screens/onboarding/06_mock_phone.png'
+import mock07 from '../screens/onboarding/07_mock_phone.png'
+import mock08 from '../screens/onboarding/08_mock_phone.png'
+import mock09 from '../screens/onboarding/09_mock_phone.png'
+import mock10 from '../screens/onboarding/10_mock_phone.png'
+import mock11 from '../screens/onboarding/11_mock_phone.png'
+import mock12 from '../screens/onboarding/12_mock_phone.png'
+import mock13 from '../screens/onboarding/13_mock_phone.png'
 
 const chips = [
   { icon: '✏️', label: 'Dose Log'    },
@@ -17,6 +31,22 @@ const floatingCards = [
   { id: 'meal',  label: 'MEAL SCAN',   sub: 'Photo in.\nCalories out.'                 },
   { id: 'kcal',  label: '480 kcal',    sub: 'Lunch scanned'                            },
   { id: 'sync',  label: 'HEALTH SYNC', sub: 'Your data.\nYour control.\nYour privacy.' },
+]
+
+const onboardingScreens = [
+  { img: mock01, label: 'Welcome'        },
+  { img: mock02, label: 'Onboarding'     },
+  { img: mock03, label: 'Dashboard'      },
+  { img: mock04, label: 'Daily Targets'  },
+  { img: mock05, label: 'Reminders'      },
+  { img: mock06, label: 'Progress'       },
+  { img: mock07, label: 'Meal Log'       },
+  { img: mock08, label: 'Blood Tests'    },
+  { img: mock09, label: 'Scan Meal'      },
+  { img: mock10, label: 'AI Coach'       },
+  { img: mock11, label: 'Health Sync'    },
+  { img: mock12, label: 'Body Metrics'   },
+  { img: mock13, label: 'Settings'       },
 ]
 
 const CSS = `
@@ -309,9 +339,250 @@ const CSS = `
   line-height: 1.45;
   white-space: pre-line;
 }
+
+/* ── INSIDE THE APP SECTION ── */
+.aht-ita-section {
+  background: #020608;
+  padding: 0 24px 60px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.aht-ita-card {
+  width: min(1240px, 100%);
+  border-radius: 32px;
+  border: 1px solid rgba(20,241,149,0.16);
+  background:
+    radial-gradient(circle at 50% 20%, rgba(20,241,149,0.05), transparent 55%),
+    linear-gradient(160deg, #041014 0%, #041018 50%, #020608 100%);
+  padding: 56px 48px 52px;
+  box-sizing: border-box;
+}
+.aht-ita-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.aht-ita-eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #14f195;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.aht-ita-title {
+  font-size: clamp(26px, 2.8vw, 44px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.aht-ita-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,.5);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+.aht-ita-carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.aht-ita-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(20,241,149,0.28);
+  background: rgba(20,241,149,0.06);
+  color: #14f195;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+  outline: none;
+}
+.aht-ita-arrow:hover {
+  background: rgba(20,241,149,0.14);
+  border-color: rgba(20,241,149,0.55);
+}
+.aht-ita-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.aht-ita-track-wrap {
+  flex: 1;
+  overflow: hidden;
+}
+.aht-ita-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.38s cubic-bezier(.4,0,.2,1);
+}
+.aht-ita-screen {
+  flex: 0 0 150px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.onboardingPhoneCard {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.onboardingPhoneImage {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.aht-ita-screen-label {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  font-weight: 500;
+  text-align: center;
+}
+.aht-ita-inforow {
+  display: flex;
+  margin-top: 28px;
+  border: 1px solid rgba(20,241,149,0.14);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(20,241,149,0.025);
+}
+.aht-ita-infoitem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 22px;
+  border-right: 1px solid rgba(20,241,149,0.1);
+}
+.aht-ita-infoitem:last-child {
+  border-right: none;
+}
+.aht-ita-info-icon {
+  color: #14f195;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+.aht-ita-info-num {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.aht-ita-info-label {
+  font-size: 12px;
+  color: rgba(255,255,255,.55);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.aht-ita-info-sub {
+  font-size: 10.5px;
+  color: rgba(255,255,255,.28);
+  margin-top: 2px;
+}
+.aht-ita-stars {
+  color: #14f195;
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+/* ── LIGHTBOX MODAL ── */
+.lb-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lb-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 18px;
+}
+.lb-img {
+  max-height: 85vh;
+  max-width: 90vw;
+  object-fit: contain;
+  border-radius: 28px;
+  display: block;
+  background: transparent;
+}
+.lb-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99999;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.lb-close:hover { background: rgba(80,80,80,0.9); }
+.lb-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(20,241,149,0.35);
+  background: rgba(20,241,149,0.08);
+  color: #14f195;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.lb-arrow:hover { background: rgba(20,241,149,0.18); }
+.lb-arrow:disabled { opacity: 0.25; cursor: default; }
+.aht-ita-screen-frame { cursor: pointer; }
 `
 
 export default function AIHealthTrackerPage() {
+  const [slide, setSlide] = useState(0)
+  const visible = 5
+  const maxSlide = Math.max(0, onboardingScreens.length - visible)
+  const [lightbox, setLightbox] = useState<number | null>(null)
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightbox(null)
+      if (e.key === 'ArrowRight' && lightbox !== null)
+        setLightbox(i => i !== null && i < onboardingScreens.length - 1 ? i + 1 : i)
+      if (e.key === 'ArrowLeft' && lightbox !== null)
+        setLightbox(i => i !== null && i > 0 ? i - 1 : i)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightbox])
+
   return (
     <>
       <style>{CSS}</style>
@@ -470,6 +741,138 @@ export default function AIHealthTrackerPage() {
           </div>
         </section>
       </main>
+
+      {/* ── INSIDE THE APP SECTION ── */}
+      <section className="aht-ita-section">
+        <div className="aht-ita-card">
+
+          {/* Header */}
+          <div className="aht-ita-header">
+            <div className="aht-ita-eyebrow">Inside the App</div>
+            <h2 className="aht-ita-title">See the app before you install</h2>
+            <p className="aht-ita-sub">
+              Real onboarding screens, exactly as users see them when they open the app.
+            </p>
+          </div>
+
+          {/* Carousel */}
+          <div className="aht-ita-carousel">
+            <button
+              className="aht-ita-arrow"
+              onClick={() => setSlide(s => Math.max(0, s - 1))}
+              disabled={slide === 0}
+              aria-label="Previous"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+
+            <div className="aht-ita-track-wrap">
+              <div
+                className="aht-ita-track"
+                style={{ transform: `translateX(calc(-${slide * 174}px))` }}
+              >
+                {onboardingScreens.map((s, i) => (
+                  <div key={i} className="aht-ita-screen" onClick={() => setLightbox(i)} style={{ cursor: 'pointer' }}>
+                    <div className="onboardingPhoneCard">
+                      <img src={s.img} alt={s.label} className="onboardingPhoneImage" />
+                    </div>
+                    <span className="aht-ita-screen-label">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button
+              className="aht-ita-arrow"
+              onClick={() => setSlide(s => Math.min(maxSlide, s + 1))}
+              disabled={slide >= maxSlide}
+              aria-label="Next"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Info row */}
+          <div className="aht-ita-inforow">
+            <div className="aht-ita-infoitem">
+              <div className="aht-ita-info-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div>
+                <div className="aht-ita-info-num">4.9K</div>
+                <div className="aht-ita-info-label">Ratings</div>
+                <div className="aht-ita-stars">★★★★★</div>
+              </div>
+            </div>
+            <div className="aht-ita-infoitem">
+              <div className="aht-ita-info-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                  <line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <div>
+                <div className="aht-ita-info-num">13</div>
+                <div className="aht-ita-info-label">Onboarding Screens</div>
+                <div className="aht-ita-info-sub">Step-by-step experience</div>
+              </div>
+            </div>
+            <div className="aht-ita-infoitem">
+              <div className="aht-ita-info-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+                  <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+                  <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+                </svg>
+              </div>
+              <div>
+                <div className="aht-ita-info-num">ChatGPT</div>
+                <div className="aht-ita-info-label">AI Powered</div>
+                <div className="aht-ita-info-sub">Smarter insights, just for you</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── LIGHTBOX ── */}
+      {lightbox !== null && (
+        <div className="lb-overlay" onClick={() => setLightbox(null)}>
+          <div className="lb-content" onClick={e => e.stopPropagation()}>
+          <button className="lb-close" onClick={() => setLightbox(null)}>✕</button>
+            <button
+              className="lb-arrow"
+              disabled={lightbox === 0}
+              onClick={() => setLightbox(i => i !== null ? Math.max(0, i - 1) : null)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <img
+              src={onboardingScreens[lightbox].img}
+              alt={onboardingScreens[lightbox].label}
+              className="lb-img"
+            />
+            <button
+              className="lb-arrow"
+              disabled={lightbox === onboardingScreens.length - 1}
+              onClick={() => setLightbox(i => i !== null ? Math.min(onboardingScreens.length - 1, i + 1) : null)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </>
   )
 }
