@@ -16,13 +16,25 @@ import mock12 from '../screens/onboarding/12_mock_phone.png'
 import mock13 from '../screens/onboarding/13_mock_phone.png'
 
 const chips = [
-  { icon: '✏️', label: 'Dose Log'    },
-  { icon: '📈', label: 'Progress'    },
-  { icon: '🩸', label: 'Blood Tests' },
-  { icon: '🤖', label: 'AI Coach'    },
-  { icon: '📷', label: 'Scan Meals'  },
-  { icon: '🔔', label: 'Reminders'   },
-  { icon: '❤️', label: 'Health Sync' },
+  { icon: '💉', label: 'Injection Doses'    },
+  { icon: '📅', label: 'Dose Schedule'      },
+  { icon: '🗺️', label: 'Injection Sites'    },
+  { icon: '📋', label: 'Injection History'  },
+  { icon: '📉', label: 'Drug Level'         },
+  { icon: '⚖️', label: 'Weight Progress'    },
+  { icon: '🎯', label: 'Daily Targets'      },
+  { icon: '💧', label: 'Water Tracking'     },
+  { icon: '🥗', label: 'Protein / Fiber'    },
+  { icon: '📷', label: 'AI Meal Scan'       },
+  { icon: '🔍', label: 'Barcode Scanner'    },
+  { icon: '🩸', label: 'Blood Markers'      },
+  { icon: '🔬', label: 'OCR Lab Upload'     },
+  { icon: '🤖', label: 'AI Advisor'         },
+  { icon: '💡', label: 'AI Insights'        },
+  { icon: '🔔', label: 'Reminders'          },
+  { icon: '❤️', label: 'Health Sync'        },
+  { icon: '🍎', label: 'Apple Health'       },
+  { icon: '🏃', label: 'Health Connect'     },
 ]
 
 const floatingCards = [
@@ -154,20 +166,33 @@ const CSS = `
 .aht-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
+  gap: 8px;
+  margin-top: 24px;
+  max-width: 640px;
 }
 .aht-chip {
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.045);
-  border-radius: 10px;
-  padding: 9px 14px;
-  font-size: 13px;
-  color: rgba(255,255,255,.82);
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-size: 12px;
+  color: rgba(255,255,255,.78);
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
+  line-height: 1;
+}
+@media (max-width: 768px) {
+  .aht-chip {
+    font-size: 11px;
+    padding: 6px 9px;
+    gap: 4px;
+  }
+  .aht-chips {
+    gap: 7px;
+  }
 }
 .aht-stores {
   display: flex;
@@ -495,6 +520,132 @@ const CSS = `
   letter-spacing: 2px;
   line-height: 1;
   margin-top: 3px;
+}
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden; }
+
+  .aht-page {
+    padding: 72px 12px 20px;
+  }
+  .aht-card {
+    padding: 28px 18px 32px;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .aht-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .aht-visual {
+    display: none;
+  }
+  .aht-copy {
+    min-width: 0;
+    width: 100%;
+  }
+  .aht-badge {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  .aht-identity {
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .aht-appicon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  .aht-applabel {
+    font-size: 11px;
+    letter-spacing: .05em;
+    word-break: break-word;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .aht-appsub {
+    font-size: 11px;
+  }
+  .aht-headline {
+    font-size: clamp(26px, 7vw, 38px);
+    margin: 20px 0 16px;
+    letter-spacing: -0.03em;
+    word-break: break-word;
+  }
+  .aht-text {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .aht-chips {
+    max-width: 100%;
+    gap: 7px;
+    margin-top: 18px;
+  }
+  .aht-chip {
+    font-size: 11px;
+    padding: 6px 9px;
+    gap: 4px;
+  }
+  .aht-stores {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .aht-storebtn {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    min-width: unset;
+  }
+  .aht-inforow {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .aht-infoitem {
+    font-size: 11px;
+    white-space: normal;
+  }
+  /* Inside the App section */
+  .aht-ita-card {
+    padding: 28px 14px 28px;
+    border-radius: 18px;
+  }
+  .aht-ita-title {
+    font-size: clamp(20px, 5.5vw, 30px);
+  }
+  .aht-ita-sub {
+    font-size: 13px;
+  }
+  .aht-ita-screen {
+    flex: 0 0 110px;
+    width: 110px;
+  }
+  .onboardingPhoneCard {
+    width: 110px;
+  }
+  .onboardingPhoneImage {
+    width: 110px;
+  }
+  .aht-ita-arrow {
+    width: 34px;
+    height: 34px;
+  }
+  .aht-ita-inforow {
+    flex-direction: column;
+  }
+  .aht-ita-infoitem {
+    border-right: none;
+    border-bottom: 1px solid rgba(20,241,149,0.1);
+    padding: 14px 16px;
+  }
+  .aht-ita-infoitem:last-child {
+    border-bottom: none;
+  }
 }
 
 /* ── LIGHTBOX MODAL ── */
