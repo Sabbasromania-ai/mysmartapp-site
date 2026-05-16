@@ -60,3 +60,5 @@ export const config = {
     Frontend: ['React', 'TypeScript', 'Vite', 'Capacitor'],
     'Backend & Data': ['Supabase', 'Node.js', 'PostgreSQL'],
     'AI & Integrations': ['GPT-4o', 'Claude API', 'Google Vision', 'RevenueCat', 'FCM'],
+  },
+}
