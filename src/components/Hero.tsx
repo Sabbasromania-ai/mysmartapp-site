@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import appLogo from '../applogo.png'
-import appScreenshot from '../app-screenshot.png'
+import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import { useLang } from '../LangContext'
 import { TKey } from '../translations'
 
@@ -77,26 +77,14 @@ export default function Hero() {
         {/* RIGHT — Phone mockup + App Cards */}
         <div className="hero-right hero-right-split">
 
-          <div className="hero-mockup-col" onClick={() => navigate('/apps/mounjaro-tracker-ai-health')} style={{ cursor: 'pointer', position: 'relative' }}>
-            <div style={{
-              position: 'absolute',
-              top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 220, height: 380,
-              background: 'radial-gradient(ellipse at center, rgba(0,212,255,0.28) 0%, transparent 70%)',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }} />
+          <div
+            className="hero-mockup-col homeHeroPhone"
+            onClick={() => navigate('/apps/mounjaro-tracker-ai-health')}
+            style={{ cursor: 'pointer' }}
+          >
             <img
-              src={appScreenshot}
+              src={heroPhoneCutout}
               alt="AI Health Tracker App"
-              style={{
-                width: 210,
-                filter: 'drop-shadow(0 0 28px rgba(0,212,255,0.22)) drop-shadow(0 24px 48px rgba(0,0,0,0.6))',
-                position: 'relative',
-                zIndex: 1,
-                display: 'block',
-              }}
             />
           </div>
 

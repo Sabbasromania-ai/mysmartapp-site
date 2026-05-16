@@ -431,6 +431,21 @@ nav {
   transition: transform 0.3s ease;
 }
 .hero-mockup-col:hover { transform: translateY(-4px); }
+.homeHeroPhone img {
+  width: min(21vw, 285px);
+  max-width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  display: block;
+  transform: none;
+  filter: drop-shadow(0 24px 56px rgba(0,0,0,0.55)) drop-shadow(0 0 36px rgba(20,241,149,0.12));
+}
+@media (min-width: 1400px) {
+  .homeHeroPhone img {
+    width: min(22vw, 310px);
+  }
+}
 .hero-cards-col {
   display: flex;
   flex-direction: column;
@@ -2095,7 +2110,18 @@ button.feature-card {
   /* ---- PHONE MOCKUP ---- */
   .hero-right-split { flex-direction: column; align-items: center; gap: 24px; }
   .hero-cards-col { width: 100%; max-width: 100%; }
-  .hero-mockup-col { margin-top: 20px; transform: scale(0.82); transform-origin: top center; }
+  .hero-mockup-col { transform: none; margin-top: 0; }
+  .homeHeroPhone {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 28px;
+  }
+  .homeHeroPhone img {
+    width: min(76vw, 285px);
+    height: auto;
+    object-fit: contain;
+  }
 
   /* ---- BUTTONS ---- */
   .btn-primary {
