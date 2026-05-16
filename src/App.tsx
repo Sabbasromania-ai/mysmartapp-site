@@ -11,6 +11,7 @@ import Support from './components/Support'
 import Footer from './components/Footer'
 import NeuralBg from './components/NeuralBg'
 import AppPage from './pages/AppPage'
+import AppsPage from './pages/AppsPage'
 import AIHealthTrackerPage from './pages/AIHealthTrackerPage'
 import Privacy from './pages/Privacy'
 import SupportPage from './pages/SupportPage'
@@ -69,6 +70,13 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/apps" element={
+            <>
+              <Nav />
+              <AppsPage />
+              <Footer />
+            </>
+          } />
           <Route path="/apps/ai-health-tracker" element={<Navigate to="/apps/mounjaro-tracker-ai-health" replace />} />
           <Route path="/apps/mounjaro-tracker-ai-health" element={
             <>

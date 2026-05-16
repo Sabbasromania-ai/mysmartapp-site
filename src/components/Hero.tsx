@@ -61,7 +61,7 @@ export default function Hero() {
           </h1>
           <p className="hero-p">{t('hero_p')}</p>
           <div className="hero-actions">
-            <a href="#apps" className="btn-primary">{t('hero_btn_explore')}</a>
+            <a href="/apps" className="btn-primary">{t('hero_btn_explore')}</a>
             <a href="#platform" className="btn-ghost">{t('hero_btn_platform')}</a>
           </div>
           <div className="hero-trust">

@@ -185,6 +185,20 @@ export const translations = {
     aht_store_apple: 'App Store',
     aht_store_google_sub: 'GET IT ON',
     aht_store_google: 'Google Play',
+
+    // AppsPage
+    apps_page_title: 'Our Apps',
+    apps_page_sub: 'Web and mobile apps designed for real needs — clean design and AI features where they add real value.',
+    apps_view: 'View App →',
+    apps_live_tag: 'Available on iOS & Android',
+    apps_coming_soon: 'Coming Soon',
+    why_title: 'Why choose our apps',
+    why_1_title: 'Real Needs',
+    why_1_desc: 'We build apps that solve specific problems.',
+    why_2_title: 'Modern design',
+    why_2_desc: 'Clean interface for mobile and web experiences.',
+    why_3_title: 'AI where it matters',
+    why_3_desc: 'Intelligent features are added only where they improve real usage.',
   },
 
   el: {
@@ -371,6 +385,20 @@ export const translations = {
     aht_store_apple: 'App Store',
     aht_store_google_sub: 'ΔΙΑΘΕΣΙΜΟ ΣΤΟ',
     aht_store_google: 'Google Play',
+
+    // AppsPage
+    apps_page_title: 'Οι Εφαρμογές μας',
+    apps_page_sub: 'Εφαρμογές web και mobile σχεδιασμένες για πραγματικές ανάγκες, με καθαρό design και λειτουργίες τεχνητής νοημοσύνης όπου έχουν αξία.',
+    apps_view: 'Προβολή Εφαρμογής →',
+    apps_live_tag: 'Διαθέσιμο σε iOS & Android',
+    apps_coming_soon: 'Σύντομα',
+    why_title: 'Γιατί να επιλέξετε τις εφαρμογές μας',
+    why_1_title: 'Πραγματικές ανάγκες',
+    why_1_desc: 'Χτίζουμε εφαρμογές που λύνουν συγκεκριμένα προβλήματα.',
+    why_2_title: 'Σύγχρονο design',
+    why_2_desc: 'Καθαρό interface για mobile και web εμπειρίες.',
+    why_3_title: 'Τεχνητή νοημοσύνη με αξία',
+    why_3_desc: 'Η τεχνητή νοημοσύνη προστίθεται εκεί που βελτιώνει πραγματικά τη χρήση.',
   },
 } as const
 
