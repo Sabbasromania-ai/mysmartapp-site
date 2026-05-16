@@ -6,7 +6,7 @@ export default function ProductPreview() {
     { dot: '#6366f1', text: 'Semaglutide 2.5mg', val: 'Injected' },
     { dot: '#10b981', text: 'Calorie target met', val: '1,280 cal' },
     { dot: '#f59e0b', text: 'Step goal progress', val: '8,432' },
-    { dot: '#00d4ff', text: 'AI Coach insight', val: 'View' },
+    { dot: '#00d4ff', text: 'AI Advisor insight', val: 'View' },
   ]
 
   return (

@@ -28,8 +28,8 @@ export const config = {
       name: 'Mounjaro Tracker : AI Health',
       status: 'live' as const,
       category: 'Health',
-      desc: 'Complete health companion for Mounjaro, Ozempic & Wegovy users. AI Coach with memory, injection site rotation, drug level charts, nutrition logging with photo recognition.',
-      tags: ['Health & Fitness', 'AI Coach', 'React + Capacitor', 'Supabase'],
+      desc: 'Complete health companion for Mounjaro, Ozempic & Wegovy users. AI Advisor with memory, injection site rotation, drug level charts, nutrition logging with photo recognition.',
+      tags: ['Health & Fitness', 'AI Advisor', 'React + Capacitor', 'Supabase'],
       appStore: 'https://apps.apple.com/ro/app/mounjaro-tracker-ai-health/id6761938987',
       playStore: '',       // ← βαλε link οταν ειναι live
     },

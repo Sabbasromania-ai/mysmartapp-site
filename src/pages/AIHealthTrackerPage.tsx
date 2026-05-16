@@ -39,7 +39,7 @@ const chips = [
 ]
 
 const floatingCards = [
-  { id: 'coach', label: 'AI COACH',    sub: '3 insights ready'                         },
+  { id: 'coach', label: 'AI ADVISOR',  sub: '3 insights ready'                         },
   { id: 'hba1c', label: 'HbA1c 5.4%', sub: 'Improving'                                },
   { id: 'meal',  label: 'MEAL SCAN',   sub: 'Photo in.\nCalories out.'                 },
   { id: 'kcal',  label: '480 kcal',    sub: 'Lunch scanned'                            },
@@ -56,7 +56,7 @@ const onboardingScreens = [
   { img: mock07, label: 'Meal Log'       },
   { img: mock08, label: 'Blood Tests'    },
   { img: mock09, label: 'Scan Meal'      },
-  { img: mock10, label: 'AI Coach'       },
+  { img: mock10, label: 'AI Advisor'     },
   { img: mock11, label: 'Health Sync'    },
   { img: mock12, label: 'Body Metrics'   },
   { img: mock13, label: 'Settings'       },

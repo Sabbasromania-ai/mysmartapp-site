@@ -209,8 +209,8 @@ export default function AppPage() {
         <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 14 }}>{t('apppage_features')}</h2>
 
         {(() => {
-          const featured = app.features.find(f => f.title === 'AI Coach with Memory')
-          const rest = app.features.filter(f => f.title !== 'AI Coach with Memory')
+          const featured = app.features.find(f => f.title === 'AI Advisor with Memory')
+          const rest = app.features.filter(f => f.title !== 'AI Advisor with Memory')
           return (
             <>
               {/* Featured card — bigger padding, stronger border at rest */}

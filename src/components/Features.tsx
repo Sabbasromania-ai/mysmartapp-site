@@ -19,11 +19,11 @@ export const apps = [
     tag: 'Live',
     tagColor: '#10b981',
     tagBg: 'rgba(16,185,129,0.12)',
-    short: 'GLP-1 dose tracking with real injection logging, an AI coach that remembers your data, blood test analysis, and progress charts — built for Mounjaro and Ozempic users.',
+    short: 'GLP-1 dose tracking with real injection logging, an AI Advisor that remembers your data, blood test analysis, and progress charts — built for Mounjaro and Ozempic users.',
     platforms: ['iOS', 'Android'],
     features: [
       { icon: '💉', title: 'Injection Tracking', desc: 'Log every dose with date, time, body site, and history. Track Mounjaro, Ozempic, and Wegovy with drug level curves.' },
-      { icon: '🧠', title: 'AI Coach with Memory', desc: 'AI coach powered by Claude that remembers your full health history and adapts recommendations based on real data — not generic advice.' },
+      { icon: '🤖', title: 'AI Advisor with Memory', desc: 'AI Advisor powered by Claude that remembers your full health history and adapts recommendations based on real data — not generic advice.' },
       { icon: '📈', title: 'Weight & Progress Charts', desc: 'Visualize weight loss, BMI, glucose trends, and dose effectiveness over time. See real progress, not just numbers.' },
       { icon: '📸', title: 'Photo Meal Logging', desc: 'Photograph any meal and get an instant AI breakdown of ingredients, calories, and macros — no manual input needed.' },
       { icon: '🩸', title: 'Blood Test Tracking', desc: 'Upload lab results and track key health markers over time. Get AI interpretation tailored to your medication and history.' },
@@ -34,7 +34,7 @@ export const apps = [
       { dot: '#6366f1', label: 'Mounjaro 5mg', value: 'Injected ✓' },
       { dot: '#10b981', label: 'Calories', value: '1,280 kcal' },
       { dot: '#f59e0b', label: 'Steps', value: '8,432' },
-      { dot: CYAN, label: 'AI Coach', value: 'Active 🟢' },
+      { dot: CYAN, label: 'AI Advisor', value: 'Active 🟢' },
     ],
   },
   {
@@ -53,7 +53,7 @@ export const apps = [
       { icon: '😴', title: 'Sleep Analysis', desc: 'Track sleep quality and get personalized improvement tips.' },
       { icon: '🧘', title: 'Stress Monitor', desc: 'Daily stress check-ins with pattern recognition over time.' },
       { icon: '🎯', title: 'Mindfulness', desc: 'Guided sessions tailored to your stress level and schedule.' },
-      { icon: '🧠', title: 'AI Coach', desc: 'Personalized mental wellness coaching with memory.' },
+      { icon: '🤖', title: 'AI Advisor', desc: 'Personalized mental wellness coaching with memory.' },
     ],
     phone: [
       { dot: CYAN, label: 'Sleep', value: '7.2h' },
@@ -131,7 +131,7 @@ export function PhoneMockup({ app }: { app: typeof apps[0] }) {
               }} />
             ))}
           </div>
-          <div className="pm-footer" style={{ color: app.color }}>AI Coach Active ✦</div>
+          <div className="pm-footer" style={{ color: app.color }}>AI Advisor Active ✦</div>
         </div>
       </div>
     </div>

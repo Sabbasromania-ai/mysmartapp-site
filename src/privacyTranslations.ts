@@ -207,7 +207,7 @@ p2: "This data is read-only from the platform's secure health store and is never
     },
     s10: {
       title: '10. AI Features and Third-Party AI Processing (OpenAI)',
-      p1: 'The App uses OpenAI, L.L.C. to generate AI-powered responses and health-related insights. When you use the AI Coach or Blood Test features, the information you choose to enter or upload may be sent to OpenAI for processing.',
+      p1: 'The App uses OpenAI, L.L.C. to generate AI-powered responses and health-related insights. When you use the AI Advisor or Blood Test features, the information you choose to enter or upload may be sent to OpenAI for processing.',
       bullets: [
         ['Data sent:', 'Messages you type, blood test values or images, health context (weight, glucose, injections, lifestyle logs).'],
         ['Data NOT sent:', 'HealthKit / Health Connect background data — only included if you explicitly reference it in your message.'],
@@ -458,7 +458,7 @@ p2: "This data is read-only from the platform's secure health store and is never
     },
     s10: {
       title: '10. Λειτουργίες AI και Επεξεργασία από Τρίτο AI (OpenAI)',
-      p1: 'Η εφαρμογή χρησιμοποιεί την OpenAI, L.L.C. για τη δημιουργία AI-powered απαντήσεων και πληροφοριών σχετικών με την υγεία. Όταν χρησιμοποιείτε τον AI Coach ή τις λειτουργίες Εξετάσεων Αίματος, οι πληροφορίες που εισάγετε ή ανεβάζετε ενδέχεται να αποστέλλονται στην OpenAI.',
+      p1: 'Η εφαρμογή χρησιμοποιεί την OpenAI, L.L.C. για τη δημιουργία AI-powered απαντήσεων και πληροφοριών σχετικών με την υγεία. Όταν χρησιμοποιείτε τον AI Σύμβουλο ή τις λειτουργίες Εξετάσεων Αίματος, οι πληροφορίες που εισάγετε ή ανεβάζετε ενδέχεται να αποστέλλονται στην OpenAI.',
       bullets: [
         ['Δεδομένα που αποστέλλονται:', 'Μηνύματα που πληκτρολογείτε, τιμές εξετάσεων αίματος ή φωτογραφίες, θεραπευτικό πλαίσιο (βάρος, γλυκόζη, ενέσεις, καταχωρήσεις τρόπου ζωής).'],
         ['Δεδομένα που ΔΕΝ αποστέλλονται:', 'Δεδομένα HealthKit / Health Connect στο παρασκήνιο — περιλαμβάνονται μόνο αν τα αναφέρετε ρητά στο μήνυμά σας.'],
