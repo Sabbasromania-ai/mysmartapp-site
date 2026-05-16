@@ -169,7 +169,7 @@ export default function Features() {
           >
             <div className="cc-top">
               <span className="cc-icon">
-                <AppIcon app={app} size={16} />
+                <AppIcon app={app} size={20} />
               </span>
               <span className="cc-name">{app.name}</span>
               <span className={`cc-tag ${app.tag === 'Live' ? 'cc-tag-live' : 'cc-tag-soon'}`}>

@@ -122,9 +122,9 @@ const CSS = `
   margin-top: 24px;
 }
 .aht-appicon {
-  width: 62px;
-  height: 62px;
-  border-radius: 16px;
+  width: 74px;
+  height: 74px;
+  border-radius: 19px;
   background: #fff;
   overflow: hidden;
   flex-shrink: 0;
@@ -575,8 +575,8 @@ const CSS = `
     flex-wrap: wrap;
   }
   .aht-appicon {
-    width: 48px;
-    height: 48px;
+    width: 58px;
+    height: 58px;
     flex-shrink: 0;
   }
   .aht-applabel {

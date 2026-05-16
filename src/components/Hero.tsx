@@ -100,7 +100,7 @@ export default function Hero() {
                 <div className="hac-top">
                   <span className="hac-icon">
                     {app.logo
-                      ? <img src={app.logo} alt={t(app.nameKey)} style={{ width: 20, height: 20, borderRadius: 5, objectFit: 'cover' }} />
+                      ? <img src={app.logo} alt={t(app.nameKey)} style={{ width: 24, height: 24, borderRadius: 6, objectFit: 'cover' }} />
                       : <span>{app.emoji}</span>
                     }
                   </span>

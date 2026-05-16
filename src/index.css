@@ -2239,7 +2239,7 @@ button.feature-card {
 .apf-phone { display: flex; justify-content: center; align-items: center; }
 .apf-content { display: flex; flex-direction: column; gap: 18px; }
 .apf-top { display: flex; align-items: center; gap: 14px; }
-.apf-logo { width: 52px; height: 52px; border-radius: 14px; object-fit: cover; }
+.apf-logo { width: 62px; height: 62px; border-radius: 17px; object-fit: cover; }
 .apf-name { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
 .apf-live-tag {
   display: inline-block;
