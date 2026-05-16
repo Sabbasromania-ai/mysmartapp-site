@@ -603,8 +603,8 @@ export default function AIHealthTrackerPage() {
                   <img src={appLogo} alt="AI Health Tracker icon" />
                 </div>
                 <div>
-                  <div className="aht-applabel">AI HEALTH TRACKER</div>
-                  <div className="aht-appsub">Personal Health Tracker</div>
+                  <div className="aht-applabel">MOUNJARO TRACKER : AI HEALTH</div>
+                  <div className="aht-appsub">AI-Powered Health Companion</div>
                 </div>
               </div>
 

@@ -1,6 +1,6 @@
 import './index.css'
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { LangProvider } from './LangContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -69,7 +69,8 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/apps/ai-health-tracker" element={
+          <Route path="/apps/ai-health-tracker" element={<Navigate to="/apps/mounjaro-tracker-ai-health" replace />} />
+          <Route path="/apps/mounjaro-tracker-ai-health" element={
             <>
               <Nav />
               <AIHealthTrackerPage />

@@ -5,7 +5,7 @@ import appScreenshot from '../app-screenshot.png'
 import { useLang } from '../LangContext'
 import { TKey } from '../translations'
 
-const slugs = ['ai-health-tracker', 'ai-wellness-coach', 'ai-nutrition']
+const slugs = ['mounjaro-tracker-ai-health', 'ai-wellness-coach', 'ai-nutrition']
 
 export default function Hero() {
   const [hovered, setHovered] = useState<number | null>(null)
@@ -77,7 +77,7 @@ export default function Hero() {
         {/* RIGHT — Phone mockup + App Cards */}
         <div className="hero-right hero-right-split">
 
-          <div className="hero-mockup-col" onClick={() => navigate('/apps/ai-health-tracker')} style={{ cursor: 'pointer', position: 'relative' }}>
+          <div className="hero-mockup-col" onClick={() => navigate('/apps/mounjaro-tracker-ai-health')} style={{ cursor: 'pointer', position: 'relative' }}>
             <div style={{
               position: 'absolute',
               top: '50%', left: '50%',

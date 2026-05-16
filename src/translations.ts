@@ -73,7 +73,7 @@ export const translations = {
 
     // Developer section
     dev_label: 'Team Developer',
-    dev_title: 'Sabbas Alexiou',
+    dev_title: 'Mysmartsapp',
     dev_desc: 'Focused on building AI-powered apps for real-world use — clean UI, strong privacy, and continuous improvement.',
     dev_stat0_label: 'Apps shipped',
     dev_stat1_label: 'AI engine',
@@ -236,7 +236,7 @@ export const translations = {
 
     // Developer section
     dev_label: 'Developer',
-    dev_title: 'Σάββας Αλεξίου',
+    dev_title: 'Mysmartsapp',
     dev_desc: 'Εστίαση στη δημιουργία εφαρμογών AI για πραγματική χρήση — καθαρό UI, ισχυρή προστασία δεδομένων και συνεχής βελτίωση.',
     dev_stat0_label: 'Εφαρμογές',
     dev_stat1_label: 'Μηχανή AI',

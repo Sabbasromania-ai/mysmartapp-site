@@ -5,6 +5,7 @@ import appScreenshot from '../app-screenshot.png'
 import { useLang } from '../LangContext'
 
 const slugMap: Record<string, number> = {
+  'mounjaro-tracker-ai-health': 0,
   'ai-health-tracker': 0,
   'ai-wellness-coach': 1,
   'ai-nutrition': 2,

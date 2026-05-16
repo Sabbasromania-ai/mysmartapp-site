@@ -15,7 +15,7 @@ export const apps = [
     color: CYAN,
     gradient: GRADIENT,
     glow: GLOW,
-    name: 'AI Health Tracker',
+    name: 'Mounjaro Tracker : AI Health',
     tag: 'Live',
     tagColor: '#10b981',
     tagBg: 'rgba(16,185,129,0.12)',
@@ -139,7 +139,7 @@ export function PhoneMockup({ app }: { app: typeof apps[0] }) {
 }
 
 const shortKeys: TKey[] = ['app0_short', 'app1_short', 'app2_short']
-const slugs = ['ai-health-tracker', 'ai-wellness-coach', 'ai-nutrition']
+const slugs = ['mounjaro-tracker-ai-health', 'ai-wellness-coach', 'ai-nutrition']
 
 export default function Features() {
   const [hovered, setHovered] = useState<number | null>(null)
