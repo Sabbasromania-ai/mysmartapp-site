@@ -536,15 +536,39 @@ const CSS = `
     box-sizing: border-box;
   }
   .aht-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .aht-visual {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
   }
   .aht-copy {
     min-width: 0;
     width: 100%;
+    order: 1;
+  }
+  .aht-visual {
+    order: 2;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: unset;
+    width: 100%;
+    overflow: hidden;
+    gap: 0;
+  }
+  .phoneVisual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .heroPhoneImage {
+    width: min(78vw, 310px) !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    display: block;
+  }
+  .aht-fcards {
+    display: none;
   }
   .aht-badge {
     font-size: 11px;
@@ -653,7 +677,7 @@ const CSS = `
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.82);
-  z-index: 9999;
+  z-index: 999998;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -675,28 +699,28 @@ const CSS = `
   background: transparent;
 }
 .lb-close {
-  position: absolute;
-  top: -18px;
-  right: -18px;
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top, 18px));
+  right: max(18px, env(safe-area-inset-right, 18px));
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #fff;
-  font-size: 22px;
+  font-size: 28px;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 99999;
+  z-index: 999999;
   transition: background 0.2s;
   flex-shrink: 0;
 }
-.lb-close:hover { background: rgba(80,80,80,0.9); }
+.lb-close:hover { background: rgba(60,60,60,0.9); }
 .lb-arrow {
   width: 48px;
   height: 48px;
