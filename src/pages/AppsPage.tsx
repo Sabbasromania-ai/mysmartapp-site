@@ -100,7 +100,7 @@ export default function AppsPage() {
               <div className="ap-feat-icon-row">
                 <img src={appLogo} alt="Mounjaro Tracker" className="ap-feat-logo" />
                 <div>
-                  <div className="ap-feat-name">Mounjaro Tracker : AI Health</div>
+                  <div className="ap-feat-name">Mounjaro Tracker : iHealth</div>
                   <span className="ap-feat-live">{t('apps_live_tag')}</span>
                 </div>
               </div>

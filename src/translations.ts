@@ -22,7 +22,7 @@ export const translations = {
     hero_trust_dev: 'Built by 1 developer',
 
     // Hero app cards
-    app0_name: 'Mounjaro Tracker : AI Health',
+    app0_name: 'Mounjaro Tracker : iHealth',
     app0_tag: 'Live · iOS & Android',
     app0_desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
     app1_name: 'AI Wellness Coach',
@@ -239,7 +239,7 @@ export const translations = {
     hero_trust_dev: 'Από 1 developer',
 
     // Hero app cards
-    app0_name: 'Mounjaro Tracker : AI Health',
+    app0_name: 'Mounjaro Tracker : iHealth',
     app0_tag: 'Διαθέσιμο · iOS & Android',
     app0_desc: 'Παρακολούθηση GLP-1, Σύμβουλος τεχνητής νοημοσύνης υγείας, αιματολογικές εξετάσεις & insights.',
     app1_name: 'AI Wellness Coach',
