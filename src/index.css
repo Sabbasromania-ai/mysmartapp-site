@@ -2179,6 +2179,474 @@ button.feature-card {
     overflow: hidden;
   }
   .bottom-card { padding: 18px 16px; }
+}
+
+/* ============================================================
+   /APPS PAGE — Premium dark SaaS layout
+   ============================================================ */
+
+.ap-page {
+  padding-bottom: 80px;
+  min-height: 80vh;
+  overflow-x: hidden;
+}
+
+/* ── Hero intro ── */
+.ap-hero {
+  padding: 88px 24px 18px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.ap-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.ap-eyebrow-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.ap-h1 {
+  font-size: clamp(2.5rem, 5vw, 3.625rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.ap-sub {
+  font-size: 1rem;
+  color: var(--text2);
+  line-height: 1.45;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── Featured card ── */
+.ap-featured-section {
+  padding-bottom: 0;
+}
+
+.ap-feat-card {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: center;
+  gap: 34px;
+  padding: 28px 34px;
+  height: auto;
+  min-height: unset;
+  max-width: 1120px;
+  margin: 0 auto 22px auto;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(3,10,22,0.92), rgba(6,20,38,0.72));
+  border: 1px solid rgba(0, 210, 255, 0.32);
+  backdrop-filter: blur(16px);
+}
+
+.ap-feat-phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+}
+
+.ap-feat-phone-img {
+  width: auto;
+  height: 330px;
+  max-height: 330px;
+  object-fit: contain;
+  cursor: pointer;
+  filter: drop-shadow(0 16px 40px rgba(0, 212, 255, 0.18)) drop-shadow(0 6px 20px rgba(0,0,0,0.55));
+  transition: transform 0.3s;
+  display: block;
+}
+
+.ap-feat-phone-img:hover {
+  transform: translateY(-4px);
+}
+
+.ap-feat-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  max-width: 620px;
+  padding: 0;
+}
+
+.ap-feat-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.ap-feat-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.ap-feat-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.ap-feat-live {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+
+.ap-feat-desc {
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.ap-feat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.ap-feat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  border-radius: 6px;
+  padding: 5px 11px;
+  letter-spacing: 0.01em;
+}
+
+.ap-feat-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.ap-feat-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 24px;
+  background: var(--accent);
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.15s;
+  font-family: inherit;
+}
+
+.ap-feat-btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.ap-feat-btn-store {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 9px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.ap-feat-btn-store:hover {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.08);
+}
+
+.ap-feat-btn-disabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 9px;
+  white-space: nowrap;
+  cursor: default;
+  opacity: 0.55;
+}
+
+.ap-feat-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ap-feat-stars {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.ap-feat-rating-text {
+  font-size: 0.8rem;
+  color: var(--muted2);
+}
+
+/* ── Coming soon cards ── */
+.ap-soon-section {
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+.ap-soon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ap-soon-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: rgba(5, 14, 28, 0.58);
+  border: 1px solid rgba(0, 210, 255, 0.18);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 22px 24px;
+  min-height: unset;
+  height: auto;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.ap-soon-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ap-soon-card:hover {
+  border-color: rgba(0, 212, 255, 0.18);
+  background: var(--card-hover);
+}
+
+.ap-soon-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+}
+
+.ap-soon-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ap-soon-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.ap-soon-desc {
+  font-size: 0.85rem;
+  color: var(--muted2);
+  line-height: 1.65;
+}
+
+/* ── From idea to app ── */
+.ap-idea-section {
+  padding: 34px 0 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ap-idea-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.ap-idea-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.ap-idea-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 0.25s;
+}
+
+.ap-idea-card:hover {
+  border-color: rgba(0, 212, 255, 0.14);
+}
+
+.ap-idea-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.ap-idea-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ap-idea-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.ap-idea-card-desc {
+  font-size: 0.84rem;
+  color: var(--muted2);
+  line-height: 1.65;
+}
+
+/* ── Mobile: /apps page ── */
+@media (max-width: 768px) {
+  .ap-page { overflow-x: hidden; }
+  .ap-hero { padding: 90px 0 36px; }
+  .ap-h1 { font-size: 2.1rem; }
+  .ap-sub { font-size: 0.88rem; padding: 0 4px; }
+
+  /* Featured card stacks vertically */
+  .ap-feat-card {
+    grid-template-columns: 1fr;
+    padding: 22px;
+    gap: 24px;
+  }
+
+  .ap-feat-phone {
+    min-height: auto;
+    padding: 0;
+    order: 0;
+  }
+
+  .ap-feat-phone-img {
+    height: 260px;
+    max-height: 260px;
+    width: auto;
+  }
+
+  .ap-feat-content {
+    order: 1;
+    padding: 0;
+  }
+
+  .ap-feat-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ap-feat-btn-primary {
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .ap-feat-btn-store {
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .ap-feat-btn-disabled {
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  /* Coming soon: single column */
+  .ap-soon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Idea: single column */
+  .ap-idea-grid {
+    grid-template-columns: 1fr;
+  }
+}
   .bc-title { font-size: 1rem; }
   .bc-desc { font-size: 0.875rem; line-height: 1.5; }
 

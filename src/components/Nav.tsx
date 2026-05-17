@@ -38,7 +38,7 @@ export default function Nav() {
         </a>
         <div className="nav-links">
           {links.map(l => (
-            <a key={l.id} href={`/#${l.id}`} className={`nav-link${active === l.id ? ' active' : ''}`}>
+            <a key={l.id} href={l.id === 'apps' ? '/apps' : `/#${l.id}`} className={`nav-link${active === l.id ? ' active' : ''}`}>
               {l.label}
             </a>
           ))}
