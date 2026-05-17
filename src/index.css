@@ -2298,9 +2298,9 @@ button.feature-card {
 }
 
 .ap-feat-logo {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid rgba(255,255,255,0.08);

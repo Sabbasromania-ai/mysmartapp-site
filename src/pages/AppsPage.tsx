@@ -168,7 +168,7 @@ export default function AppsPage() {
                 </svg>
               </div>
               <div className="ap-soon-body">
-                <div className="ap-soon-name">AI Wellness Coach</div>
+                <div className="ap-soon-name">iReception</div>
                 <span className="ap-soon-badge">{t('apps_coming_soon')}</span>
                 <p className="ap-soon-desc">{t('app1_short')}</p>
               </div>
@@ -182,7 +182,7 @@ export default function AppsPage() {
                 </svg>
               </div>
               <div className="ap-soon-body">
-                <div className="ap-soon-name">AI Nutrition</div>
+                <div className="ap-soon-name">iNutrition</div>
                 <span className="ap-soon-badge">{t('apps_coming_soon')}</span>
                 <p className="ap-soon-desc">{t('app2_short')}</p>
               </div>
