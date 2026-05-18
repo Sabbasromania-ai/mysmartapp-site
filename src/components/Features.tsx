@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import appLogo from '../applogo.png'
+import iReceptionLogo from '../ireception-logo.png'
+import iCalorieLogo from '../icalorie-logo.png'
 import { useLang } from '../LangContext'
 import { TKey } from '../translations'
 
@@ -38,12 +40,12 @@ export const apps = [
     ],
   },
   {
-    logo: null,
-    emoji: '🧘',
+    logo: iReceptionLogo,
+    emoji: null,
     color: CYAN,
     gradient: GRADIENT,
     glow: GLOW,
-    name: 'AI Wellness Coach',
+    name: 'iReception',
     tag: 'Coming Soon',
     tagColor: '#f59e0b',
     tagBg: 'rgba(245,158,11,0.12)',
@@ -63,12 +65,12 @@ export const apps = [
     ],
   },
   {
-    logo: null,
-    emoji: '🍎',
+    logo: iCalorieLogo,
+    emoji: null,
     color: CYAN,
     gradient: GRADIENT,
     glow: GLOW,
-    name: 'AI Nutrition',
+    name: 'iCalorie',
     tag: 'Coming Soon',
     tagColor: '#f59e0b',
     tagBg: 'rgba(245,158,11,0.12)',
