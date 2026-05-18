@@ -355,8 +355,8 @@ nav {
   gap: 9px;
 }
 .hac-icon {
-  width: 28px; height: 28px;
-  border-radius: 7px;
+  width: 46px; height: 46px;
+  border-radius: 10px;
   background: rgba(34, 211, 238, 0.1);
   border: 1px solid rgba(34, 211, 238, 0.2);
   display: flex;
@@ -1592,12 +1592,13 @@ footer {
   background: rgba(14, 165, 233, 0.06);
   border: 1px solid rgba(34, 211, 238, 0.18);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  align-self: stretch;
 }
 .compact-card:hover,
 .compact-card--hovered {
@@ -1613,8 +1614,8 @@ footer {
   min-width: 0;
 }
 .cc-icon {
-  width: 28px; height: 28px;
-  border-radius: 7px;
+  width: 46px; height: 46px;
+  border-radius: 10px;
   background: rgba(34, 211, 238, 0.1);
   border: 1px solid rgba(34, 211, 238, 0.2);
   display: flex;
@@ -1624,14 +1625,11 @@ footer {
   flex-shrink: 0;
 }
 .cc-name {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
   line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   flex: 1;
   min-width: 0;
 }
@@ -2267,12 +2265,13 @@ button.feature-card {
 }
 
 .ap-feat-phone-img {
-  width: auto;
-  height: 330px;
-  max-height: 330px;
+  width: 246px;
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
+  background: transparent;
   cursor: pointer;
-  filter: drop-shadow(0 16px 40px rgba(0, 212, 255, 0.18)) drop-shadow(0 6px 20px rgba(0,0,0,0.55));
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.65)) drop-shadow(0 0 55px rgba(0,212,255,0.18));
   transition: transform 0.3s;
   display: block;
 }
@@ -2298,9 +2297,9 @@ button.feature-card {
 }
 
 .ap-feat-logo {
-  width: 68px;
-  height: 68px;
-  border-radius: 16px;
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid rgba(255,255,255,0.08);

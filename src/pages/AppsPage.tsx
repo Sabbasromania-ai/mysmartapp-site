@@ -4,6 +4,7 @@ import appLogo from '../applogo.png'
 import iReceptionLogo from '../ireception-logo.png'
 import iCalorieLogo from '../icalorie-logo.png'
 import heroPhoneCutout from '../screens/hero-phone-cutout.png'
+import heroPhoneApps from '../screens/hero-phone-apps.png'
 import { useLang } from '../LangContext'
 import { config } from '../config'
 
@@ -101,7 +102,7 @@ export default function AppsPage() {
             {/* Left: phone image */}
             <div className="ap-feat-phone">
               <img
-                src={heroPhoneCutout}
+                src={heroPhoneApps}
                 alt="Mounjaro Tracker App"
                 className="ap-feat-phone-img"
                 onClick={() => navigate(`/apps/${SLUG_MOUNJARO}`)}
@@ -179,7 +180,7 @@ export default function AppsPage() {
 
             <div className="ap-soon-card reveal" onClick={() => navigate(`/apps/${SLUG_WELLNESS}`)}>
               <div className="ap-soon-icon" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-                <img src={iReceptionLogo} alt="iReception" style={{ width: 52, height: 52, borderRadius: 12 }} />
+                <img src={iReceptionLogo} alt="iReception" style={{ width: 68, height: 68, borderRadius: 14 }} />
               </div>
               <div className="ap-soon-body">
                 <div className="ap-soon-name">iReception</div>
@@ -190,7 +191,7 @@ export default function AppsPage() {
 
             <div className="ap-soon-card reveal" onClick={() => navigate(`/apps/${SLUG_NUTRITION}`)}>
               <div className="ap-soon-icon" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-                <img src={iCalorieLogo} alt="iCalorie" style={{ width: 52, height: 52, borderRadius: 12 }} />
+                <img src={iCalorieLogo} alt="iCalorie" style={{ width: 68, height: 68, borderRadius: 14 }} />
               </div>
               <div className="ap-soon-body">
                 <div className="ap-soon-name">iCalorie</div>
