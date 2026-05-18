@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import appLogo from '../applogo.png'
 import iReceptionLogo from '../ireception-logo.png'
+import iCalorieLogo from '../icalorie-logo.png'
 import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import { useLang } from '../LangContext'
 import { config } from '../config'
@@ -188,14 +189,11 @@ export default function AppsPage() {
             </div>
 
             <div className="ap-soon-card reveal" onClick={() => navigate(`/apps/${SLUG_NUTRITION}`)}>
-              <div className="ap-soon-icon" style={{ background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.28)' }}>
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 8C8 10 5.9 16.17 3.82 19.11a1 1 0 0 0 1.69 1.06C7 18 8.5 16.5 10 15c2-2 4-3 7-4.5C19 9.5 20 7 20 7s-2 .5-3 1z"/>
-                  <path d="M6.3 15.7C7 13 9.5 11 12 10"/>
-                </svg>
+              <div className="ap-soon-icon" style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                <img src={iCalorieLogo} alt="iCalorie" style={{ width: 52, height: 52, borderRadius: 12 }} />
               </div>
               <div className="ap-soon-body">
-                <div className="ap-soon-name">iNutrition</div>
+                <div className="ap-soon-name">iCalorie</div>
                 <span className="ap-soon-badge">{t('apps_coming_soon')}</span>
                 <p className="ap-soon-desc">{t('app2_short')}</p>
               </div>

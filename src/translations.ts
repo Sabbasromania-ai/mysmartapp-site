@@ -28,7 +28,7 @@ export const translations = {
     app1_name: 'iReception',
     app1_tag: 'Coming Soon',
     app1_desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
-    app2_name: 'iNutrition',
+    app2_name: 'iCalorie',
     app2_tag: 'Coming Soon',
     app2_desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
 
@@ -245,7 +245,7 @@ export const translations = {
     app1_name: 'iReception',
     app1_tag: 'Σύντομα',
     app1_desc: 'Παρακολούθηση άγχους, ανάλυση ύπνου και καθοδήγηση ψυχικής ευεξίας.',
-    app2_name: 'iNutrition',
+    app2_name: 'iCalorie',
     app2_tag: 'Σύντομα',
     app2_desc: 'Ανάλυση γεύματος από φωτογραφία, καταγραφή μακροθρεπτικών και βελτιστοποίηση.',
 
