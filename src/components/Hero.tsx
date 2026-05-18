@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import appLogo from '../applogo.png'
+import iReceptionLogo from '../ireception-logo.png'
+import iCalorieLogo from '../icalorie-logo.png'
 import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import { useLang } from '../LangContext'
 import { TKey } from '../translations'
@@ -24,8 +26,8 @@ export default function Hero() {
       appIndex: 0,
     },
     {
-      logo: null,
-      emoji: '🧘',
+      logo: iReceptionLogo,
+      emoji: null,
       nameKey: 'app1_name' as TKey,
       tagKey: 'app1_tag' as TKey,
       descKey: 'app1_desc' as TKey,
@@ -34,8 +36,8 @@ export default function Hero() {
       appIndex: 1,
     },
     {
-      logo: null,
-      emoji: '🍎',
+      logo: iCalorieLogo,
+      emoji: null,
       nameKey: 'app2_name' as TKey,
       tagKey: 'app2_tag' as TKey,
       descKey: 'app2_desc' as TKey,
