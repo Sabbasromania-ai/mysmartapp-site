@@ -2262,6 +2262,27 @@ button.feature-card {
   overflow: visible;
   padding: 0;
   background: transparent;
+  position: relative;
+}
+
+.ap-feat-phone::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 520px;
+  background: radial-gradient(ellipse at center,
+    rgba(0, 212, 255, 0.28) 0%,
+    rgba(0, 180, 255, 0.18) 30%,
+    rgba(0, 100, 200, 0.08) 60%,
+    transparent 80%
+  );
+  filter: blur(32px);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .ap-feat-phone-img {
@@ -2271,9 +2292,11 @@ button.feature-card {
   object-fit: contain;
   background: transparent;
   cursor: pointer;
-  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.65)) drop-shadow(0 0 55px rgba(0,212,255,0.18));
+  filter: drop-shadow(0 0 12px rgba(0,212,255,0.55)) drop-shadow(0 0 28px rgba(0,180,255,0.3)) drop-shadow(0 30px 60px rgba(0,0,0,0.7));
   transition: transform 0.3s;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .ap-feat-phone-img:hover {
