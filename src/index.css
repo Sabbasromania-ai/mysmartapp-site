@@ -2338,7 +2338,7 @@ button.feature-card {
 .ap-feat-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   margin-bottom: 4px;
 }
 
@@ -2346,14 +2346,15 @@ button.feature-card {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent);
-  background: rgba(0, 212, 255, 0.06);
-  border: 1px solid rgba(0, 212, 255, 0.14);
-  border-radius: 6px;
-  padding: 5px 11px;
-  letter-spacing: 0.01em;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  border-radius: 8px;
+  padding: 7px 11px;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .ap-feat-actions {
