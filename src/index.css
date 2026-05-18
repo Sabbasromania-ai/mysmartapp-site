@@ -118,6 +118,55 @@ nav {
   gap: 28px;
 }
 
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+}
+
+/* Mobile dropdown */
+.nav-mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: rgba(5,7,14,0.97);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0 16px;
+  z-index: 198;
+  animation: slideDown 0.18s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted2);
+  text-decoration: none;
+  padding: 13px 24px;
+  transition: color 0.15s, background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.nav-mobile-link:hover {
+  color: var(--accent);
+  background: rgba(0,212,255,0.05);
+}
+
+/* Hide Get Started on desktop — show on mobile via hamburger row */
+.nav-cta-desktop { display: inline-flex; }
+
 .nav-link {
   font-size: 0.82rem;
   font-weight: 500;
@@ -2092,6 +2141,9 @@ button.feature-card {
   nav { padding: 0 16px; height: 56px; }
   .nav-backdrop { height: 56px; }
   .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-cta-desktop { display: none; }
+  .nav-mobile-menu { top: 56px; }
   .btn-nav { padding: 8px 14px; font-size: 0.78rem; }
 
   /* ---- HERO ---- */

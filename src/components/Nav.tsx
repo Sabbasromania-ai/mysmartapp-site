@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import navLogo from '../navlogo.png'
 import { useLang } from '../LangContext'
 
@@ -7,13 +7,17 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { lang, setLang, t } = useLang()
+  const menuRef = useRef<HTMLDivElement>(null)
   const onSupportPage = typeof window !== 'undefined' && window.location.pathname === '/support'
   const onContactPage = typeof window !== 'undefined' && window.location.pathname === '/contact'
 
   const links = [
-    { id: 'apps', label: t('nav_apps') },
-    { id: 'platform', label: t('nav_platform') },
-    { id: 'about', label: t('nav_about') },
+    { id: 'apps',     label: t('nav_apps'),     href: '/apps' },
+    { id: 'platform', label: t('nav_platform'), href: '/#platform' },
+    { id: 'about',    label: t('nav_about'),    href: '/#about' },
+    { id: 'privacy',  label: t('footer_privacy'), href: '/privacy' },
+    { id: 'support',  label: 'Support',         href: '/support' },
+    { id: 'contact',  label: t('nav_contact'),  href: '/contact' },
   ]
 
   useEffect(() => {
@@ -29,52 +33,77 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node))
+        setMenuOpen(false)
+    }
+    if (menuOpen) document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [menuOpen])
+
+  const desktopLinks = links.slice(0, 3)
+
   return (
     <>
       <div className={`nav-backdrop${scrolled ? ' scrolled' : ''}`} />
-      <nav>
+      <nav ref={menuRef}>
         <a href="/" className="logo-img-link">
           <img src={navLogo} alt="mysmartsapp logo" className="nav-logo-img" />
         </a>
+
+        {/* Desktop links */}
         <div className="nav-links">
-          {links.map(l => (
-            <a key={l.id} href={l.id === 'apps' ? '/apps' : `/#${l.id}`} className={`nav-link${active === l.id ? ' active' : ''}`}>
+          {desktopLinks.map(l => (
+            <a key={l.id} href={l.href} className={`nav-link${active === l.id ? ' active' : ''}`}>
               {l.label}
             </a>
           ))}
           <a href="/privacy" className="nav-link">{t('footer_privacy')}</a>
-          <a
-            href="/support"
-            className="nav-link"
-            style={onSupportPage ? {
-              color: 'var(--accent)',
-              borderBottom: '2px solid var(--accent)',
-              paddingBottom: '2px',
-            } : {}}
-          >Support</a>
-          <a
-            href="/contact"
-            className="nav-link"
-            style={onContactPage ? {
-              color: 'var(--accent)',
-              borderBottom: '2px solid var(--accent)',
-              paddingBottom: '2px',
-            } : {}}
-          >{t('nav_contact')}</a>
+          <a href="/support" className="nav-link" style={onSupportPage ? { color: 'var(--accent)' } : {}}>Support</a>
+          <a href="/contact" className="nav-link" style={onContactPage ? { color: 'var(--accent)' } : {}}>{t('nav_contact')}</a>
         </div>
+
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div className="lang-toggle">
-            <button
-              className={`lang-btn${lang === 'en' ? ' active' : ''}`}
-              onClick={() => setLang('en')}
-            >EN</button>
-            <button
-              className={`lang-btn${lang === 'el' ? ' active' : ''}`}
-              onClick={() => setLang('el')}
-            >GR</button>
+            <button className={`lang-btn${lang === 'en' ? ' active' : ''}`} onClick={() => setLang('en')}>EN</button>
+            <button className={`lang-btn${lang === 'el' ? ' active' : ''}`} onClick={() => setLang('el')}>GR</button>
           </div>
-          <a href="#contact" className="btn-nav">{t('nav_cta')}</a>
+          <a href="/contact" className="btn-nav nav-cta-desktop">{t('nav_cta')}</a>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Menu"
+          >
+            {menuOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            )}
+          </button>
         </div>
+
+        {/* Mobile dropdown */}
+        {menuOpen && (
+          <div className="nav-mobile-menu">
+            {links.map(l => (
+              <a
+                key={l.id}
+                href={l.href}
+                className="nav-mobile-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        )}
       </nav>
     </>
   )
