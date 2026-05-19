@@ -97,13 +97,13 @@ export default function AppPage() {
 
   // ── Shared card design tokens ──────────────────────────────────
   const CARD_BG = (h: boolean) => h
-    ? 'linear-gradient(135deg, rgba(0,212,255,0.07) 0%, rgba(8,16,42,0.55) 100%)'
-    : 'linear-gradient(135deg, rgba(8,16,42,0.68) 0%, rgba(0,90,170,0.13) 50%, rgba(8,16,42,0.68) 100%)'
+    ? 'linear-gradient(160deg, rgba(0,210,255,0.12) 0%, rgba(8,18,38,0.58) 100%)'
+    : 'linear-gradient(160deg, rgba(0,210,255,0.07) 0%, rgba(8,18,38,0.42) 100%)'
   const CARD_BORDER = (h: boolean) =>
-    `1px solid rgba(0,212,255,${h ? '0.56' : '0.26'})`
+    `1px solid rgba(0,220,255,${h ? '0.52' : '0.26'})`
   const CARD_SHADOW = (h: boolean) => h
-    ? '0 0 32px rgba(0,212,255,0.14), inset 0 0 24px rgba(0,212,255,0.07)'
-    : '0 0 20px rgba(0,212,255,0.06), inset 0 0 16px rgba(0,212,255,0.03)'
+    ? '0 0 28px rgba(0,220,255,0.16), inset 0 0 20px rgba(0,220,255,0.04)'
+    : '0 0 12px rgba(0,212,255,0.06)'
   const CARD_BACKDROP = 'blur(12px)'
 
   return (
@@ -357,7 +357,7 @@ export default function AppPage() {
                     alignItems: 'center',
                     cursor: 'default',
                     transition: 'transform 0.25s ease-in-out, border-color 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out',
-                    transform: hoveredFeatured ? 'scale(1.018)' : 'scale(1)',
+                    transform: hoveredFeatured ? 'translateY(-4px)' : 'translateY(0)',
                   }}
                 >
                   <div style={{
@@ -397,7 +397,7 @@ export default function AppPage() {
                       padding: '16px 18px',
                       cursor: 'default',
                       transition: 'transform 0.25s ease-in-out, border-color 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out',
-                      transform: hoveredCard === i ? 'scale(1.03)' : 'scale(1)',
+                      transform: hoveredCard === i ? 'translateY(-4px)' : 'translateY(0)',
                     }}
                   >
                     <div style={{

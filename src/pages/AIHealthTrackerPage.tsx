@@ -79,10 +79,11 @@ const CSS = `
   border-radius: 32px;
   overflow: visible;
   position: relative;
-  background:
-    radial-gradient(circle at 70% 35%, rgba(20, 241, 149, 0.07), transparent 40%),
-    linear-gradient(135deg, #041014 0%, #041018 45%, #020608 100%);
-  border: 1px solid rgba(20, 241, 149, 0.18);
+  background: linear-gradient(160deg, rgba(0,210,255,0.07) 0%, rgba(8,18,38,0.42) 100%);
+  border: 1px solid rgba(0,220,255,0.26);
+  box-shadow: 0 0 12px rgba(0,212,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 52px 60px 60px;
   box-sizing: border-box;
 }
@@ -111,8 +112,8 @@ const CSS = `
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #14f195;
-  box-shadow: 0 0 8px #14f195;
+  background: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff;
   flex-shrink: 0;
 }
 .aht-identity {
@@ -137,7 +138,7 @@ const CSS = `
   display: block;
 }
 .aht-applabel {
-  color: #14f195;
+  color: #00d4ff;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: .07em;
@@ -156,7 +157,7 @@ const CSS = `
   color: #fff;
 }
 .aht-headline .green {
-  color: #14f195;
+  color: #00d4ff;
 }
 .aht-text {
   font-size: 16px;
@@ -219,7 +220,7 @@ const CSS = `
 }
 .aht-infoitem svg {
   flex-shrink: 0;
-  color: #14f195;
+  color: #00d4ff;
   opacity: 0.8;
 }
 .aht-infoitem .aht-stars {
@@ -300,7 +301,7 @@ const CSS = `
   margin-left: 20px;
   filter:
     drop-shadow(0 40px 80px rgba(0,0,0,0.65))
-    drop-shadow(0 0 55px rgba(20,241,149,0.18));
+    drop-shadow(0 0 55px rgba(0,212,255,0.18));
 }
 .aht-fcards {
   display: flex;
@@ -314,17 +315,22 @@ const CSS = `
 }
 .aht-fcard {
   position: relative;
-  border: 1px solid rgba(20,241,149,0.55);
-  background: rgba(2,8,8,0.97);
+  border: 1px solid rgba(0,220,255,0.26);
+  background: linear-gradient(160deg, rgba(0,210,255,0.07) 0%, rgba(8,18,38,0.42) 100%);
   border-radius: 12px;
   padding: 12px 14px 12px 12px;
   display: flex;
   align-items: center;
   gap: 11px;
-  box-shadow:
-    0 0 22px rgba(20,241,149,0.14),
-    0 0 8px rgba(20,241,149,0.06),
-    0 4px 18px rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 12px rgba(0,212,255,0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.aht-fcard:hover {
+  border-color: rgba(0,220,255,0.52);
+  box-shadow: 0 0 28px rgba(0,220,255,0.16), inset 0 0 20px rgba(0,220,255,0.04);
+  transform: translateY(-3px);
 }
 .aht-fcard::before {
   content: '';
@@ -333,19 +339,19 @@ const CSS = `
   top: 50%;
   transform: translateY(-50%);
   width: 22px;
-  border-top: 1.5px dashed rgba(20,241,149,0.45);
+  border-top: 1.5px dashed rgba(0,220,255,0.35);
 }
 .aht-fcard-icon-box {
   width: 38px;
   height: 38px;
   border-radius: 9px;
-  background: rgba(20,241,149,0.08);
-  border: 1px solid rgba(20,241,149,0.2);
+  background: rgba(0,220,255,0.08);
+  border: 1px solid rgba(0,220,255,0.22);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #14f195;
+  color: #00d4ff;
 }
 .aht-fcard-text {
   flex: 1;
@@ -377,10 +383,11 @@ const CSS = `
 .aht-ita-card {
   width: min(1240px, 100%);
   border-radius: 32px;
-  border: 1px solid rgba(20,241,149,0.16);
-  background:
-    radial-gradient(circle at 50% 20%, rgba(20,241,149,0.05), transparent 55%),
-    linear-gradient(160deg, #041014 0%, #041018 50%, #020608 100%);
+  border: 1px solid rgba(0,220,255,0.26);
+  background: linear-gradient(160deg, rgba(0,210,255,0.07) 0%, rgba(8,18,38,0.42) 100%);
+  box-shadow: 0 0 12px rgba(0,212,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 56px 48px 52px;
   box-sizing: border-box;
 }
@@ -391,7 +398,7 @@ const CSS = `
 .aht-ita-eyebrow {
   font-size: 11.5px;
   font-weight: 700;
-  color: #14f195;
+  color: #00d4ff;
   letter-spacing: .14em;
   text-transform: uppercase;
   margin-bottom: 14px;
@@ -420,9 +427,9 @@ const CSS = `
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1px solid rgba(20,241,149,0.28);
-  background: rgba(20,241,149,0.06);
-  color: #14f195;
+  border: 1px solid rgba(0,220,255,0.28);
+  background: rgba(0,220,255,0.06);
+  color: #00d4ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,8 +439,8 @@ const CSS = `
   outline: none;
 }
 .aht-ita-arrow:hover {
-  background: rgba(20,241,149,0.14);
-  border-color: rgba(20,241,149,0.55);
+  background: rgba(0,220,255,0.14);
+  border-color: rgba(0,220,255,0.55);
 }
 .aht-ita-arrow:disabled {
   opacity: 0.3;
@@ -477,10 +484,10 @@ const CSS = `
 .aht-ita-inforow {
   display: flex;
   margin-top: 28px;
-  border: 1px solid rgba(20,241,149,0.14);
+  border: 1px solid rgba(0,220,255,0.20);
   border-radius: 14px;
   overflow: hidden;
-  background: rgba(20,241,149,0.025);
+  background: rgba(0,210,255,0.04);
 }
 .aht-ita-infoitem {
   flex: 1;
@@ -488,13 +495,13 @@ const CSS = `
   align-items: center;
   gap: 14px;
   padding: 16px 22px;
-  border-right: 1px solid rgba(20,241,149,0.1);
+  border-right: 1px solid rgba(0,220,255,0.12);
 }
 .aht-ita-infoitem:last-child {
   border-right: none;
 }
 .aht-ita-info-icon {
-  color: #14f195;
+  color: #00d4ff;
   flex-shrink: 0;
   opacity: 0.8;
 }
@@ -516,7 +523,7 @@ const CSS = `
   margin-top: 2px;
 }
 .aht-ita-stars {
-  color: #14f195;
+  color: #00d4ff;
   font-size: 13px;
   letter-spacing: 2px;
   line-height: 1;
@@ -659,7 +666,7 @@ const CSS = `
   }
   .aht-ita-infoitem {
     border-right: none;
-    border-bottom: 1px solid rgba(20,241,149,0.1);
+    border-bottom: 1px solid rgba(0,220,255,0.1);
     padding: 14px 16px;
   }
   .aht-ita-infoitem:last-child {
@@ -720,9 +727,9 @@ const CSS = `
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(20,241,149,0.35);
-  background: rgba(20,241,149,0.08);
-  color: #14f195;
+  border: 1px solid rgba(0,220,255,0.35);
+  background: rgba(0,220,255,0.08);
+  color: #00d4ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -730,7 +737,7 @@ const CSS = `
   flex-shrink: 0;
   transition: background 0.2s;
 }
-.lb-arrow:hover { background: rgba(20,241,149,0.18); }
+.lb-arrow:hover { background: rgba(0,220,255,0.18); }
 .lb-arrow:disabled { opacity: 0.25; cursor: default; }
 .aht-ita-screen-frame { cursor: pointer; }
 `

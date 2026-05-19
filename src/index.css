@@ -3158,3 +3158,64 @@ button.feature-card {
     margin: 14px auto 0 !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASS CARD SYSTEM — unified transparent cyan-glass style
+   Reference: Portfolio cards (Features.tsx — Mounjaro / iHealth section)
+   One block rules all cards. Do not add one-off card styles elsewhere.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --glass-bg:         linear-gradient(160deg, rgba(0,210,255,0.07) 0%, rgba(8,18,38,0.42) 100%);
+  --glass-bg-hover:   linear-gradient(160deg, rgba(0,210,255,0.12) 0%, rgba(8,18,38,0.58) 100%);
+  --glass-border:     rgba(0,220,255,0.26);
+  --glass-border-hov: rgba(0,220,255,0.52);
+  --glass-radius:     16px;
+  --glass-shadow:     0 0 12px rgba(0,212,255,0.06);
+  --glass-shadow-hov: 0 0 28px rgba(0,220,255,0.16), inset 0 0 20px rgba(0,220,255,0.04);
+  --glass-blur:       blur(12px);
+  --glass-transition: background 0.25s ease, border-color 0.25s ease,
+                      box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* ── Base glass ──────────────────────────────────────────────────────────── */
+.glass-card,
+.svc-card,
+.proc-card,
+.ind-card,
+.compact-card,
+.hac,
+.ap-feat-card,
+.ap-soon-card,
+.ap-idea-card {
+  background:              var(--glass-bg) !important;
+  border: 1px solid       var(--glass-border) !important;
+  border-radius:           var(--glass-radius) !important;
+  box-shadow:              var(--glass-shadow) !important;
+  backdrop-filter:         var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  transition:              var(--glass-transition) !important;
+}
+
+/* ── Hover glow ─────────────────────────────────────────────────────────── */
+.glass-card:hover,
+.svc-card:hover,
+.proc-card:hover,
+.ind-card:hover,
+.compact-card:hover,
+.compact-card--hovered,
+.hac:hover,
+.hac.hovered,
+.ap-feat-card:hover,
+.ap-soon-card:hover,
+.ap-idea-card:hover {
+  background:   var(--glass-bg-hover) !important;
+  border-color: var(--glass-border-hov) !important;
+  box-shadow:   var(--glass-shadow-hov) !important;
+  transform:    translateY(-4px) !important;
+}
+
+/* ── Large radius for big feature cards ────────────────────────── */
+.ap-feat-card {
+  border-radius: 20px !important;
+}
