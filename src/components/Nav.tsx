@@ -8,16 +8,15 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { lang, setLang, t } = useLang()
   const menuRef = useRef<HTMLDivElement>(null)
-  const onSupportPage = typeof window !== 'undefined' && window.location.pathname === '/support'
-  const onContactPage = typeof window !== 'undefined' && window.location.pathname === '/contact'
-
   const links = [
-    { id: 'apps',     label: t('nav_apps'),     href: '/apps' },
-    { id: 'platform', label: t('nav_platform'), href: '/#platform' },
-    { id: 'about',    label: t('nav_about'),    href: '/#about' },
-    { id: 'privacy',  label: t('footer_privacy'), href: '/privacy' },
-    { id: 'support',  label: 'Support',         href: '/support' },
-    { id: 'contact',  label: t('nav_contact'),  href: '/contact' },
+    { id: 'services',   label: t('nav_platform'),     href: '/#services' },
+    { id: 'apps',       label: t('nav_apps'),          href: '/apps' },
+    { id: 'about',      label: t('nav_about'),         href: '/#about' },
+    { id: 'process',    label: t('nav_process'),       href: '/#process' },
+    { id: 'industries', label: t('nav_industries'),    href: '/#industries' },
+    { id: 'privacy',    label: t('footer_privacy'),    href: '/privacy' },
+    { id: 'support',    label: 'Support',              href: '/support' },
+    { id: 'contact',    label: t('nav_contact'),       href: '/contact' },
   ]
 
   useEffect(() => {
@@ -42,8 +41,6 @@ export default function Nav() {
     return () => document.removeEventListener('mousedown', onClickOutside)
   }, [menuOpen])
 
-  const desktopLinks = links.slice(0, 3)
-
   return (
     <>
       <div className={`nav-backdrop${scrolled ? ' scrolled' : ''}`} />
@@ -54,14 +51,11 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="nav-links">
-          {desktopLinks.map(l => (
+          {links.map(l => (
             <a key={l.id} href={l.href} className={`nav-link${active === l.id ? ' active' : ''}`}>
               {l.label}
             </a>
           ))}
-          <a href="/privacy" className="nav-link">{t('footer_privacy')}</a>
-          <a href="/support" className="nav-link" style={onSupportPage ? { color: 'var(--accent)' } : {}}>Support</a>
-          <a href="/contact" className="nav-link" style={onContactPage ? { color: 'var(--accent)' } : {}}>{t('nav_contact')}</a>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

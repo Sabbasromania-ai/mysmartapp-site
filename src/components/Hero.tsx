@@ -63,8 +63,8 @@ export default function Hero() {
           </h1>
           <p className="hero-p">{t('hero_p')}</p>
           <div className="hero-actions">
-            <a href="/apps" className="btn-primary">{t('hero_btn_explore')}</a>
-            <a href="/contact" className="btn-ghost">{t('hero_btn_platform')}</a>
+            <a href="/contact" className="btn-primary">{t('hero_btn_explore')}</a>
+            <a href="/apps" className="btn-ghost">{t('hero_btn_platform')}</a>
           </div>
           <div className="hero-trust">
             <span className="trust-dot" />
@@ -73,6 +73,8 @@ export default function Hero() {
             <span>{t('hero_trust_ai')}</span>
             <span className="trust-sep">·</span>
             <span>{t('hero_trust_dev')}</span>
+            <span className="trust-sep">·</span>
+            <span>{t('hero_trust_mvp')}</span>
           </div>
         </div>
 

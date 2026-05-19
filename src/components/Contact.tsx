@@ -1,24 +1,25 @@
+import { useLang } from '../LangContext'
+
 export default function Contact({ email }: { email: string }) {
+  const { t } = useLang()
+
   return (
-    <div className="contact-section" id="contact">
-      <div className="contact-card reveal">
-        <div className="contact-left">
-          <div className="contact-label">
+    <section className="cta-section" id="contact">
+      <div className="container">
+        <div className="cta-card reveal">
+          <div className="cta-label">
             <span className="section-label-dot" />
-            Contact
+            {t('cta_label')}
           </div>
-          <div className="contact-title">
-            Let's build your next<br />app or digital product.
+          <h2 className="cta-title">{t('cta_title')}</h2>
+          <p className="cta-sub">{t('cta_sub')}</p>
+          <div className="cta-actions">
+            <a href="/contact" className="btn-primary cta-btn">{t('cta_btn')}</a>
+            <span className="cta-or">{t('cta_email_label')}</span>
+            <a href={`mailto:${email}`} className="cta-email">{email}</a>
           </div>
-          <div className="contact-sub">
-            Custom mobile apps, websites, e-shops, AI tools, or booking systems — tell us what you need.
-          </div>
-        </div>
-        <div className="contact-right">
-          <a href={`mailto:${email}`} className="contact-email">{email}</a>
-          <a href={`mailto:${email}`} className="btn-primary">Get in touch</a>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

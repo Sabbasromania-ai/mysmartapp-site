@@ -12,7 +12,9 @@ export default function Footer() {
         </div>
         <div className="footer-links">
           <a href="/privacy" className="footer-link">{t('footer_privacy')}</a>
-          <a href="mailto:info@mysmartsapp.com" className="footer-link">{t('footer_contact')}</a>
+          <a href="/support" className="footer-link">Support</a>
+          <a href="/contact" className="footer-link">{t('footer_contact')}</a>
+          <a href="mailto:info@mysmartsapp.com" className="footer-link">info@mysmartsapp.com</a>
         </div>
         <div className="footer-copy">{t('footer_copy')}</div>
       </div>
