@@ -302,7 +302,7 @@ export default function Features() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.9rem',
-                minHeight: '340px',
+                minHeight: '380px',
               }}
             >
               {/* Top: logo + name + badge */}
@@ -361,13 +361,14 @@ export default function Features() {
                 alt={card.name + ' mockup'}
                 style={{
                   position: 'absolute',
-                  right: '10px',
-                  bottom: '0',
-                  width: 'clamp(120px, 38%, 180px)',
-                  maxHeight: '88%',
+                  right: '24px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: 'clamp(132px, 42%, 198px)',
+                  maxHeight: '90%',
                   height: 'auto',
                   objectFit: 'contain',
-                  objectPosition: 'center bottom',
+                  objectPosition: 'center center',
                   filter: 'drop-shadow(0 8px 28px rgba(0,0,0,0.55))',
                   pointerEvents: 'none',
                 }}
