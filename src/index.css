@@ -25,7 +25,7 @@
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background: var(--bg);
@@ -2918,7 +2918,7 @@ button.feature-card {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   margin-top: 40px;
 }
@@ -3111,6 +3111,10 @@ button.feature-card {
 .cta-email:hover { opacity: 0.8; text-decoration: underline; }
 
 /* ======= RESPONSIVE: new sections ======= */
+@media (max-width: 1100px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
@@ -3125,4 +3129,32 @@ button.feature-card {
   .process-grid { grid-template-columns: 1fr; }
   .cta-card { padding: 36px 20px; }
   .cta-title { font-size: 1.5rem; }
+  .svc-card { padding: 18px 14px !important; }
+  .svc-title { font-size: 0.88rem; }
+  .svc-desc { font-size: 0.78rem; }
+}
+
+/* ======= PORTFOLIO SECTION RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .portfolio-card {
+    min-height: auto !important;
+    padding: 1.25rem !important;
+  }
+  .portfolio-text-col {
+    max-width: 100% !important;
+  }
+  .portfolio-mockup-img {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 60% !important;
+    max-width: 190px !important;
+    max-height: none !important;
+    display: block;
+    margin: 14px auto 0 !important;
+  }
 }

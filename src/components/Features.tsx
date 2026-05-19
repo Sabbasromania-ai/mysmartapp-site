@@ -274,7 +274,7 @@ export default function Features() {
         </div>
 
         {/* 3-column card grid */}
-        <div style={{
+        <div className="portfolio-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3,1fr)',
           gap: '1.25rem',
@@ -283,6 +283,7 @@ export default function Features() {
           {PORTFOLIO_CARDS.map((card, i) => (
             <div
               key={card.slug}
+              className="portfolio-card"
               onClick={() => navigate(`/apps/${card.slug}`)}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
@@ -333,7 +334,7 @@ export default function Features() {
               </div>
 
               {/* Middle: text left, phone absolute right */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', maxWidth: '50%' }}>
+              <div className="portfolio-text-col" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', maxWidth: '50%' }}>
                 {/* platform chips */}
                 <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
                   {card.platforms.map(p => (
@@ -359,6 +360,7 @@ export default function Features() {
               <img
                 src={card.mockupSrc}
                 alt={card.name + ' mockup'}
+                className="portfolio-mockup-img"
                 style={{
                   position: 'absolute',
                   right: '8px',

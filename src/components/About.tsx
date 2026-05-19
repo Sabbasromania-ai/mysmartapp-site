@@ -111,12 +111,10 @@ export default function About() {
           </p>
         </div>
 
-        {/* 6-column grid — overrides the CSS 3-col default */}
+        {/* 6-column grid on desktop, responsive via CSS */}
         <div
           className="services-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(6, 1fr)',
             gap: '0.85rem',
             alignItems: 'stretch',
           }}
