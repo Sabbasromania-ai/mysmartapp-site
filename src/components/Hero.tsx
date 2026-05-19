@@ -86,7 +86,7 @@ export default function Hero() {
           >
             <img
               src={heroPhoneCutout}
-              alt="AI Health Tracker App"
+              alt="Custom mobile app development — iOS and Android app example by Mysmartsapp"
             />
           </div>
 

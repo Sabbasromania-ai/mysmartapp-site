@@ -8,10 +8,10 @@ export default function Contact({ email }: { email: string }) {
             Contact
           </div>
           <div className="contact-title">
-            Let's build something<br />that actually ships.
+            Θέλεις custom εφαρμογή<br />ή website για την επιχείρησή σου;
           </div>
           <div className="contact-sub">
-            Open to collaborations, freelance work, and interesting ideas.
+            Κατασκευή mobile app, website, e-shop, AI εργαλείου ή booking system — επικοινώνησε μαζί μας.
           </div>
         </div>
         <div className="contact-right">
