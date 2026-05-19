@@ -160,24 +160,72 @@ export default function AppPage() {
 
           {/* Left content */}
           <div style={{ zIndex: 1, order: isReception ? 2 : 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-              {(app as any).logo
-                ? <img src={(app as any).logo} alt={app.name} style={{ width: 46, height: 46, borderRadius: 12, objectFit: 'cover' }} />
-                : <span style={{ fontSize: '2rem' }}>{(app as any).emoji}</span>
-              }
-              <span style={{
-                fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.08em',
-                textTransform: 'uppercase', padding: '4px 12px', borderRadius: 100,
-                color: app.tagColor, background: app.tagBg,
-              }}>{app.tag}</span>
-            </div>
-
-            <h1 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', marginBottom: 10, lineHeight: 1.1 }}>
-              {app.name}
-            </h1>
-            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.65, maxWidth: 440, marginBottom: 12 }}>
+            {isReception ? (
+              /* iReception: [logo] [iReception] [COMING SOON] — all one row */
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
+                <img src={(app as any).logo} alt={app.name} style={{ width: 46, height: 46, borderRadius: 12, objectFit: 'cover', flexShrink: 0 }} />
+                <span style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', lineHeight: 1.1 }}>
+                  {app.name}
+                </span>
+                <span style={{
+                  fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.08em',
+                  textTransform: 'uppercase', padding: '4px 12px', borderRadius: 100,
+                  background: 'rgba(0,220,255,0.12)',
+                  border: '1px solid rgba(0,220,255,0.45)',
+                  color: '#22e6ff',
+                  boxShadow: '0 0 12px rgba(0,220,255,0.18)',
+                  flexShrink: 0,
+                }}>Coming Soon</span>
+              </div>
+            ) : (
+              <>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+                  {(app as any).logo
+                    ? <img src={(app as any).logo} alt={app.name} style={{ width: 46, height: 46, borderRadius: 12, objectFit: 'cover' }} />
+                    : <span style={{ fontSize: '2rem' }}>{(app as any).emoji}</span>
+                  }
+                  <span style={{
+                    fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.08em',
+                    textTransform: 'uppercase', padding: '4px 12px', borderRadius: 100,
+                    color: app.tagColor, background: app.tagBg,
+                  }}>{app.tag}</span>
+                </div>
+                <h1 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', marginBottom: 10, lineHeight: 1.1 }}>
+                  {app.name}
+                </h1>
+              </>
+            )}
+            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.65, maxWidth: 440, marginBottom: isReception ? 6 : 12 }}>
               {app.short}
             </p>
+
+            {isReception && (
+              <>
+                <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, maxWidth: 440, marginBottom: 14 }}>
+                  Automate bookings, calls, messages, reminders, and customer follow-ups from one smart dashboard.
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: 16 }}>
+                  {[
+                    { label: 'AI Receptionist',       icon: '🤖' },
+                    { label: 'Booking System',         icon: '📅' },
+                    { label: 'Customer Messages',      icon: '💬' },
+                    { label: 'Missed Call Handling',   icon: '📞' },
+                    { label: 'Appointment Reminders',  icon: '🔔' },
+                    { label: 'Customer CRM',           icon: '👥' },
+                    { label: 'Business Automation',    icon: '⚙️' },
+                    { label: 'Staff Calendar',         icon: '🗓️' },
+                    { label: 'Follow-up Messages',     icon: '📨' },
+                    { label: 'Lead Capture',           icon: '🎯' },
+                    { label: 'Multi-service Booking',  icon: '🔀' },
+                    { label: 'AI Assistant',           icon: '✨' },
+                  ].map(chip => (
+                    <span key={chip.label} className="ap-feat-chip">
+                      <span>{chip.icon}</span>{chip.label}
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
 
             {isHealthTracker && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, flexWrap: 'wrap' }}>

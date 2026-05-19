@@ -5,6 +5,7 @@ import iReceptionLogo from '../ireception-logo.png'
 import iCalorieLogo from '../icalorie-logo.png'
 import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import heroPhoneApps from '../screens/hero-phone-apps.png'
+import iReceptionMockup from '../iReception_mockup.png'
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import { config } from '../config'
 
@@ -82,6 +83,21 @@ export default function AppsPage() {
     { label: 'Health Sync',       icon: '❤️' },
     { label: 'Apple Health',      icon: '🍎' },
     { label: 'Health Connect',    icon: '🏃' },
+  ]
+
+  const iReceptionChips = [
+    { label: 'AI Receptionist',        icon: '🤖' },
+    { label: 'Booking System',         icon: '📅' },
+    { label: 'Customer Messages',      icon: '💬' },
+    { label: 'Missed Call Handling',   icon: '📞' },
+    { label: 'Appointment Reminders',  icon: '🔔' },
+    { label: 'Customer CRM',           icon: '👥' },
+    { label: 'Business Automation',    icon: '⚙️' },
+    { label: 'Staff Calendar',         icon: '🗓️' },
+    { label: 'Follow-up Messages',     icon: '📨' },
+    { label: 'Lead Capture',           icon: '🎯' },
+    { label: 'Multi-service Booking',  icon: '🔀' },
+    { label: 'AI Assistant',           icon: '✨' },
   ]
 
   const ideaCards = [
@@ -184,21 +200,78 @@ export default function AppsPage() {
         </div>
       </section>
 
+      {/* ── iReception featured card ── */}
+      <section className="ap-featured-section">
+        <div className="container">
+          <div className="ap-feat-card reveal">
+
+            {/* Left: phone mockup */}
+            <div className="ap-feat-phone">
+              <img
+                src={iReceptionMockup}
+                alt="iReception App"
+                className="ap-feat-phone-img"
+                onClick={() => navigate(`/apps/${SLUG_WELLNESS}`)}
+              />
+            </div>
+
+            {/* Right: content */}
+            <div className="ap-feat-content">
+
+              <div className="ap-feat-icon-row">
+                <img src={iReceptionLogo} alt="iReception" className="ap-feat-logo" />
+                <div>
+                  <div className="ap-feat-name">iReception</div>
+                  <span style={{
+                    display: 'inline-block',
+                    fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    background: 'rgba(0,220,255,0.12)',
+                    border: '1px solid rgba(0,220,255,0.45)',
+                    color: '#22e6ff',
+                    boxShadow: '0 0 12px rgba(0,220,255,0.18)',
+                    borderRadius: 100,
+                    padding: '3px 10px',
+                  }}>Coming Soon</span>
+                </div>
+              </div>
+
+              <p className="ap-feat-desc">
+                AI receptionist, booking, and customer communication system for businesses.
+              </p>
+              <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.42)', marginTop: -6, lineHeight: 1.6 }}>
+                Automate bookings, calls, messages, reminders, and customer follow-ups from one smart dashboard.
+              </p>
+
+              <div className="ap-feat-chips">
+                {iReceptionChips.map(chip => (
+                  <span key={chip.label} className="ap-feat-chip">
+                    <span>{chip.icon}</span>{chip.label}
+                  </span>
+                ))}
+              </div>
+
+              <div className="ap-feat-actions">
+                <button
+                  className="ap-feat-btn-primary"
+                  onClick={() => navigate(`/apps/${SLUG_WELLNESS}`)}
+                >
+                  Notify Me
+                </button>
+                <span className="acp-platform" style={{ fontSize: '0.72rem', padding: '4px 10px' }}>iOS</span>
+                <span className="acp-platform" style={{ fontSize: '0.72rem', padding: '4px 10px' }}>Android</span>
+                <span className="acp-platform" style={{ fontSize: '0.72rem', padding: '4px 10px' }}>Web</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Coming soon cards ── */}
       <section className="ap-soon-section">
         <div className="container">
-          <div className="ap-soon-grid">
-
-            <div className="ap-soon-card reveal" onClick={() => navigate(`/apps/${SLUG_WELLNESS}`)}>
-              <div className="ap-soon-icon" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-                <img src={iReceptionLogo} alt="iReception" style={{ width: 68, height: 68, borderRadius: 14 }} />
-              </div>
-              <div className="ap-soon-body">
-                <div className="ap-soon-name">iReception</div>
-                <span className="ap-soon-badge">{t('apps_coming_soon')}</span>
-                <p className="ap-soon-desc">{t('app1_short')}</p>
-              </div>
-            </div>
+          <div className="ap-soon-grid" style={{ gridTemplateColumns: '1fr', maxWidth: 560, margin: '0 auto' }}>
 
             <div className="ap-soon-card reveal" onClick={() => navigate(`/apps/${SLUG_NUTRITION}`)}>
               <div className="ap-soon-icon" style={{ background: 'transparent', border: 'none', padding: 0 }}>
