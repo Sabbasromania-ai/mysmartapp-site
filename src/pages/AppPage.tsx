@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from '../components/Features'
+import PlatformBadge from '../components/PlatformBadge'
 import appScreenshot from '../app-screenshot.png'
 import iReceptionMockup from '../iReception_mockup.png'
 import iCalorieMockup from '../iCalorie_mockup.png'
@@ -237,9 +238,9 @@ export default function AppPage() {
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
               {app.platforms.map(p => (
-                <span key={p} className="acp-platform">{p}</span>
+                <PlatformBadge key={p} platform={p} />
               ))}
             </div>
 

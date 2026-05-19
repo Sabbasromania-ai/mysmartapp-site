@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PlatformBadge from '../components/PlatformBadge'
 import appLogo from '../applogo.png'
 import iReceptionLogo from '../ireception-logo.png'
 import iCalorieLogo from '../icalorie-logo.png'
@@ -258,9 +259,9 @@ export default function AppsPage() {
                 >
                   Notify Me
                 </button>
-                <span className="acp-platform" style={{ fontSize: '0.72rem', padding: '4px 10px' }}>iOS</span>
-                <span className="acp-platform" style={{ fontSize: '0.72rem', padding: '4px 10px' }}>Android</span>
-                <span className="acp-platform" style={{ fontSize: '0.72rem', padding: '4px 10px' }}>Web</span>
+                <PlatformBadge platform="iOS" />
+                <PlatformBadge platform="Android" />
+                <PlatformBadge platform="Web" />
               </div>
 
             </div>
@@ -309,3 +310,134 @@ export default function AppsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
