@@ -31,6 +31,7 @@ export const apps = [
       { icon: '🩸', title: 'Blood Test Tracking', desc: 'Upload lab results and track key health markers over time. Get AI interpretation tailored to your medication and history.' },
       { icon: '🔔', title: 'Smart Reminders', desc: 'Timely notifications for injections, weight check-ins, and hydration — based on your schedule and real usage patterns.' },
     ],
+    pmFooter: 'AI Advisor Active ✦',
     phone: [
       { dot: CYAN, label: 'Weight', value: '94.1 kg' },
       { dot: '#6366f1', label: 'Mounjaro 5mg', value: 'Injected ✓' },
@@ -49,19 +50,20 @@ export const apps = [
     tag: 'Coming Soon',
     tagColor: '#f59e0b',
     tagBg: 'rgba(245,158,11,0.12)',
-    short: 'Stress tracking, sleep analysis, and personalized mental wellness guidance powered by AI.',
-    platforms: ['iOS', 'Android'],
+    short: 'AI receptionist, booking, and customer communication system for businesses.',
+    platforms: ['iOS', 'Android', 'Web'],
     features: [
-      { icon: '😴', title: 'Sleep Analysis', desc: 'Track sleep quality and get personalized improvement tips.' },
-      { icon: '🧘', title: 'Stress Monitor', desc: 'Daily stress check-ins with pattern recognition over time.' },
-      { icon: '🎯', title: 'Mindfulness', desc: 'Guided sessions tailored to your stress level and schedule.' },
-      { icon: '🤖', title: 'AI Advisor', desc: 'Personalized mental wellness coaching with memory.' },
+      { icon: '📞', title: 'AI Receptionist', desc: 'Handles customer messages, questions, and booking requests automatically.' },
+      { icon: '📅', title: 'Booking Management', desc: 'Organizes appointments, availability, and customer scheduling.' },
+      { icon: '💬', title: 'Customer Communication', desc: 'Supports automated replies, reminders, and follow-up messages.' },
+      { icon: '⚙️', title: 'Business Automation', desc: 'Reduces repetitive admin work for service-based businesses.' },
     ],
+    pmFooter: 'AI receptionist active ✦',
     phone: [
-      { dot: CYAN, label: 'Sleep', value: '7.2h' },
-      { dot: CYAN, label: 'Stress', value: 'Low ✓' },
-      { dot: CYAN, label: 'Mood', value: 'Good' },
-      { dot: CYAN, label: 'AI Session', value: 'Ready' },
+      { dot: CYAN, label: "Today's bookings", value: '5' },
+      { dot: '#6366f1', label: 'New calls', value: '3' },
+      { dot: '#10b981', label: 'Pending messages', value: '2' },
+      { dot: CYAN, label: 'AI receptionist', value: 'Active 🟢' },
     ],
   },
   {
@@ -74,19 +76,20 @@ export const apps = [
     tag: 'Coming Soon',
     tagColor: '#f59e0b',
     tagBg: 'rgba(245,158,11,0.12)',
-    short: 'Photo-based meal analysis, macro tracking, and AI-driven diet optimization.',
+    short: 'AI nutrition and calorie tracking app for meal scanning, macros, and personalized nutrition insights.',
     platforms: ['iOS', 'Android'],
     features: [
-      { icon: '📸', title: 'Photo Analysis', desc: 'Instant calorie and macro breakdown from a photo.' },
-      { icon: '📊', title: 'Macro Tracking', desc: 'Protein, carbs, fat targets customized to your goals.' },
-      { icon: '🧠', title: 'AI Diet Coach', desc: 'Meal recommendations based on your preferences and targets.' },
-      { icon: '📅', title: 'Meal Planning', desc: 'Weekly plans generated and adjusted by AI.' },
+      { icon: '📷', title: 'Meal Scan', desc: 'Scan meals and estimate calories and nutrients.' },
+      { icon: '📊', title: 'Macro Tracking', desc: 'Track protein, carbs, fats, and daily nutrition goals.' },
+      { icon: '📋', title: 'Food Log', desc: 'Save meals and monitor eating habits over time.' },
+      { icon: '🧠', title: 'AI Nutrition Insights', desc: 'Get personalized suggestions based on logged meals and goals.' },
     ],
+    pmFooter: 'AI Nutrition Insights active ✦',
     phone: [
       { dot: CYAN, label: 'Protein', value: '142g' },
-      { dot: CYAN, label: 'Calories', value: '1,820' },
-      { dot: CYAN, label: 'Meal logged', value: '✓' },
-      { dot: CYAN, label: 'AI Tip', value: 'View →' },
+      { dot: CYAN, label: 'Calories', value: '1,820 kcal' },
+      { dot: '#10b981', label: 'Meal logged', value: '✓' },
+      { dot: CYAN, label: 'AI Insights', value: 'View →' },
     ],
   },
 ]
@@ -133,7 +136,7 @@ export function PhoneMockup({ app }: { app: typeof apps[0] }) {
               }} />
             ))}
           </div>
-          <div className="pm-footer" style={{ color: app.color }}>AI Advisor Active ✦</div>
+          <div className="pm-footer" style={{ color: app.color }}>{(app as any).pmFooter ?? 'AI Advisor Active ✦'}</div>
         </div>
       </div>
     </div>
@@ -141,7 +144,7 @@ export function PhoneMockup({ app }: { app: typeof apps[0] }) {
 }
 
 const shortKeys: TKey[] = ['app0_short', 'app1_short', 'app2_short']
-const slugs = ['mounjaro-tracker-ai-health', 'ai-wellness-coach', 'ai-nutrition']
+const slugs = ['mounjaro-tracker-ai-health', 'ireception', 'icalorie']
 
 export default function Features() {
   const [hovered, setHovered] = useState<number | null>(null)

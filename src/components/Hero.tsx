@@ -7,7 +7,7 @@ import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import { useLang } from '../LangContext'
 import { TKey } from '../translations'
 
-const slugs = ['mounjaro-tracker-ai-health', 'ai-wellness-coach', 'ai-nutrition']
+const slugs = ['mounjaro-tracker-ai-health', 'ireception', 'icalorie']
 
 export default function Hero() {
   const [hovered, setHovered] = useState<number | null>(null)

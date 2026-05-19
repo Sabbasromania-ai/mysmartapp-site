@@ -1,5 +1,6 @@
 import { useEffect, useState, FormEvent } from 'react'
 import navLogo from '../navlogo.png'
+import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 
 /* ─── Types ────────────────────────────────────────────────── */
 type FormState = { name: string; email: string; subject: string; message: string }
@@ -76,6 +77,7 @@ function Chevron({ open }: { open: boolean }) {
 
 /* ─── Component ─────────────────────────────────────────────── */
 export default function SupportPage() {
+  const { lang } = useLang()
   const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Partial<FormState>>({})
   const [status, setStatus] = useState<Status>('idle')
@@ -83,9 +85,19 @@ export default function SupportPage() {
   const [openFaq, setOpenFaq] = useState<string | null>(null)
 
   useEffect(() => {
-    document.title = 'Support — mysmartsapp'
+    const title = lang === 'el'
+      ? 'Υποστήριξη — Βοήθεια για τις Εφαρμογές σας | Mysmartsapp'
+      : 'Support — Get Help with Your App | Mysmartsapp'
+    const desc = lang === 'el'
+      ? 'Βρείτε βοήθεια για τις εφαρμογές Mysmartsapp. Συχνές ερωτήσεις για λογαριασμό, συνδρομή, χρήση εφαρμογής και επικοινωνία υποστήριξης.'
+      : 'Get help with Mysmartsapp apps. FAQs about account, subscription, app usage, and direct support contact.'
+    document.title = title
+    setMeta('description', desc)
+    setOG('og:title', title)
+    setOG('og:description', desc)
+    setCanonical('https://mysmartsapp.com/support')
     window.scrollTo(0, 0)
-  }, [])
+  }, [lang])
 
   /* Validation — unchanged */
   function validate(): boolean {
@@ -160,7 +172,7 @@ export default function SupportPage() {
           fontSize: 'clamp(36px, 6vw, 52px)', fontWeight: 800,
           color: '#fff', letterSpacing: '-0.03em', marginBottom: 10,
         }}>
-          Support
+          {lang === 'el' ? 'Υποστήριξη' : 'Support'}
         </h1>
         <p style={{
           fontSize: 17, fontWeight: 600, color: '#00d4ff',

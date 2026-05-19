@@ -1,20 +1,30 @@
 import { useEffect, useState, FormEvent } from 'react'
-import { useLang } from '../LangContext'
+import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 
 type FormState = { name: string; email: string; subject: string; message: string }
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
 export default function ContactPage() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Partial<FormState>>({})
   const [status, setStatus] = useState<Status>('idle')
   const [serverError, setServerError] = useState('')
 
   useEffect(() => {
-    document.title = 'Contact — mysmartsapp'
+    const title = lang === 'el'
+      ? 'Επικοινωνία — Ανάπτυξη Εφαρμογών | Mysmartsapp'
+      : 'Contact Us — Custom App Development | Mysmartsapp'
+    const desc = lang === 'el'
+      ? 'Επικοινωνήστε με τη Mysmartsapp για custom ανάπτυξη εφαρμογών, AI εργαλεία, websites ή e-commerce. Θα απαντήσουμε άμεσα.'
+      : 'Contact Mysmartsapp for custom app development, AI tools, websites, or e-commerce. We\'ll reply as soon as possible.'
+    document.title = title
+    setMeta('description', desc)
+    setOG('og:title', title)
+    setOG('og:description', desc)
+    setCanonical('https://mysmartsapp.com/contact')
     window.scrollTo(0, 0)
-  }, [])
+  }, [lang])
 
   function validate(): boolean {
     const e: Partial<FormState> = {}

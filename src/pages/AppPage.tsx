@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from '../components/Features'
 import appScreenshot from '../app-screenshot.png'
-import { useLang } from '../LangContext'
+import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 
 const slugMap: Record<string, number> = {
   'mounjaro-tracker-ai-health': 0,
   'ai-health-tracker': 0,
-  'ai-wellness-coach': 1,
-  'ai-nutrition': 2,
+  'ireception': 1,
+  'icalorie': 2,
 }
 
 function GhostPhone({ color }: { color: string }) {
@@ -31,13 +31,49 @@ function GhostPhone({ color }: { color: string }) {
 export default function AppPage() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const index = slug ? slugMap[slug] : undefined
   const app = index !== undefined ? apps[index] : null
 
   const [phoneHovered, setPhoneHovered] = useState(false)
   const [hoveredFeatured, setHoveredFeatured] = useState(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+
+  const slugSEO: Record<string, Record<string, { title: string; desc: string }>> = {
+    'ireception': {
+      en: {
+        title: 'iReception AI Reception & Booking System | Mysmartsapp',
+        desc: 'iReception is an AI reception and booking system for businesses that need automated customer communication, appointments, and support.',
+      },
+      el: {
+        title: 'iReception AI Σύστημα Υποδοχής & Κρατήσεων | Mysmartsapp',
+        desc: 'Το iReception είναι AI σύστημα υποδοχής και κρατήσεων για επιχειρήσεις που χρειάζονται αυτοματοποιημένη επικοινωνία, ραντεβού και υποστήριξη πελατών.',
+      },
+    },
+    'icalorie': {
+      en: {
+        title: 'iCalorie AI Nutrition & Calorie Tracking App | Mysmartsapp',
+        desc: 'iCalorie is an AI nutrition and calorie tracking app for meal scanning, macros, food logging, and personalized nutrition insights.',
+      },
+      el: {
+        title: 'iCalorie AI Εφαρμογή Διατροφής & Θερμίδων | Mysmartsapp',
+        desc: 'Το iCalorie είναι AI εφαρμογή διατροφής και παρακολούθησης θερμίδων για σάρωση γευμάτων, macros, καταγραφή φαγητού και προσωπικά insights.',
+      },
+    },
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    if (!slug) return
+    const seoEntry = slugSEO[slug]
+    if (!seoEntry) return
+    const seo = seoEntry[lang] ?? seoEntry['en']
+    document.title = seo.title
+    setMeta('description', seo.desc)
+    setOG('og:title', seo.title)
+    setOG('og:description', seo.desc)
+    setCanonical(`https://mysmartsapp.com/apps/${slug}`)
+  }, [slug, lang])
 
   if (!app) {
     return (

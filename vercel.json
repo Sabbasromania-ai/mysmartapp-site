@@ -1,3 +1,7 @@
 {
+  "redirects": [
+    { "source": "/apps/ai-wellness-coach", "destination": "/apps/ireception", "permanent": true },
+    { "source": "/apps/ai-nutrition", "destination": "/apps/icalorie", "permanent": true }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }

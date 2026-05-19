@@ -27,21 +27,21 @@ export const translations = {
     app0_desc: 'GLP-1 tracking, AI health coach, blood tests & real-time insights.',
     app1_name: 'iReception',
     app1_tag: 'Coming Soon',
-    app1_desc: 'Stress tracking, sleep analysis, and mental wellness guidance.',
+    app1_desc: 'AI receptionist, booking, and customer communication system for businesses.',
     app2_name: 'iCalorie',
     app2_tag: 'Coming Soon',
-    app2_desc: 'Photo-based meal analysis, macro tracking and diet optimization.',
+    app2_desc: 'AI nutrition and calorie tracking app for meal scanning, macros, and personalized nutrition insights.',
 
     // App rows (Hero cards)
     app0_row0: 'Weight: 94.1 kg',
     app0_row1: 'Mounjaro 5mg ✓',
     app0_row2: 'AI Advisor active',
-    app1_row0: 'Sleep: 7.2h',
-    app1_row1: 'Stress: Low',
-    app1_row2: 'Mood tracked',
-    app2_row0: 'Protein: 142g',
-    app2_row1: 'Calories: 1,820',
-    app2_row2: 'Meal logged',
+    app1_row0: "Today's bookings: 5",
+    app1_row1: 'New calls: 3',
+    app1_row2: 'Pending messages: 2',
+    app2_row0: 'Meal scan ✓',
+    app2_row1: 'Calories tracked',
+    app2_row2: 'Macros logged',
 
     // Features section
     feat_label: 'Our Apps',
@@ -50,8 +50,8 @@ export const translations = {
     tag_live: 'Live',
     tag_soon: 'Coming Soon',
     app0_short: 'GLP-1 dose tracking with real injection logging, an AI Advisor that remembers your data, blood test analysis, and progress charts — built for Mounjaro and Ozempic users.',
-    app1_short: 'Stress tracking, sleep analysis, and personalized mental wellness guidance powered by AI.',
-    app2_short: 'Photo-based meal analysis, macro tracking, and AI-driven diet optimization.',
+    app1_short: 'AI receptionist, booking, and customer communication system for businesses.',
+    app2_short: 'AI nutrition and calorie tracking app for meal scanning, macros, and personalized nutrition insights.',
 
     // Platform section
     plat_label: 'Platform',
@@ -244,21 +244,21 @@ export const translations = {
     app0_desc: 'Παρακολούθηση GLP-1, Σύμβουλος τεχνητής νοημοσύνης υγείας, αιματολογικές εξετάσεις & insights.',
     app1_name: 'iReception',
     app1_tag: 'Σύντομα',
-    app1_desc: 'Παρακολούθηση άγχους, ανάλυση ύπνου και καθοδήγηση ψυχικής ευεξίας.',
+    app1_desc: 'AI σύστημα υποδοχής, κρατήσεων και επικοινωνίας πελατών για επιχειρήσεις.',
     app2_name: 'iCalorie',
     app2_tag: 'Σύντομα',
-    app2_desc: 'Ανάλυση γεύματος από φωτογραφία, καταγραφή μακροθρεπτικών και βελτιστοποίηση.',
+    app2_desc: 'AI εφαρμογή διατροφής και καταγραφής θερμίδων για σάρωση γευμάτων και macros.',
 
     // App rows (Hero cards)
     app0_row0: 'Βάρος: 94,1 kg',
     app0_row1: 'Mounjaro 5mg ✓',
     app0_row2: 'Σύμβουλος τεχνητής νοημοσύνης ενεργός',
-    app1_row0: 'Ύπνος: 7,2h',
-    app1_row1: 'Άγχος: Χαμηλό',
-    app1_row2: 'Διάθεση καταγράφηκε',
-    app2_row0: 'Πρωτεΐνη: 142g',
-    app2_row1: 'Θερμίδες: 1.820',
-    app2_row2: 'Γεύμα καταγράφηκε',
+    app1_row0: 'Κρατήσεις σήμερα: 5',
+    app1_row1: 'Νέες κλήσεις: 3',
+    app1_row2: 'Εκκρεμή μηνύματα: 2',
+    app2_row0: 'Σάρωση γεύματος ✓',
+    app2_row1: 'Θερμίδες καταγράφηκαν',
+    app2_row2: 'Macros καταγράφηκαν',
 
     // Features section
     feat_label: 'Οι Εφαρμογές μας',
@@ -267,8 +267,8 @@ export const translations = {
     tag_live: 'Διαθέσιμο',
     tag_soon: 'Σύντομα',
     app0_short: 'Καταγραφή δόσεων GLP-1 με ιστορικό ενέσεων, Σύμβουλος τεχνητής νοημοσύνης με μνήμη, ανάλυση αιματολογικών και γραφήματα προόδου — για χρήστες Mounjaro και Ozempic.',
-    app1_short: 'Παρακολούθηση άγχους, ανάλυση ύπνου και εξατομικευμένη καθοδήγηση ψυχικής ευεξίας με τεχνητή νοημοσύνη.',
-    app2_short: 'Ανάλυση γεύματος από φωτογραφία, καταγραφή μακροθρεπτικών και βελτιστοποίηση διατροφής με τεχνητή νοημοσύνη.',
+    app1_short: 'AI σύστημα υποδοχής, κρατήσεων και επικοινωνίας πελατών για επιχειρήσεις.',
+    app2_short: 'AI εφαρμογή διατροφής και καταγραφής θερμίδων για σάρωση γευμάτων, macros και εξατομικευμένα nutrition insights.',
 
     // Platform section
     plat_label: 'Πλατφόρμα',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLang } from '../LangContext'
+import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import appLogo              from '../applogo.png'
 import heroPhoneCutout      from '../screens/hero-phone-cutout.png'
 import mock01 from '../screens/onboarding/01_mock_phone.png'
@@ -736,11 +736,26 @@ const CSS = `
 `
 
 export default function AIHealthTrackerPage() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [slide, setSlide] = useState(0)
   const visible = 5
   const maxSlide = Math.max(0, onboardingScreens.length - visible)
   const [lightbox, setLightbox] = useState<number | null>(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    const title = lang === 'el'
+      ? 'Mounjaro Tracker AI Health App — GLP-1 & Παρακολούθηση Βάρους | Mysmartsapp'
+      : 'Mounjaro Tracker AI Health App — GLP-1 & Weight Tracking | Mysmartsapp'
+    const desc = lang === 'el'
+      ? 'Παρακολούθηση δόσεων Mounjaro, βάρους, γευμάτων, δεικτών αίματος και AI insights. Διαθέσιμο για iOS και Android.'
+      : 'Track Mounjaro injections, weight progress, meal scans, blood markers, and get AI health insights. Available for iOS and Android.'
+    document.title = title
+    setMeta('description', desc)
+    setOG('og:title', title)
+    setOG('og:description', desc)
+    setCanonical('https://mysmartsapp.com/apps/mounjaro-tracker-ai-health')
+  }, [lang])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

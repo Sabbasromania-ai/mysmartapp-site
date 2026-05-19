@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLang } from '../LangContext'
+import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import { pv } from '../privacyTranslations'
 
 const accent = '#00d4ff'
@@ -59,7 +59,15 @@ export default function Privacy() {
   const p = pv[lang]
 
   useEffect(() => {
-    document.title = lang === 'el' ? 'Πολιτική Απορρήτου — mysmartsapp' : 'Privacy Policy — mysmartsapp'
+    const title = lang === 'el' ? 'Πολιτική Απορρήτου | Mysmartsapp' : 'Privacy Policy | Mysmartsapp'
+    const desc = lang === 'el'
+      ? 'Διαβάστε την Πολιτική Απορρήτου της Mysmartsapp — πώς συλλέγουμε, χρησιμοποιούμε και προστατεύουμε τα δεδομένα σας.'
+      : 'Read the Mysmartsapp Privacy Policy — how we collect, use, and protect your data across our apps and services.'
+    document.title = title
+    setMeta('description', desc)
+    setOG('og:title', title)
+    setOG('og:description', desc)
+    setCanonical('https://mysmartsapp.com/privacy')
     window.scrollTo(0, 0)
   }, [lang])
 

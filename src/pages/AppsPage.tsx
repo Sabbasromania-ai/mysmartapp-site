@@ -5,12 +5,12 @@ import iReceptionLogo from '../ireception-logo.png'
 import iCalorieLogo from '../icalorie-logo.png'
 import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import heroPhoneApps from '../screens/hero-phone-apps.png'
-import { useLang } from '../LangContext'
+import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import { config } from '../config'
 
 const SLUG_MOUNJARO = 'mounjaro-tracker-ai-health'
-const SLUG_WELLNESS = 'ai-wellness-coach'
-const SLUG_NUTRITION = 'ai-nutrition'
+const SLUG_WELLNESS = 'ireception'
+const SLUG_NUTRITION = 'icalorie'
 
 const IdeaIcons = [
   // Design — pencil
@@ -33,11 +33,22 @@ const IdeaIcons = [
 ]
 
 export default function AppsPage() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    const title = lang === 'el'
+      ? 'Οι Εφαρμογές μας — Mobile Apps & AI Εργαλεία | Mysmartsapp'
+      : 'Our Apps — Mobile Apps & AI Tools | Mysmartsapp'
+    const desc = lang === 'el'
+      ? 'Δείτε όλες τις mobile εφαρμογές και AI εργαλεία από τη Mysmartsapp, συμπεριλαμβανομένου του Mounjaro Tracker για iOS και Android.'
+      : 'Browse all mobile apps and AI tools built by Mysmartsapp — including the Mounjaro Tracker AI Health app for iOS and Android.'
+    document.title = title
+    setMeta('description', desc)
+    setOG('og:title', title)
+    setOG('og:description', desc)
+    setCanonical('https://mysmartsapp.com/apps')
     const reveals = document.querySelectorAll('.reveal')
     const io = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
@@ -49,7 +60,7 @@ export default function AppsPage() {
     }, { threshold: 0.05 })
     reveals.forEach(el => io.observe(el))
     return () => io.disconnect()
-  }, [])
+  }, [lang])
 
   const chips = [
     { label: 'Injection Doses',   icon: '💉' },

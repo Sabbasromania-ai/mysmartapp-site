@@ -22,16 +22,22 @@ const SEO: Record<Lang, { title: string; description: string; locale: string }> 
   },
 }
 
-function setMeta(name: string, content: string) {
+export function setMeta(name: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
   if (!el) { el = document.createElement('meta'); el.setAttribute('name', name); document.head.appendChild(el) }
   el.setAttribute('content', content)
 }
 
-function setOG(property: string, content: string) {
+export function setOG(property: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[property="${property}"]`)
   if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el) }
   el.setAttribute('content', content)
+}
+
+export function setCanonical(href: string) {
+  let el = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+  if (!el) { el = document.createElement('link'); el.setAttribute('rel', 'canonical'); document.head.appendChild(el) }
+  el.setAttribute('href', href)
 }
 
 function applyLangToDocument(l: Lang) {

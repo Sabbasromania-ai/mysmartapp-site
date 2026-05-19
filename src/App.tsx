@@ -78,6 +78,8 @@ export default function App() {
             </>
           } />
           <Route path="/apps/ai-health-tracker" element={<Navigate to="/apps/mounjaro-tracker-ai-health" replace />} />
+          <Route path="/apps/ai-wellness-coach" element={<Navigate to="/apps/ireception" replace />} />
+          <Route path="/apps/ai-nutrition" element={<Navigate to="/apps/icalorie" replace />} />
           <Route path="/apps/mounjaro-tracker-ai-health" element={
             <>
               <Nav />
