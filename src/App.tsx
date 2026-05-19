@@ -4,10 +4,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { LangProvider } from './LangContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import About from './components/About'
 import Features from './components/Features'
 import AppPreview from './components/AppPreview'
 import HowItWorks from './components/HowItWorks'
 import Support from './components/Support'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import NeuralBg from './components/NeuralBg'
 import AppPage from './pages/AppPage'
@@ -38,26 +40,16 @@ function HomePage() {
       <Nav />
       <main>
         <Hero />
-        <section className="combined-section" id="apps">
+        <About />
+        <Features />
+        <section className="combined-section" id="platform">
           <div className="container">
-            <div className="combined-grid">
-              <div className="combined-left">
-                <Features />
-              </div>
-              <div className="combined-right" id="platform">
-                <AppPreview />
-              </div>
-            </div>
+            <AppPreview />
           </div>
         </section>
-        <section className="bottom-section" id="about">
-          <div className="container">
-            <div className="bottom-grid">
-              <HowItWorks />
-              <Support />
-            </div>
-          </div>
-        </section>
+        <Support />
+        <HowItWorks />
+        <Contact email="info@mysmartsapp.com" />
       </main>
       <Footer />
     </>
