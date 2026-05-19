@@ -17,7 +17,7 @@ const SEO: Record<Lang, { title: string; description: string; locale: string }> 
   },
   el: {
     title: 'Κατασκευή Εφαρμογών & Websites για Επιχειρήσεις | Mysmartsapp',
-    description: 'Φτιάχνουμε custom mobile apps, websites, e-shops, AI εργαλεία και αυτοματισμούς για επιχειρήσεις. Από design και development μέχρι launch και υποστήριξη.',
+    description: 'Φτιάχνουμε custom mobile apps, websites, e-shops, AI εργαλεία και αυτοματισμούς για επιχειρήσεις. Από σχεδιασμό και ανάπτυξη μέχρι δημοσίευση και υποστήριξη.',
     locale: 'el_GR',
   },
 }
