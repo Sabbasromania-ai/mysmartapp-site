@@ -43,6 +43,7 @@ export default function AppPage() {
   const app = index !== undefined ? apps[index] : null
 
   const [phoneHovered, setPhoneHovered] = useState(false)
+  const [heroHovered, setHeroHovered] = useState(false)
   const [hoveredFeatured, setHoveredFeatured] = useState(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
@@ -92,6 +93,18 @@ export default function AppPage() {
   }
 
   const isHealthTracker = index === 0
+  const isReception = index === 1
+
+  // ── Shared card design tokens ──────────────────────────────────
+  const CARD_BG = (h: boolean) => h
+    ? 'linear-gradient(135deg, rgba(0,212,255,0.07) 0%, rgba(8,16,42,0.55) 100%)'
+    : 'linear-gradient(135deg, rgba(8,16,42,0.68) 0%, rgba(0,90,170,0.13) 50%, rgba(8,16,42,0.68) 100%)'
+  const CARD_BORDER = (h: boolean) =>
+    `1px solid rgba(0,212,255,${h ? '0.56' : '0.26'})`
+  const CARD_SHADOW = (h: boolean) => h
+    ? '0 0 32px rgba(0,212,255,0.14), inset 0 0 24px rgba(0,212,255,0.07)'
+    : '0 0 20px rgba(0,212,255,0.06), inset 0 0 16px rgba(0,212,255,0.03)'
+  const CARD_BACKDROP = 'blur(12px)'
 
   return (
     <div style={{ paddingBottom: 56, minHeight: '80vh' }}>
@@ -116,18 +129,27 @@ export default function AppPage() {
 
       {/* Hero */}
       <div className="container" style={{ marginTop: 14 }}>
-        <div style={{
-          background: app.gradient,
-          border: `1px solid ${app.color}22`,
-          borderRadius: 20,
-          padding: '32px 48px',
-          display: 'grid',
-          gridTemplateColumns: '1fr auto',
-          gap: 32,
-          alignItems: 'center',
-          overflow: 'hidden',
-          position: 'relative',
-        }}>
+        <div
+          onMouseEnter={() => setHeroHovered(true)}
+          onMouseLeave={() => setHeroHovered(false)}
+          style={{
+            background: CARD_BG(heroHovered),
+            border: CARD_BORDER(heroHovered),
+            boxShadow: CARD_SHADOW(heroHovered),
+            backdropFilter: CARD_BACKDROP,
+            WebkitBackdropFilter: CARD_BACKDROP,
+            borderRadius: 20,
+            padding: '28px 40px',
+            display: 'grid',
+            gridTemplateColumns: isReception ? '34% 52%' : '55% 40%',
+            gap: isReception ? 48 : 32,
+            alignItems: 'center',
+            overflow: 'hidden',
+            position: 'relative',
+            transform: heroHovered ? 'translateY(-3px)' : 'translateY(0)',
+            transition: 'border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease',
+          }}
+        >
           {/* Background glow blob */}
           <div style={{
             position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',
@@ -137,7 +159,7 @@ export default function AppPage() {
           }} />
 
           {/* Left content */}
-          <div style={{ zIndex: 1 }}>
+          <div style={{ zIndex: 1, order: isReception ? 2 : 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               {(app as any).logo
                 ? <img src={(app as any).logo} alt={app.name} style={{ width: 46, height: 46, borderRadius: 12, objectFit: 'cover' }} />
@@ -184,7 +206,7 @@ export default function AppPage() {
           </div>
 
           {/* Right — phone */}
-          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: isReception ? 'flex-start' : 'flex-end', zIndex: 1, position: 'relative', order: isReception ? 1 : 2 }}>
             {isHealthTracker ? (
               <>
                 {/* Layered glow — outer soft + inner core */}
@@ -240,13 +262,17 @@ export default function AppPage() {
                 src={mockupMap[index as number]}
                 alt={app.name}
                 style={{
-                  width: 'clamp(160px, 20vw, 240px)',
-                  height: 'auto',
+                  maxHeight: 390,
+                  width: 'auto',
                   objectFit: 'contain',
-                  filter: `drop-shadow(0 8px 32px rgba(0,0,0,0.55)) drop-shadow(0 0 24px ${app.color}22)`,
+                  filter: heroHovered
+                    ? `drop-shadow(0 8px 28px rgba(0,0,0,0.55)) drop-shadow(0 0 28px ${app.color}40)`
+                    : `drop-shadow(0 8px 28px rgba(0,0,0,0.50)) drop-shadow(0 0 18px ${app.color}22)`,
                   pointerEvents: 'none',
                   position: 'relative',
                   zIndex: 1,
+                  transition: 'filter 0.3s ease',
+                  display: 'block',
                 }}
               />
             )}
@@ -269,10 +295,11 @@ export default function AppPage() {
                   onMouseEnter={() => setHoveredFeatured(true)}
                   onMouseLeave={() => setHoveredFeatured(false)}
                   style={{
-                    background: hoveredFeatured
-                      ? `linear-gradient(135deg, ${app.color}1e 0%, rgba(255,255,255,0.04) 100%)`
-                      : `linear-gradient(135deg, ${app.color}14 0%, rgba(255,255,255,0.025) 100%)`,
-                    border: `1px solid ${hoveredFeatured ? app.color + '60' : app.color + '3a'}`,
+                    background: CARD_BG(hoveredFeatured),
+                    border: CARD_BORDER(hoveredFeatured),
+                    boxShadow: CARD_SHADOW(hoveredFeatured),
+                    backdropFilter: CARD_BACKDROP,
+                    WebkitBackdropFilter: CARD_BACKDROP,
                     borderRadius: 14,
                     padding: '26px 32px',
                     marginBottom: 10,
@@ -283,9 +310,6 @@ export default function AppPage() {
                     cursor: 'default',
                     transition: 'transform 0.25s ease-in-out, border-color 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out',
                     transform: hoveredFeatured ? 'scale(1.018)' : 'scale(1)',
-                    boxShadow: hoveredFeatured
-                      ? `0 8px 32px rgba(0,0,0,0.28), 0 0 24px ${app.color}14`
-                      : `0 2px 16px rgba(0,0,0,0.18), 0 0 8px ${app.color}08`,
                   }}
                 >
                   <div style={{
@@ -316,16 +340,16 @@ export default function AppPage() {
                     onMouseEnter={() => setHoveredCard(i)}
                     onMouseLeave={() => setHoveredCard(null)}
                     style={{
-                      background: hoveredCard === i ? 'rgba(255,255,255,0.042)' : 'rgba(255,255,255,0.024)',
-                      border: `1px solid ${hoveredCard === i ? app.color + '42' : 'rgba(255,255,255,0.07)'}`,
+                      background: CARD_BG(hoveredCard === i),
+                      border: CARD_BORDER(hoveredCard === i),
+                      boxShadow: CARD_SHADOW(hoveredCard === i),
+                      backdropFilter: CARD_BACKDROP,
+                      WebkitBackdropFilter: CARD_BACKDROP,
                       borderRadius: 12,
                       padding: '16px 18px',
                       cursor: 'default',
                       transition: 'transform 0.25s ease-in-out, border-color 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out',
                       transform: hoveredCard === i ? 'scale(1.03)' : 'scale(1)',
-                      boxShadow: hoveredCard === i
-                        ? `0 6px 20px rgba(0,0,0,0.22), 0 0 12px ${app.color}0d`
-                        : 'none',
                     }}
                   >
                     <div style={{
