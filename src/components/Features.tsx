@@ -302,7 +302,7 @@ export default function Features() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.9rem',
-                minHeight: '260px',
+                minHeight: '340px',
               }}
             >
               {/* Top: logo + name + badge */}
@@ -355,7 +355,7 @@ export default function Features() {
                 </p>
               </div>
 
-              {/* Phone mockup — absolute, large, visually dominant */}
+              {/* Phone mockup — absolute, large, fully visible */}
               <img
                 src={card.mockupSrc}
                 alt={card.name + ' mockup'}
@@ -363,7 +363,8 @@ export default function Features() {
                   position: 'absolute',
                   right: '10px',
                   bottom: '0',
-                  width: 'clamp(120px, 40%, 185px)',
+                  width: 'clamp(120px, 38%, 180px)',
+                  maxHeight: '88%',
                   height: 'auto',
                   objectFit: 'contain',
                   objectPosition: 'center bottom',
