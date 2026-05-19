@@ -295,11 +295,14 @@ export default function Features() {
                 borderRadius: '20px',
                 padding: '1.5rem',
                 cursor: 'pointer',
+                position: 'relative',
+                overflow: 'hidden',
                 transform: hovered === i ? 'translateY(-5px)' : 'translateY(0)',
                 transition: 'all 0.25s ease',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.9rem',
+                minHeight: '260px',
               }}
             >
               {/* Top: logo + name + badge */}
@@ -329,45 +332,45 @@ export default function Features() {
                 </div>
               </div>
 
-              {/* Middle: platforms + desc on left, phone on right */}
-              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', flex: 1 }}>
-                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                  {/* platform chips */}
-                  <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
-                    {card.platforms.map(p => (
-                      <span key={p} style={{
-                        fontSize: '0.7rem',
-                        color: 'rgba(0,212,255,0.88)',
-                        background: 'rgba(0,212,255,0.08)',
-                        border: '1px solid rgba(0,212,255,0.22)',
-                        borderRadius: '6px',
-                        padding: '2px 9px',
-                      }}>
-                        · {p}
-                      </span>
-                    ))}
-                  </div>
-                  {/* description */}
-                  <p style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.68)', lineHeight: 1.6, margin: 0 }}>
-                    {card.desc}
-                  </p>
+              {/* Middle: text left, phone absolute right */}
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', maxWidth: '58%' }}>
+                {/* platform chips */}
+                <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+                  {card.platforms.map(p => (
+                    <span key={p} style={{
+                      fontSize: '0.7rem',
+                      color: 'rgba(0,212,255,0.88)',
+                      background: 'rgba(0,212,255,0.08)',
+                      border: '1px solid rgba(0,212,255,0.22)',
+                      borderRadius: '6px',
+                      padding: '2px 9px',
+                    }}>
+                      · {p}
+                    </span>
+                  ))}
                 </div>
-
-                {/* Phone mockup image */}
-                <img
-                  src={card.mockupSrc}
-                  alt={card.name + ' mockup'}
-                  style={{
-                    height: 200,
-                    width: 'auto',
-                    objectFit: 'contain',
-                    objectPosition: 'center bottom',
-                    flexShrink: 0,
-                    alignSelf: 'flex-end',
-                    filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.5))',
-                  }}
-                />
+                {/* description */}
+                <p style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.68)', lineHeight: 1.6, margin: 0 }}>
+                  {card.desc}
+                </p>
               </div>
+
+              {/* Phone mockup — absolute, large, visually dominant */}
+              <img
+                src={card.mockupSrc}
+                alt={card.name + ' mockup'}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  bottom: '0',
+                  width: 'clamp(120px, 40%, 185px)',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  objectPosition: 'center bottom',
+                  filter: 'drop-shadow(0 8px 28px rgba(0,0,0,0.55))',
+                  pointerEvents: 'none',
+                }}
+              />
             </div>
           ))}
         </div>
