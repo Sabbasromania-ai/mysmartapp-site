@@ -302,7 +302,7 @@ export default function Features() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.9rem',
-                minHeight: '380px',
+                minHeight: '410px',
               }}
             >
               {/* Top: logo + name + badge */}
@@ -333,7 +333,7 @@ export default function Features() {
               </div>
 
               {/* Middle: text left, phone absolute right */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', maxWidth: '58%' }}>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', maxWidth: '50%' }}>
                 {/* platform chips */}
                 <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
                   {card.platforms.map(p => (
@@ -361,10 +361,10 @@ export default function Features() {
                 alt={card.name + ' mockup'}
                 style={{
                   position: 'absolute',
-                  right: '24px',
-                  top: '50%',
+                  right: '8px',
+                  top: '58%',
                   transform: 'translateY(-50%)',
-                  width: 'clamp(132px, 42%, 198px)',
+                  width: 'clamp(130px, 42%, 195px)',
                   maxHeight: '90%',
                   height: 'auto',
                   objectFit: 'contain',
