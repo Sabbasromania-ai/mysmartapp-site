@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from '../components/Features'
 import appScreenshot from '../app-screenshot.png'
+import iReceptionMockup from '../iReception_mockup.png'
+import iCalorieMockup from '../iCalorie_mockup.png'
+
+const mockupMap: Record<number, string> = {
+  1: iReceptionMockup,
+  2: iCalorieMockup,
+}
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 
 const slugMap: Record<string, number> = {
@@ -229,12 +236,19 @@ export default function AppPage() {
                 />
               </>
             ) : (
-              <>
-                <GhostPhone color={app.color} />
-                <div style={{ transform: 'scale(1.5)', transformOrigin: 'center', margin: '20px 40px' }}>
-                  <PhoneMockup app={app} />
-                </div>
-              </>
+              <img
+                src={mockupMap[index as number]}
+                alt={app.name}
+                style={{
+                  width: 'clamp(160px, 20vw, 240px)',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  filter: `drop-shadow(0 8px 32px rgba(0,0,0,0.55)) drop-shadow(0 0 24px ${app.color}22)`,
+                  pointerEvents: 'none',
+                  position: 'relative',
+                  zIndex: 1,
+                }}
+              />
             )}
           </div>
         </div>
