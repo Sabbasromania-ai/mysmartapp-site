@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PlatformBadge from './PlatformBadge'
+import StoreBadges from './StoreBadges'
 import appLogo from '../applogo.png'
 import iReceptionLogo from '../ireception-logo.png'
 import iCalorieLogo from '../icalorie-logo.png'
@@ -9,6 +9,14 @@ import iReceptionMockup from '../iReception_mockup.png'
 import iCalorieMockup from '../iCalorie_mockup.png'
 import { useLang } from '../LangContext'
 import { TKey } from '../translations'
+import wbfMedical    from '../assets/icons/who-we-build-for/neon_medical_emblem_in_the_dark.png'
+import wbfScissors   from '../assets/icons/who-we-build-for/neon_purple_scissors_icon_on_dark_backdrop.png'
+import wbfDumbbell   from '../assets/icons/who-we-build-for/neon_dumbbell_icon_with_glowing_aura.png'
+import wbfCutlery    from '../assets/icons/who-we-build-for/neon_cutlery_icon_illustration.png'
+import wbfAvatar     from '../assets/icons/who-we-build-for/neon_purple_avatar_icon_on_checkerboard.png'
+import wbfBriefcase  from '../assets/icons/who-we-build-for/neon_briefcase_icon_on_transparency.png'
+import wbfRocket     from '../assets/icons/who-we-build-for/neon_rocket_icon_with_glowing_outline.png'
+import wbfShopping   from '../assets/icons/who-we-build-for/neon_shopping_bag_icon.png'
 
 // Same color system for ALL cards
 const CYAN = '#00d4ff'
@@ -234,6 +242,18 @@ function MiniPhone({ app }: { app: typeof apps[0] }) {
   )
 }
 
+// ── Who We Build For data ────────────────────────────────────────
+const WHO_WE_BUILD = [
+  { label: 'Clinics &\ndoctors',          img: wbfMedical   },
+  { label: 'Beauty\nsalons',              img: wbfScissors  },
+  { label: 'Gyms &\npersonal trainers',   img: wbfDumbbell  },
+  { label: 'Restaurants\n& cafés',        img: wbfCutlery   },
+  { label: 'Coaches &\nconsultants',      img: wbfAvatar    },
+  { label: 'Local service\nbusinesses',   img: wbfBriefcase },
+  { label: 'Startups',                    img: wbfRocket    },
+  { label: 'Online\nstores',              img: wbfShopping  },
+]
+
 // ── Portfolio section (default export) ──────────────────────────
 export default function Features() {
   const [hovered, setHovered] = useState<number | null>(null)
@@ -252,6 +272,7 @@ export default function Features() {
     : '0 0 12px rgba(0,212,255,0.06)'
 
   return (
+    <>
     <section style={{ padding: '1.5rem 0 3rem' }} id="portfolio">
       <div className="container">
 
@@ -330,9 +351,7 @@ export default function Features() {
 
               <div className="portfolio-text-col" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', maxWidth: '50%' }}>
                 <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
-                  {card.platforms.map(p => (
-                    <PlatformBadge key={p} platform={p} />
-                  ))}
+                  <StoreBadges platforms={card.platforms} disabled={card.statusLabel !== 'LIVE'} />
                 </div>
                 <p style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.68)', lineHeight: 1.6, margin: 0 }}>
                   {card.desc}
@@ -385,6 +404,44 @@ export default function Features() {
 
       </div>
     </section>
+
+    {/* ── Who We Build For ─────────────────────────────────────── */}
+    <section style={{ padding: '3.5rem 0 4rem' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <h2 style={{
+            fontSize: 'clamp(1.4rem,2.2vw,2rem)',
+            fontWeight: 700,
+            color: '#fff',
+            marginBottom: '0.55rem',
+            letterSpacing: '-0.02em',
+          }}>Who We Build For</h2>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.55)', margin: 0 }}>
+            We work with businesses of all types and sizes.
+          </p>
+        </div>
+
+        <div className="wbf-grid">
+          {WHO_WE_BUILD.map((item, i) => (
+            <div key={i} className="wbf-card">
+              <div className="wbf-icon">
+                <img
+                  src={item.img}
+                  alt={item.label.replace('\n', ' ')}
+                  style={{ width: 56, height: 56, objectFit: 'contain', display: 'block', margin: '0 auto' }}
+                />
+              </div>
+              <div className="wbf-label">
+                {item.label.split('\n').map((line, j) => (
+                  <span key={j} style={{ display: 'block' }}>{line}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    </>
   )
 }
 
