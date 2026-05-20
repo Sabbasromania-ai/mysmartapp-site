@@ -222,6 +222,16 @@ export const translations = {
     why_3_title: 'AI where it matters',
     why_3_desc: 'Intelligent features are added only where they improve real usage.',
 
+    // Services page bullets & CTAs
+    svc_b0_0: 'iOS & Android apps', svc_b0_1: 'Customer dashboards', svc_b0_2: 'Booking and scheduling apps', svc_b0_3: 'App Store / Google Play ready',
+    svc_b1_0: 'Business websites', svc_b1_1: 'Landing pages', svc_b1_2: 'SEO-ready structure', svc_b1_3: 'Contact and lead forms',
+    svc_b2_0: 'Product catalog', svc_b2_1: 'Shopping cart', svc_b2_2: 'Online payments', svc_b2_3: 'Order management',
+    svc_b3_0: 'AI chatbots', svc_b3_1: 'OCR / document parsing', svc_b3_2: 'AI customer support', svc_b3_3: 'Smart recommendations',
+    svc_b4_0: 'Appointment booking', svc_b4_1: 'Calendar management', svc_b4_2: 'Reminders', svc_b4_3: 'Customer messages',
+    svc_b5_0: 'Form automation', svc_b5_1: 'Email workflows', svc_b5_2: 'CRM flows', svc_b5_3: 'Admin task automation',
+    svc_cta_0: 'Build a Mobile App', svc_cta_1: 'Build a Website', svc_cta_2: 'Build an E-shop',
+    svc_cta_3: 'Build an AI Tool', svc_cta_4: 'Build a Booking System', svc_cta_5: 'Automate My Business',
+
     // Services section
     svc_label: 'WHAT WE BUILD',
     svc_title1: 'What We Build',
@@ -511,6 +521,16 @@ export const translations = {
     why_2_desc: 'Καθαρό interface για mobile και web εμπειρίες.',
     why_3_title: 'Τεχνητή νοημοσύνη με αξία',
     why_3_desc: 'Η τεχνητή νοημοσύνη προστίθεται εκεί που βελτιώνει πραγματικά τη χρήση.',
+
+    // Services page bullets & CTAs
+    svc_b0_0: 'iOS & Android εφαρμογές', svc_b0_1: 'Customer dashboards', svc_b0_2: 'Εφαρμογές κρατήσεων', svc_b0_3: 'App Store / Google Play έτοιμο',
+    svc_b1_0: 'Επαγγελματικά websites', svc_b1_1: 'Landing pages', svc_b1_2: 'SEO-ready δομή', svc_b1_3: 'Φόρμες επικοινωνίας & leads',
+    svc_b2_0: 'Κατάλογος προϊόντων', svc_b2_1: 'Καλάθι αγορών', svc_b2_2: 'Online πληρωμές', svc_b2_3: 'Διαχείριση παραγγελιών',
+    svc_b3_0: 'AI chatbots', svc_b3_1: 'OCR / ανάλυση εγγράφων', svc_b3_2: 'AI εξυπηρέτηση πελατών', svc_b3_3: 'Smart προτάσεις',
+    svc_b4_0: 'Κράτηση ραντεβού', svc_b4_1: 'Διαχείριση ημερολογίου', svc_b4_2: 'Υπενθυμίσεις', svc_b4_3: 'Μηνύματα πελατών',
+    svc_b5_0: 'Αυτοματισμός φορμών', svc_b5_1: 'Email workflows', svc_b5_2: 'CRM flows', svc_b5_3: 'Αυτοματισμός admin εργασιών',
+    svc_cta_0: 'Φτιάξε Mobile App', svc_cta_1: 'Φτιάξε Website', svc_cta_2: 'Φτιάξε E-shop',
+    svc_cta_3: 'Φτιάξε AI Εργαλείο', svc_cta_4: 'Φτιάξε Booking System', svc_cta_5: 'Αυτοματοποίησε την Επιχείρησή μου',
 
     // Services section
     svc_label: 'ΤΙ ΦΤΙΑΧΝΟΥΜΕ',
