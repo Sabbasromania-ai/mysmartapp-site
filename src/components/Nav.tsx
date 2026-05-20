@@ -9,7 +9,7 @@ export default function Nav() {
   const { lang, setLang, t } = useLang()
   const menuRef = useRef<HTMLDivElement>(null)
   const links = [
-    { id: 'services',   label: t('nav_platform'),     href: '/#services' },
+    { id: 'services',   label: t('nav_platform'),     href: '/services' },
     { id: 'apps',       label: t('nav_apps'),          href: '/apps' },
     { id: 'about',      label: t('nav_about'),         href: '/#about' },
     { id: 'process',    label: t('nav_process'),       href: '/#process' },
