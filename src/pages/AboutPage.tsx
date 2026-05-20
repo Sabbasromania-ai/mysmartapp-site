@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
+import HowItWorks from '../components/HowItWorks'
 
 const missionCards = [
   {
@@ -46,19 +47,24 @@ const diffPoints = [
   { en: 'We build for real users, real operations, and real growth.', el: 'Κατασκευάζουμε για πραγματικούς χρήστες, πραγματικές λειτουργίες και πραγματική ανάπτυξη.' },
 ]
 
-const processSteps = [
-  { en: 'Discovery', el: 'Ανάλυση' },
-  { en: 'Strategy', el: 'Στρατηγική' },
-  { en: 'UI/UX', el: 'UI/UX' },
-  { en: 'Development', el: 'Ανάπτυξη' },
-  { en: 'Testing', el: 'Έλεγχος' },
-  { en: 'Launch & Support', el: 'Λανσάρισμα & Υποστήριξη' },
-]
-
 export default function AboutPage() {
   const { lang } = useLang()
   const navigate = useNavigate()
   const el = lang === 'el'
+
+  useEffect(() => {
+    const reveals = document.querySelectorAll('.reveal')
+    const io = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('on'), i * 60)
+          io.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.05 })
+    reveals.forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -79,7 +85,7 @@ export default function AboutPage() {
     <div style={{ background: 'var(--bg)' }}>
 
       {/* ── Hero ── */}
-      <section style={{ textAlign: 'center', padding: '88px 24px 20px' }}>
+      <section style={{ textAlign: 'center', padding: '44px 24px 16px' }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
           fontSize: '0.60rem', fontWeight: 700, letterSpacing: '0.13em',
@@ -156,34 +162,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── How we work ── */}
-      <section style={{ padding: '20px 0 20px' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: 24 }}>
-            <h2 className="about-section-title">
-              {el ? 'Πώς δουλεύουμε' : 'How We Work'}
-            </h2>
-          </div>
-          <div className="about-process-row">
-            {processSteps.map((step, i) => (
-              <div key={i} className="about-process-step">
-                <div className="about-process-num">{i + 1}</div>
-                <div className="about-process-label">{el ? step.el : step.en}</div>
-                {i < processSteps.length - 1 && <div className="about-process-arrow">→</div>}
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: 28 }}>
-            <button
-              className="btn-primary"
-              style={{ fontSize: '0.88rem', padding: '11px 28px' }}
-              onClick={() => navigate('/contact')}
-            >
-              {el ? 'Ξεκίνα το Project σου' : 'Start Your Project'} →
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* ── How we work — shared component ── */}
+      <HowItWorks />
 
       {/* ── Final CTA ── */}
       <section style={{ padding: '20px 0 48px' }}>
