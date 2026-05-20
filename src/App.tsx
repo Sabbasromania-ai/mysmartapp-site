@@ -15,6 +15,7 @@ import NeuralBg from './components/NeuralBg'
 import AppPage from './pages/AppPage'
 import AppsPage from './pages/AppsPage'
 import AIHealthTrackerPage from './pages/AIHealthTrackerPage'
+import ICaloriePage from './pages/ICaloriePage'
 import Privacy from './pages/Privacy'
 import SupportPage from './pages/SupportPage'
 import ContactPage from './pages/ContactPage'
@@ -76,6 +77,13 @@ export default function App() {
             <>
               <Nav />
               <AIHealthTrackerPage />
+              <Footer />
+            </>
+          } />
+          <Route path="/apps/icalorie" element={
+            <>
+              <Nav />
+              <ICaloriePage />
               <Footer />
             </>
           } />
