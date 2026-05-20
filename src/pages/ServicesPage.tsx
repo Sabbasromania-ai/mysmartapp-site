@@ -98,7 +98,7 @@ export default function ServicesPage() {
     <div style={{ background: 'var(--bg)' }}>
 
       {/* ── Hero ── */}
-      <section style={{ textAlign: 'center', padding: '96px 24px 40px' }}>
+      <section style={{ textAlign: 'center', padding: '96px 24px 32px' }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
           fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.13em',
@@ -132,7 +132,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Service Cards ── */}
-      <section style={{ padding: '0 0 40px' }}>
+      <section style={{ padding: '0 0 28px' }}>
         <div className="container">
           <div className="svc-page-grid">
             {el_services.map((svc, i) => (
@@ -161,7 +161,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Not sure section ── */}
-      <section style={{ padding: '0 0 56px' }}>
+      <section style={{ padding: '0 0 48px' }}>
         <div className="container">
           <div className="svc-notsure-card">
             <h2 style={{
