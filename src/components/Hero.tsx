@@ -49,7 +49,9 @@ export default function Hero() {
 
   return (
     <section className="hero-platform" id="home">
-      <div className="container hero-inner">
+      <div className="container">
+      <div className="hero-card">
+      <div className="hero-inner">
 
         {/* LEFT */}
         <div className="hero-left">
@@ -127,6 +129,8 @@ export default function Hero() {
           </div>
 
         </div>
+      </div>
+      </div>
       </div>
     </section>
   )
