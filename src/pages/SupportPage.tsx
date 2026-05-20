@@ -1,5 +1,4 @@
 import { useEffect, useState, FormEvent } from 'react'
-import navLogo from '../navlogo.png'
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 
 /* ─── Types ────────────────────────────────────────────────── */
@@ -424,84 +423,6 @@ export default function SupportPage() {
         </div>
 
       </div>
-
-      {/* ── Footer ── */}
-      {/* Using div instead of footer element to avoid global CSS footer{display:flex} override */}
-      <div role="contentinfo" style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        padding: '48px 24px 32px',
-      }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '32px 48px',
-            marginBottom: 40,
-          }}>
-            {/* Brand — flex: 2 so it takes double width vs other cols */}
-            <div style={{ flex: '2 1 240px', minWidth: 200 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-                <img src={navLogo} alt="mysmartsapp" style={{ height: 28, width: 'auto' }} />
-              </div>
-              <p style={{ fontSize: 13, color: '#5e6888', lineHeight: 1.7, maxWidth: 220 }}>
-                AI-powered apps and tools for health, productivity, and real-life use. Built by independent developers.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div style={{ flex: '1 1 140px', minWidth: 130 }}>
-              <h3 style={{ fontSize: 13, fontWeight: 700, color: '#f0f2f8', marginBottom: 14, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                Quick Links
-              </h3>
-              {[
-                { label: 'Home', href: '/' },
-                { label: 'Support', href: '/support' },
-                { label: 'Privacy Policy', href: '/privacy' },
-                { label: 'Contact', href: 'mailto:info@mysmartsapp.com' },
-              ].map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  style={{ display: 'block', fontSize: 14, color: '#5e6888', textDecoration: 'none', marginBottom: 10, transition: 'color 0.2s' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#00d4ff' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#5e6888' }}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Contact */}
-            <div style={{ flex: '1 1 160px', minWidth: 150 }}>
-              <h3 style={{ fontSize: 13, fontWeight: 700, color: '#f0f2f8', marginBottom: 14, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                Contact
-              </h3>
-              <a
-                href="mailto:info@mysmartsapp.com"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  fontSize: 14, color: '#5e6888', textDecoration: 'none', transition: 'color 0.2s',
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#00d4ff' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#5e6888' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-                info@mysmartsapp.com
-              </a>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 24, textAlign: 'center' }}>
-            <p style={{ fontSize: 13, color: '#5e6888' }}>
-              &copy; {new Date().getFullYear()} mysmartsapp.com &mdash; All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>{/* end footer div */}
 
     </div>
   )

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import iCalorieLogo from '../icalorie-logo.png'
 import iCalorieMockup from '../iCalorie_mockup.png'
-import PlatformBadge from '../components/PlatformBadge'
+import StoreBadges from '../components/StoreBadges'
 
 const chips = [
   { icon: '📷', label: 'AI Meal Scan'           },
@@ -40,7 +40,7 @@ export default function ICaloriePage() {
   }, [lang])
 
   return (
-    <div style={{ paddingBottom: 80, minHeight: '80vh' }}>
+    <div style={{ paddingBottom: 0, minHeight: '80vh' }}>
 
       {/* ── Hero featured card ── */}
       <section className="ap-featured-section" style={{ paddingTop: 96 }}>
@@ -99,8 +99,7 @@ export default function ICaloriePage() {
                 >
                   Notify Me
                 </button>
-                <PlatformBadge platform="iOS" />
-                <PlatformBadge platform="Android" />
+                <StoreBadges platforms={['iOS', 'Android']} disabled />
               </div>
 
             </div>

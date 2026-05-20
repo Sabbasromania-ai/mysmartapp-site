@@ -59,6 +59,7 @@ export default function App() {
             <>
               <Nav />
               <AppsPage />
+              <Contact email="info@mysmartsapp.com" />
               <Footer />
             </>
           } />
@@ -69,6 +70,7 @@ export default function App() {
             <>
               <Nav />
               <AIHealthTrackerPage />
+              <Contact email="info@mysmartsapp.com" />
               <Footer />
             </>
           } />
@@ -76,6 +78,7 @@ export default function App() {
             <>
               <Nav />
               <ICaloriePage />
+              <Contact email="info@mysmartsapp.com" />
               <Footer />
             </>
           } />
@@ -83,6 +86,7 @@ export default function App() {
             <>
               <Nav />
               <AppPage />
+              <Contact email="info@mysmartsapp.com" />
               <Footer />
             </>
           } />
@@ -97,6 +101,7 @@ export default function App() {
             <>
               <Nav />
               <SupportPage />
+              <Footer />
             </>
           } />
           <Route path="/contact" element={
