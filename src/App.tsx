@@ -6,9 +6,7 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
 import Features from './components/Features'
-import AppPreview from './components/AppPreview'
 import HowItWorks from './components/HowItWorks'
-import Support from './components/Support'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import NeuralBg from './components/NeuralBg'
@@ -43,12 +41,6 @@ function HomePage() {
         <Hero />
         <About />
         <Features />
-        <section className="combined-section" id="platform">
-          <div className="container">
-            <AppPreview />
-          </div>
-        </section>
-        <Support />
         <HowItWorks />
         <Contact email="info@mysmartsapp.com" />
       </main>
