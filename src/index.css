@@ -3728,6 +3728,116 @@ button.feature-card {
   box-sizing: border-box;
 }
 
+/* ─── Services Page ─────────────────────────────────────── */
+.svc-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.svc-page-card {
+  background: rgba(0,210,255,0.05);
+  border: 1px solid rgba(0,220,255,0.22);
+  border-radius: 18px;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.svc-page-card:hover {
+  border-color: rgba(0,220,255,0.55);
+  box-shadow: 0 0 32px rgba(0,220,255,0.18), 0 0 8px rgba(0,220,255,0.1);
+  transform: translateY(-4px);
+}
+
+.svc-page-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: rgba(0,220,255,0.08);
+  border: 1px solid rgba(0,220,255,0.18);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.svc-page-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.svc-page-desc {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+
+.svc-page-bullets {
+  list-style: none;
+  padding: 0; margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.svc-page-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+}
+.svc-bullet-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.svc-page-cta {
+  margin-top: auto;
+  background: transparent;
+  border: 1px solid rgba(0,220,255,0.35);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  font-family: inherit;
+  text-align: center;
+}
+.svc-page-cta:hover {
+  background: rgba(0,220,255,0.08);
+  border-color: rgba(0,220,255,0.6);
+}
+
+.svc-notsure-card {
+  background: rgba(0,210,255,0.05);
+  border: 1px solid rgba(0,220,255,0.22);
+  border-radius: 18px;
+  padding: 48px 40px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 900px) {
+  .svc-page-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .svc-page-grid { grid-template-columns: 1fr; }
+  .svc-notsure-card { padding: 32px 20px; }
+}
+
 /* ─── iReception mobile phone slot ───────────────────────────────
    A phone image is duplicated inside the content column so it can
    appear between the description and the chips on mobile.
