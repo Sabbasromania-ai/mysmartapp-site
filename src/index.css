@@ -1526,100 +1526,131 @@ nav {
 /* ===================== FOOTER ===================== */
 /* ===================== FOOTER ===================== */
 footer {
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding: 32px 0 0;
+  padding: 0;
+}
+
+.footer-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(0,220,255,0.15);
+  margin: 56px 0 0;
 }
 
 .footer-inner {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
-  padding-bottom: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 32px 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 48px;
 }
 
+/* LEFT — brand */
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 0 0 auto;
+  gap: 0;
+}
+
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .footer-logo {
-  height: 26px;
+  height: 46px;
   width: auto;
 }
 
-.footer-tagline {
-  font-size: 0.73rem;
-  color: rgba(255,255,255,0.3);
-  line-height: 1.6;
-  margin: 0;
+.footer-wordmark {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
 }
 
+.footer-wordmark span {
+  color: var(--accent);
+}
+
+.footer-tagline {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 0;
+}
+
+/* CENTER — links */
 .footer-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-  align-items: flex-start;
-  max-width: 360px;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  white-space: nowrap;
+  padding-top: 6px;
 }
 
 .footer-link {
-  font-size: 0.77rem;
-  color: rgba(255,255,255,0.42);
+  color: rgba(255,255,255,0.82);
+  font-size: 15px;
   text-decoration: none;
   transition: color 0.2s;
-  white-space: nowrap;
 }
-.footer-link:hover { color: rgba(255,255,255,0.82); }
+.footer-link:hover { color: var(--accent); }
 
-.footer-right {
+/* RIGHT — contact */
+.footer-contact {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 12px;
-  flex: 0 0 auto;
+  gap: 18px;
+  padding-top: 6px;
 }
 
 .footer-email {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.77rem;
-  color: rgba(255,255,255,0.45);
+  gap: 10px;
+  color: #22dfff;
+  font-size: 15px;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: opacity 0.2s;
 }
-.footer-email:hover { color: var(--accent); }
+.footer-email:hover { opacity: 0.8; }
 
 .footer-social {
   display: flex;
-  gap: 8px;
+  gap: 22px;
 }
 
 .footer-social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 7px;
-  color: rgba(255,255,255,0.38);
+  font-size: 24px;
+  color: rgba(255,255,255,0.75);
   text-decoration: none;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  background: none;
 }
 .footer-social-link:hover {
   color: var(--accent);
-  border-color: rgba(0,212,255,0.38);
 }
 
+/* COPYRIGHT */
 .footer-copy {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 14px 0;
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.18);
+  max-width: 1200px;
+  margin: 36px auto 0;
+  padding: 0 32px 40px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
   text-align: center;
 }
 
@@ -2901,20 +2932,30 @@ button.feature-card {
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
   .bc-title { font-size: 1rem; }
   .bc-desc { font-size: 0.875rem; line-height: 1.5; }
 
   /* ---- FOOTER ---- */
-  footer { padding: 24px 0 0; }
+  .footer-divider { margin: 40px 0 0; }
   .footer-inner {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    padding: 32px 20px 0;
+    gap: 32px;
     text-align: center;
-    gap: 24px;
   }
   .footer-brand { align-items: center; }
-  .footer-links { justify-content: center; max-width: 100%; }
-  .footer-right { align-items: center; }
+  .footer-brand-row { justify-content: center; }
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    justify-content: center;
+  }
+  .footer-contact {
+    align-items: center;
+  }
+  .footer-copy { padding: 0 20px 32px; }
 
   /* ---- CTA STRIP ---- */
   .cta-card {
