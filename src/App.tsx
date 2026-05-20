@@ -60,7 +60,6 @@ export default function App() {
             <>
               <Nav />
               <ServicesPage />
-              <Contact email="info@mysmartsapp.com" />
               <Footer />
             </>
           } />
