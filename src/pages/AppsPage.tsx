@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PlatformBadge from '../components/PlatformBadge'
+import StoreBadges from '../components/StoreBadges'
 import appLogo from '../applogo.png'
 import iReceptionLogo from '../ireception-logo.png'
 import iCalorieLogo from '../icalorie-logo.png'
@@ -275,9 +275,7 @@ export default function AppsPage() {
                 >
                   Notify Me
                 </button>
-                <PlatformBadge platform="iOS" />
-                <PlatformBadge platform="Android" />
-                <PlatformBadge platform="Web" />
+                <StoreBadges platforms={['iOS', 'Android', 'Web']} disabled />
               </div>
 
             </div>
@@ -343,8 +341,7 @@ export default function AppsPage() {
                 >
                   Notify Me
                 </button>
-                <PlatformBadge platform="iOS" />
-                <PlatformBadge platform="Android" />
+                <StoreBadges platforms={['iOS', 'Android']} disabled />
               </div>
 
             </div>

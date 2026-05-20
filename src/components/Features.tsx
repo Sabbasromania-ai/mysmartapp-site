@@ -286,7 +286,7 @@ export default function Features() {
           }}>
             Portfolio / Case Studies
           </h2>
-          <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.65)', margin: 0 }}>
+          <p style={{ fontSize: '1.05rem', color: '#00dcff', margin: 0 }}>
             Real products we built to prove what we can deliver.
           </p>
         </div>
@@ -406,7 +406,7 @@ export default function Features() {
     </section>
 
     {/* ── Who We Build For ─────────────────────────────────────── */}
-    <section style={{ padding: '3.5rem 0 4rem' }}>
+    <section style={{ padding: '1.5rem 0 4rem' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <h2 style={{
@@ -416,7 +416,7 @@ export default function Features() {
             marginBottom: '0.55rem',
             letterSpacing: '-0.02em',
           }}>Who We Build For</h2>
-          <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.55)', margin: 0 }}>
+          <p style={{ fontSize: '1.05rem', color: '#00dcff', margin: 0 }}>
             We work with businesses of all types and sizes.
           </p>
         </div>

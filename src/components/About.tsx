@@ -104,7 +104,7 @@ export default function About() {
           </h2>
           <p style={{
             fontSize: '1.05rem',
-            color: 'rgba(255,255,255,0.82)',
+            color: '#00dcff',
             margin: 0,
           }}>
             {t('svc_subtitle')}
