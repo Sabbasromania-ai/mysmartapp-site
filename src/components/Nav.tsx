@@ -11,7 +11,7 @@ export default function Nav() {
   const links = [
     { id: 'services',   label: t('nav_platform'),     href: '/services' },
     { id: 'apps',       label: t('nav_apps'),          href: '/apps' },
-    { id: 'about',      label: t('nav_about'),         href: '/#about' },
+    { id: 'about',      label: t('nav_about'),         href: '/about' },
     { id: 'process',    label: t('nav_process'),       href: '/#process' },
     { id: 'industries', label: t('nav_industries'),    href: '/#industries' },
     { id: 'privacy',    label: t('footer_privacy'),    href: '/privacy' },

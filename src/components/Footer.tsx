@@ -24,9 +24,9 @@ export default function Footer() {
 
         {/* CENTER — links */}
         <div className="footer-links">
-          <a href="/#services" className="footer-link">{t('nav_platform')}</a>
+          <a href="/services" className="footer-link">{t('nav_platform')}</a>
           <a href="/apps" className="footer-link">Portfolio</a>
-          <a href="/#about" className="footer-link">{t('nav_about')}</a>
+          <a href="/about" className="footer-link">{t('nav_about')}</a>
           <a href="/#process" className="footer-link">{t('nav_process')}</a>
           <a href="/#industries" className="footer-link">{t('nav_industries')}</a>
           <a href="/privacy" className="footer-link">{t('footer_privacy')}</a>
