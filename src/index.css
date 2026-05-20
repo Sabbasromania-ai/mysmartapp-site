@@ -3044,11 +3044,13 @@ button.feature-card {
 
   /* ---- CTA STRIP ---- */
   .cta-card {
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column !important;
     padding: 28px 20px;
     gap: 22px;
     text-align: center;
   }
+  .cta-left { width: 100%; }
   .cta-sub { max-width: 100%; }
   .cta-right {
     width: 100%;
