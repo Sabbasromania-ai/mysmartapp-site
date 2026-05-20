@@ -3438,3 +3438,26 @@ button.feature-card {
   max-width: 100%;
   box-sizing: border-box;
 }
+
+/* ─── iReception mobile phone slot ───────────────────────────────
+   A phone image is duplicated inside the content column so it can
+   appear between the description and the chips on mobile.
+   On desktop: slot is hidden, real phone column shows normally.
+   On mobile:  slot is visible, real phone column is hidden.
+──────────────────────────────────────────────────────────────── */
+.apppage-mobile-phone-slot {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Show the in-content phone slot */
+  .apppage-mobile-phone-slot {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0 6px;
+  }
+  /* Hide the real right-column phone for iReception (slot replaces it) */
+  .apppage-hero-right-reception {
+    display: none !important;
+  }
+}

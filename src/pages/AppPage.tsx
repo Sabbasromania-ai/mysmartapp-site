@@ -206,6 +206,24 @@ export default function AppPage() {
                 <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, maxWidth: 440, marginBottom: 14 }}>
                   Automate bookings, calls, messages, reminders, and customer follow-ups from one smart dashboard.
                 </p>
+
+                {/* Mobile-only phone slot — sits between description and chips */}
+                <div className="apppage-mobile-phone-slot">
+                  <img
+                    src={mockupMap[index as number]}
+                    alt={app.name}
+                    style={{
+                      width: 'clamp(230px, 72vw, 340px)',
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      filter: `drop-shadow(0 8px 28px rgba(0,0,0,0.55)) drop-shadow(0 0 18px ${app.color}22)`,
+                      display: 'block',
+                      margin: '0 auto',
+                    }}
+                  />
+                </div>
+
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: 16 }}>
                   {[
                     { label: 'AI Receptionist',       icon: '🤖' },
@@ -254,7 +272,7 @@ export default function AppPage() {
           </div>
 
           {/* Right — phone */}
-          <div className="apppage-hero-right" style={{ display: 'flex', alignItems: 'center', justifyContent: isReception ? 'flex-start' : 'flex-end', zIndex: 1, position: 'relative', order: isReception ? 1 : 2 }}>
+          <div className={`apppage-hero-right${isReception ? ' apppage-hero-right-reception' : ''}`} style={{ display: 'flex', alignItems: 'center', justifyContent: isReception ? 'flex-start' : 'flex-end', zIndex: 1, position: 'relative', order: isReception ? 1 : 2 }}>
             {isHealthTracker ? (
               <>
                 {/* Layered glow — outer soft + inner core */}
