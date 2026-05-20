@@ -3830,23 +3830,32 @@ button.feature-card {
 .svc-notsure-card {
   background: rgba(0,210,255,0.05);
   border: 1px solid rgba(0,220,255,0.28);
-  border-radius: 18px;
-  padding: 40px 40px;
-  text-align: center;
+  border-radius: 16px;
+  padding: 24px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  max-width: 1140px;
+  max-width: 1160px;
   margin: 0 auto;
   box-shadow: 0 0 28px rgba(0,220,255,0.08);
+}
+.svc-notsure-left {
+  flex: 1;
+  min-width: 0;
 }
 
 @media (max-width: 900px) {
   .svc-page-grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-notsure-card { flex-direction: column; text-align: center; padding: 22px 24px; gap: 14px; }
+  .svc-notsure-left { text-align: center; }
 }
 @media (max-width: 600px) {
   .svc-page-grid { grid-template-columns: 1fr; gap: 12px; }
   .svc-page-card { padding: 16px 16px 14px; }
-  .svc-notsure-card { padding: 28px 20px; }
+  .svc-notsure-card { padding: 18px 16px; gap: 12px; }
 }
 
 /* ─── iReception mobile phone slot ───────────────────────────────

@@ -98,32 +98,32 @@ export default function ServicesPage() {
     <div style={{ background: 'var(--bg)' }}>
 
       {/* ── Hero ── */}
-      <section style={{ textAlign: 'center', padding: '96px 24px 32px' }}>
+      <section style={{ textAlign: 'center', padding: '88px 24px 20px' }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
-          fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.13em',
-          color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 18,
+          fontSize: '0.60rem', fontWeight: 700, letterSpacing: '0.13em',
+          color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 10,
         }}>
           <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block' }} />
           {el ? 'ΤΙ ΚΑΤΑΣΚΕΥΑΖΟΥΜΕ' : 'WHAT WE BUILD'}
         </div>
         <h1 style={{
-          fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800,
-          color: '#fff', letterSpacing: '-0.03em', marginBottom: 18, lineHeight: 1.1,
+          fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)', fontWeight: 800,
+          color: '#fff', letterSpacing: '-0.03em', marginBottom: 10, lineHeight: 1.1,
         }}>
           {el ? 'Υπηρεσίες' : 'Services'}
         </h1>
         <p style={{
-          fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: '#00dcff',
-          maxWidth: 640, margin: '0 auto 20px', lineHeight: 1.6,
+          fontSize: 'clamp(0.88rem, 1.4vw, 1.05rem)', color: '#00dcff',
+          maxWidth: 580, margin: '0 auto 10px', lineHeight: 1.55,
         }}>
           {el
             ? 'Ψηφιακές λύσεις που κατασκευάζουμε για επιχειρήσεις που θέλουν περισσότερους πελάτες, καλύτερη λειτουργία και κλιμακούμενα ψηφιακά συστήματα.'
             : 'Digital solutions we build for businesses that want more customers, better operations, and scalable digital systems.'}
         </p>
         <p style={{
-          fontSize: '0.95rem', color: 'rgba(255,255,255,0.5)',
-          maxWidth: 580, margin: '0 auto', lineHeight: 1.7,
+          fontSize: '0.82rem', color: 'rgba(255,255,255,0.5)',
+          maxWidth: 520, margin: '0 auto', lineHeight: 1.65,
         }}>
           {el
             ? 'Σχεδιάζουμε και κατασκευάζουμε mobile εφαρμογές, websites, e-shops, AI εργαλεία, booking systems και αυτοματισμούς προσαρμοσμένους σε κάθε επιχείρηση.'
@@ -132,7 +132,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Service Cards ── */}
-      <section style={{ padding: '0 0 28px' }}>
+      <section style={{ padding: '0 0 20px' }}>
         <div className="container">
           <div className="svc-page-grid">
             {el_services.map((svc, i) => (
@@ -161,26 +161,28 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Not sure section ── */}
-      <section style={{ padding: '0 0 48px' }}>
+      <section style={{ padding: '0 0 40px' }}>
         <div className="container">
           <div className="svc-notsure-card">
-            <h2 style={{
-              fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 800,
-              color: '#fff', marginBottom: 12, letterSpacing: '-0.02em',
-            }}>
-              {el ? 'Δεν ξέρεις τι χρειάζεσαι;' : 'Not sure what you need?'}
-            </h2>
-            <p style={{
-              fontSize: '0.95rem', color: 'rgba(255,255,255,0.55)',
-              maxWidth: 520, margin: '0 auto 28px', lineHeight: 1.7,
-            }}>
-              {el
-                ? 'Πες μας τι θέλεις να φτιάξεις και θα σου προτείνουμε τη σωστή λύση, τεχνολογία και πλάνο λανσαρίσματος.'
-                : 'Tell us what you want to build and we\'ll suggest the right solution, technology, and launch plan.'}
-            </p>
+            <div className="svc-notsure-left">
+              <h2 style={{
+                fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', fontWeight: 800,
+                color: '#fff', marginBottom: 5, letterSpacing: '-0.02em',
+              }}>
+                {el ? 'Δεν ξέρεις τι χρειάζεσαι;' : 'Not sure what you need?'}
+              </h2>
+              <p style={{
+                fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)',
+                margin: 0, lineHeight: 1.6, maxWidth: 500,
+              }}>
+                {el
+                  ? 'Πες μας τι θέλεις να φτιάξεις και θα σου προτείνουμε τη σωστή λύση, τεχνολογία και πλάνο λανσαρίσματος.'
+                  : 'Tell us what you want to build and we\'ll suggest the right solution, technology, and launch plan.'}
+              </p>
+            </div>
             <button
               className="btn-primary"
-              style={{ fontSize: '0.95rem', padding: '13px 32px' }}
+              style={{ fontSize: '0.85rem', padding: '11px 26px', flexShrink: 0 }}
               onClick={() => navigate('/contact')}
             >
               {el ? 'Ζήτα Προσφορά' : 'Request a Quote'} →
