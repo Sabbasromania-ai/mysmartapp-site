@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apps, PhoneMockup } from '../components/Features'
-import PlatformBadge from '../components/PlatformBadge'
+import StoreBadges from '../components/StoreBadges'
 import appScreenshot from '../app-screenshot.png'
 import iReceptionMockup from '../iReception_mockup.png'
 import iCalorieMockup from '../iCalorie_mockup.png'
@@ -150,6 +150,7 @@ export default function AppPage() {
             transform: heroHovered ? 'translateY(-3px)' : 'translateY(0)',
             transition: 'border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease',
           }}
+          className="apppage-hero-grid"
         >
           {/* Background glow blob */}
           <div style={{
@@ -160,7 +161,7 @@ export default function AppPage() {
           }} />
 
           {/* Left content */}
-          <div style={{ zIndex: 1, order: isReception ? 2 : 1 }}>
+          <div className="apppage-hero-left" style={{ zIndex: 1, order: isReception ? 2 : 1 }}>
             {isReception ? (
               /* iReception: [logo] [iReception] [COMING SOON] — all one row */
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
@@ -239,9 +240,7 @@ export default function AppPage() {
             )}
 
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
-              {app.platforms.map(p => (
-                <PlatformBadge key={p} platform={p} />
-              ))}
+              <StoreBadges platforms={app.platforms} disabled={app.tag !== 'Live'} />
             </div>
 
             {app.tag === 'Live' ? (
@@ -255,7 +254,7 @@ export default function AppPage() {
           </div>
 
           {/* Right — phone */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: isReception ? 'flex-start' : 'flex-end', zIndex: 1, position: 'relative', order: isReception ? 1 : 2 }}>
+          <div className="apppage-hero-right" style={{ display: 'flex', alignItems: 'center', justifyContent: isReception ? 'flex-start' : 'flex-end', zIndex: 1, position: 'relative', order: isReception ? 1 : 2 }}>
             {isHealthTracker ? (
               <>
                 {/* Layered glow — outer soft + inner core */}
@@ -341,6 +340,7 @@ export default function AppPage() {
               {/* Featured card — bigger padding, stronger border at rest */}
               {featured && (
                 <div
+                  className="apppage-featured-card"
                   onMouseEnter={() => setHoveredFeatured(true)}
                   onMouseLeave={() => setHoveredFeatured(false)}
                   style={{
@@ -382,7 +382,7 @@ export default function AppPage() {
               )}
 
               {/* Regular feature cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+              <div className="apppage-feat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
                 {rest.map((f, i) => (
                   <div
                     key={f.title}

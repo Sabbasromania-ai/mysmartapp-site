@@ -3384,3 +3384,57 @@ button.feature-card {
 .ap-feat-card {
   border-radius: 20px !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   APPPAGE (/apps/:slug) — mobile hero & feature card layout
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hero card: single-column vertical stack */
+  .apppage-hero-grid {
+    grid-template-columns: 1fr !important;
+    padding: 18px 16px !important;
+    gap: 18px !important;
+  }
+  /* Content always on top */
+  .apppage-hero-left {
+    order: 1 !important;
+  }
+  /* Phone always below, centred */
+  .apppage-hero-right {
+    order: 2 !important;
+    justify-content: center !important;
+  }
+  .apppage-hero-right img {
+    max-height: 240px !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+  /* Featured (AI Advisor) card: single col on mobile */
+  .apppage-featured-card {
+    grid-template-columns: 1fr !important;
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+  /* Feature cards grid: 2 cols on tablet */
+  .apppage-feat-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Chips: ensure wrap + allow narrower individual chips */
+  .ap-feat-chip {
+    font-size: 11px !important;
+    padding: 5px 9px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Feature cards: single col on small phones */
+  .apppage-feat-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Safety net: all direct children of .container are constrained */
+.container > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
