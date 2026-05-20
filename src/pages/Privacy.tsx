@@ -73,7 +73,7 @@ export default function Privacy() {
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 820, margin: '0 auto', padding: '48px 20px 100px', color: '#e4e4e7' }}>
+      <div style={{ maxWidth: 820, margin: '0 auto', padding: '96px 20px 100px', color: '#e4e4e7' }}>
 
         {/* Back link */}
         <a href="/" style={{

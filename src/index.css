@@ -22,10 +22,34 @@
   --radius: 16px;
   --radius-sm: 10px;
   --radius-xs: 6px;
+
+  /* ── Header geometry (fixed nav: top:16px, height:68px) ── */
+  --header-height-desktop: 68px;
+  --header-height-mobile: 56px;
+  --header-top-desktop: 16px;
+  --header-top-mobile: 10px;
+  /* Total clearance = nav-top + nav-height + 4px safety */
+  --header-clearance: 88px;
+  --header-clearance-mobile: 70px;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Offset anchor jumps so sections don't hide under fixed nav */
+  scroll-padding-top: var(--header-clearance);
+}
+
+/* All named sections respect fixed header on scroll */
+section[id] {
+  scroll-margin-top: var(--header-clearance);
+}
+
+@media (max-width: 768px) {
+  html { scroll-padding-top: var(--header-clearance-mobile); }
+  section[id] { scroll-margin-top: var(--header-clearance-mobile); }
+}
 
 body {
   background: var(--bg);
