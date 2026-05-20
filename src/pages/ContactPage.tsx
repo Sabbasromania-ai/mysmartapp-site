@@ -104,7 +104,7 @@ export default function ContactPage() {
           {t('contact_desc')}
         </p>
         <a
-          href="mailto:info@mysmartsapp.com"
+          href="/contact"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             color: '#00d4ff', fontSize: 15, textDecoration: 'none', fontWeight: 500,

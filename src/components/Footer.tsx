@@ -27,6 +27,8 @@ export default function Footer() {
           <a href="/#services" className="footer-link">{t('nav_platform')}</a>
           <a href="/apps" className="footer-link">Portfolio</a>
           <a href="/#about" className="footer-link">{t('nav_about')}</a>
+          <a href="/#process" className="footer-link">{t('nav_process')}</a>
+          <a href="/#industries" className="footer-link">{t('nav_industries')}</a>
           <a href="/privacy" className="footer-link">{t('footer_privacy')}</a>
           <a href="/support" className="footer-link">Support</a>
           <a href="/contact" className="footer-link">{t('footer_contact')}</a>
@@ -34,7 +36,7 @@ export default function Footer() {
 
         {/* RIGHT — email + social */}
         <div className="footer-contact">
-          <a href="mailto:info@mysmartsapp.com" className="footer-email">
+          <a href="/contact" className="footer-email">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="M22 7l-10 7L2 7" />

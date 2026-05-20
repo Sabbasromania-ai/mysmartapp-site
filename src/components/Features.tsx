@@ -258,6 +258,7 @@ const WHO_WE_BUILD = [
 export default function Features() {
   const [hovered, setHovered] = useState<number | null>(null)
   const navigate = useNavigate()
+  const { t } = useLang()
 
   const cardBg = (i: number) => hovered === i
     ? 'linear-gradient(160deg,rgba(0,210,255,0.12) 0%,rgba(8,18,38,0.58) 100%)'
@@ -284,10 +285,10 @@ export default function Features() {
             marginBottom: '0.55rem',
             letterSpacing: '-0.02em',
           }}>
-            Portfolio / Case Studies
+            {t('portfolio_title')}
           </h2>
           <p style={{ fontSize: '1.05rem', color: '#00dcff', margin: 0 }}>
-            Real products we built to prove what we can deliver.
+            {t('portfolio_sub')}
           </p>
         </div>
 
@@ -398,7 +399,7 @@ export default function Features() {
               transition: 'border-color 0.25s,box-shadow 0.25s',
             }}
           >
-            View All Projects →
+            {t('portfolio_view_all')}
           </button>
         </div>
 
@@ -415,9 +416,9 @@ export default function Features() {
             color: '#fff',
             marginBottom: '0.55rem',
             letterSpacing: '-0.02em',
-          }}>Who We Build For</h2>
+          }}>{t('wbf_title')}</h2>
           <p style={{ fontSize: '1.05rem', color: '#00dcff', margin: 0 }}>
-            We work with businesses of all types and sizes.
+            {t('wbf_sub')}
           </p>
         </div>
 

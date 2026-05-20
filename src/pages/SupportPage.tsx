@@ -6,60 +6,45 @@ type FormState = { name: string; email: string; subject: string; message: string
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
 /* ─── FAQ data ──────────────────────────────────────────────── */
-const FAQ = [
-  {
-    id: 'account',
-    title: 'Account & Subscription',
-    desc: 'Questions about your account, subscription, billing, or payments.',
-    answer:
-      'Manage your subscription through App Store (iOS: Settings → Apple ID → Subscriptions) or Google Play (Profile → Payments & subscriptions). For billing issues, contact us with your purchase receipt and we will resolve it within 24 hours.',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-      </svg>
-    ),
-  },
-  {
-    id: 'usage',
-    title: 'App Usage',
-    desc: 'Help with using the app, features, or syncing your data.',
-    answer:
-      'The app syncs with Apple Health on iOS and Google Health Connect on Android. Go to Settings → Health Sync to enable. For dose logging, tap the Syringe tab → Log Dose. If sync fails, verify permissions in your phone\'s health app settings.',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="5" y="2" width="14" height="20" rx="2" />
-        <line x1="12" y1="18" x2="12.01" y2="18" />
-      </svg>
-    ),
-  },
-  {
-    id: 'ai',
-    title: 'AI Advisor',
-    desc: 'Questions about the AI Advisor, insights, and recommendations.',
-    answer:
-      'The AI Advisor provides general health information based on your tracked data. It is not a substitute for professional medical advice. Always consult your doctor for medication changes. Premium users get unlimited AI Advisor access; Pro users get a monthly allowance.',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
-      </svg>
-    ),
-  },
-  {
-    id: 'privacy',
-    title: 'Data & Privacy',
-    desc: 'Information about your data, privacy, security, and account deletion.',
-    answer:
-      'All data is stored on secure EU-based Supabase servers. We never sell your data. You can delete your account from Settings → Account → Delete Account — all data is permanently erased within 30 days, in compliance with GDPR and Apple guidelines.',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    ),
-  },
-]
+const accountIcon = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="8" r="4" />
+    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+  </svg>
+)
+const usageIcon = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="2" width="14" height="20" rx="2" />
+    <line x1="12" y1="18" x2="12.01" y2="18" />
+  </svg>
+)
+const aiIcon = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
+  </svg>
+)
+const privacyIcon = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+)
+
+function getFAQ(lang: string) {
+  if (lang === 'el') return [
+    { id: 'account', title: 'Λογαριασμός & Συνδρομή', desc: 'Ερωτήσεις για τον λογαριασμό, τη συνδρομή, τιμολόγηση ή πληρωμές.', answer: 'Διαχειριστείτε τη συνδρομή σας μέσω App Store (iOS: Ρυθμίσεις → Apple ID → Συνδρομές) ή Google Play (Προφίλ → Πληρωμές & συνδρομές). Για θέματα χρέωσης, επικοινωνήστε μαζί μας με την απόδειξη αγοράς σας και θα το λύσουμε εντός 24 ωρών.', icon: accountIcon },
+    { id: 'usage', title: 'Χρήση Εφαρμογής', desc: 'Βοήθεια με τη χρήση της εφαρμογής, λειτουργίες ή συγχρονισμό δεδομένων.', answer: 'Η εφαρμογή συγχρονίζεται με το Apple Health στο iOS και Google Health Connect στο Android. Μεταβείτε στις Ρυθμίσεις → Health Sync για ενεργοποίηση. Για καταγραφή δόσης, πατήστε την καρτέλα Σύριγγα → Καταγραφή Δόσης. Αν αποτύχει ο συγχρονισμός, ελέγξτε τα δικαιώματα στις ρυθμίσεις υγείας του τηλεφώνου σας.', icon: usageIcon },
+    { id: 'ai', title: 'Σύμβουλος Τεχνητής Νοημοσύνης', desc: 'Ερωτήσεις για τον Σύμβουλο ΤΝ, insights και προτάσεις.', answer: 'Ο Σύμβουλος ΤΝ παρέχει γενικές πληροφορίες υγείας βάσει των δεδομένων σας. Δεν υποκαθιστά ιατρική συμβουλή. Πάντα συμβουλευτείτε γιατρό για αλλαγές φαρμάκων. Οι χρήστες Premium έχουν απεριόριστη πρόσβαση· οι Pro έχουν μηνιαίο όριο.', icon: aiIcon },
+    { id: 'privacy', title: 'Δεδομένα & Ιδιωτικότητα', desc: 'Πληροφορίες για τα δεδομένα, την ιδιωτικότητα, ασφάλεια και διαγραφή λογαριασμού.', answer: 'Όλα τα δεδομένα αποθηκεύονται σε ασφαλείς EU-based διακομιστές Supabase. Δεν πουλάμε ποτέ τα δεδομένα σας. Μπορείτε να διαγράψετε τον λογαριασμό σας από Ρυθμίσεις → Λογαριασμός → Διαγραφή Λογαριασμού — όλα τα δεδομένα διαγράφονται μόνιμα εντός 30 ημερών, σύμφωνα με τον GDPR.', icon: privacyIcon },
+  ]
+  return [
+    { id: 'account', title: 'Account & Subscription', desc: 'Questions about your account, subscription, billing, or payments.', answer: 'Manage your subscription through App Store (iOS: Settings → Apple ID → Subscriptions) or Google Play (Profile → Payments & subscriptions). For billing issues, contact us with your purchase receipt and we will resolve it within 24 hours.', icon: accountIcon },
+    { id: 'usage', title: 'App Usage', desc: 'Help with using the app, features, or syncing your data.', answer: 'The app syncs with Apple Health on iOS and Google Health Connect on Android. Go to Settings → Health Sync to enable. For dose logging, tap the Syringe tab → Log Dose. If sync fails, verify permissions in your phone\'s health app settings.', icon: usageIcon },
+    { id: 'ai', title: 'AI Advisor', desc: 'Questions about the AI Advisor, insights, and recommendations.', answer: 'The AI Advisor provides general health information based on your tracked data. It is not a substitute for professional medical advice. Always consult your doctor for medication changes. Premium users get unlimited AI Advisor access; Pro users get a monthly allowance.', icon: aiIcon },
+    { id: 'privacy', title: 'Data & Privacy', desc: 'Information about your data, privacy, security, and account deletion.', answer: 'All data is stored on secure EU-based Supabase servers. We never sell your data. You can delete your account from Settings → Account → Delete Account — all data is permanently erased within 30 days, in compliance with GDPR and Apple guidelines.', icon: privacyIcon },
+  ]
+}
 
 /* ─── Chevron SVG ───────────────────────────────────────────── */
 function Chevron({ open }: { open: boolean }) {
@@ -77,6 +62,8 @@ function Chevron({ open }: { open: boolean }) {
 /* ─── Component ─────────────────────────────────────────────── */
 export default function SupportPage() {
   const { lang } = useLang()
+  const FAQ = getFAQ(lang)
+  const el = lang === 'el'
   const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Partial<FormState>>({})
   const [status, setStatus] = useState<Status>('idle')
@@ -180,11 +167,11 @@ export default function SupportPage() {
           Mounjaro Tracker : AI Health
         </p>
         <p style={{ color: '#8892b0', fontSize: 16, lineHeight: 1.7, maxWidth: 480, margin: '0 auto 24px' }}>
-          Need help with the app, your subscription, or your account?<br />
-          Send us a message and we&rsquo;ll respond as soon as possible.
+          {el ? 'Χρειάζεστε βοήθεια με την εφαρμογή, τη συνδρομή ή τον λογαριασμό σας;' : 'Need help with the app, your subscription, or your account?'}<br />
+          {el ? 'Στείλτε μας μήνυμα και θα απαντήσουμε το συντομότερο δυνατό.' : 'Send us a message and we’ll respond as soon as possible.'}
         </p>
         <a
-          href="mailto:info@mysmartsapp.com"
+          href="/contact"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             color: '#00d4ff', fontSize: 15, textDecoration: 'none', fontWeight: 500,
@@ -209,10 +196,10 @@ export default function SupportPage() {
           marginBottom: 48,
         }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>
-            Contact Us
+            {el ? 'Επικοινωνήστε μαζί μας' : 'Contact Us'}
           </h2>
           <p style={{ color: '#5e6888', fontSize: 14, marginBottom: 28 }}>
-            We typically reply within 24 hours on business days.
+            {el ? 'Συνήθως απαντάμε εντός 24 ωρών τις εργάσιμες μέρες.' : 'We typically reply within 24 hours on business days.'}
           </p>
 
           {status === 'success' ? (
@@ -221,9 +208,9 @@ export default function SupportPage() {
               borderRadius: 12, padding: '28px 20px', textAlign: 'center',
             }}>
               <div style={{ fontSize: 32, marginBottom: 10 }}>✅</div>
-              <h3 style={{ color: '#4ade80', fontWeight: 700, fontSize: 17, marginBottom: 8 }}>Message sent!</h3>
+              <h3 style={{ color: '#4ade80', fontWeight: 700, fontSize: 17, marginBottom: 8 }}>{el ? 'Το μήνυμα εστάλη!' : 'Message sent!'}</h3>
               <p style={{ color: '#86efac', fontSize: 14, lineHeight: 1.6, marginBottom: 20 }}>
-                Thanks for reaching out. We&rsquo;ll reply as soon as possible.
+                {el ? 'Ευχαριστούμε που επικοινωνήσατε. Θα απαντήσουμε το συντομότερο.' : 'Thanks for reaching out. We\'ll reply as soon as possible.'}
               </p>
               <button
                 onClick={() => setStatus('idle')}
@@ -234,7 +221,7 @@ export default function SupportPage() {
                   fontSize: 14, fontWeight: 600, cursor: 'pointer',
                 }}
               >
-                Send another message
+                {el ? 'Στείλε άλλο μήνυμα' : 'Send another message'}
               </button>
             </div>
           ) : (
@@ -242,9 +229,9 @@ export default function SupportPage() {
               {/* Name + Email row */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 20px' }}>
                 <div style={{ marginBottom: 20 }}>
-                  <label htmlFor="name" style={labelStyle()}>Name</label>
+                  <label htmlFor="name" style={labelStyle()}>{el ? 'Όνομα' : 'Name'}</label>
                   <input
-                    id="name" type="text" placeholder="Your name"
+                    id="name" type="text" placeholder={el ? 'Το όνομά σας' : 'Your name'}
                     value={form.name}
                     onChange={e => { setForm(f => ({ ...f, name: e.target.value })); if (errors.name) setErrors(er => ({ ...er, name: undefined })) }}
                     style={{ ...inputStyle('name'), padding: '11px 14px', height: 44 }}
@@ -254,7 +241,7 @@ export default function SupportPage() {
                 <div style={{ marginBottom: 20 }}>
                   <label htmlFor="email" style={labelStyle()}>Email</label>
                   <input
-                    id="email" type="email" placeholder="Your email address"
+                    id="email" type="email" placeholder={el ? 'Η διεύθυνση email σας' : 'Your email address'}
                     value={form.email}
                     onChange={e => { setForm(f => ({ ...f, email: e.target.value })); if (errors.email) setErrors(er => ({ ...er, email: undefined })) }}
                     style={{ ...inputStyle('email'), padding: '11px 14px', height: 44 }}
@@ -265,9 +252,9 @@ export default function SupportPage() {
 
               {/* Subject */}
               <div style={{ marginBottom: 20 }}>
-                <label htmlFor="subject" style={labelStyle()}>Subject</label>
+                <label htmlFor="subject" style={labelStyle()}>{el ? 'Θέμα' : 'Subject'}</label>
                 <input
-                  id="subject" type="text" placeholder="What is this regarding?"
+                  id="subject" type="text" placeholder={el ? 'Ποιο είναι το θέμα σας;' : 'What is this regarding?'}
                   value={form.subject}
                   onChange={e => { setForm(f => ({ ...f, subject: e.target.value })); if (errors.subject) setErrors(er => ({ ...er, subject: undefined })) }}
                   style={{ ...inputStyle('subject'), padding: '11px 14px', height: 44 }}
@@ -277,9 +264,9 @@ export default function SupportPage() {
 
               {/* Message */}
               <div style={{ marginBottom: 24 }}>
-                <label htmlFor="message" style={labelStyle()}>Message</label>
+                <label htmlFor="message" style={labelStyle()}>{el ? 'Μήνυμα' : 'Message'}</label>
                 <textarea
-                  id="message" rows={5} placeholder="How can we help you?"
+                  id="message" rows={5} placeholder={el ? 'Πώς μπορούμε να βοηθήσουμε;' : 'How can we help you?'}
                   value={form.message}
                   onChange={e => { setForm(f => ({ ...f, message: e.target.value })); if (errors.message) setErrors(er => ({ ...er, message: undefined })) }}
                   style={{ ...inputStyle('message'), padding: '11px 14px', resize: 'vertical', minHeight: 120 }}
@@ -311,7 +298,7 @@ export default function SupportPage() {
                   transition: 'background 0.2s',
                 }}
               >
-                {status === 'sending' ? 'Sending…' : 'Send Message'}
+                {status === 'sending' ? (el ? 'Αποστολή…' : 'Sending…') : (el ? 'Αποστολή Μηνύματος' : 'Send Message')}
               </button>
 
               {/* Secure note */}
@@ -324,7 +311,7 @@ export default function SupportPage() {
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
-                Your message is sent securely.
+                {el ? 'Το μήνυμά σας αποστέλλεται με ασφάλεια.' : 'Your message is sent securely.'}
               </p>
             </form>
           )}
@@ -333,7 +320,7 @@ export default function SupportPage() {
         {/* FAQ */}
         <section style={{ marginBottom: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 20 }}>
-            Frequently Asked Questions
+            {el ? 'Συχνές Ερωτήσεις' : 'Frequently Asked Questions'}
           </h2>
 
           <div style={{
@@ -417,8 +404,10 @@ export default function SupportPage() {
             </svg>
           </div>
           <p style={{ fontSize: 13.5, color: '#5e6888', margin: 0, lineHeight: 1.7 }}>
-            This app is for informational tracking only and does not provide medical advice, diagnosis, or treatment.
-            Always consult a qualified healthcare professional for medical decisions.
+            {el
+              ? 'Αυτή η εφαρμογή είναι μόνο για καταγραφή και δεν παρέχει ιατρικές συμβουλές, διάγνωση ή θεραπεία. Πάντα συμβουλευτείτε εξειδικευμένο επαγγελματία υγείας για ιατρικές αποφάσεις.'
+              : 'This app is for informational tracking only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical decisions.'
+            }
           </p>
         </div>
 

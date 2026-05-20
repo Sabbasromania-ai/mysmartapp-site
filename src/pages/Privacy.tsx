@@ -122,7 +122,7 @@ export default function Privacy() {
               </svg>
               <span style={{ fontSize: 14, color: '#c4c9d8' }}>
                 <strong style={{ color: '#fff' }}>{p.s1.box.emailLabel}</strong>{' '}
-                <a href="mailto:info@mysmartsapp.com" style={{ color: accent, textDecoration: 'none' }}>info@mysmartsapp.com</a>
+                <a href="/contact" style={{ color: accent, textDecoration: 'none' }}>info@mysmartsapp.com</a>
               </span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 12 }}>
@@ -137,7 +137,7 @@ export default function Privacy() {
           </div>
 
           <p style={{ color: '#8892b0', fontSize: 14, lineHeight: 1.7, marginTop: 16, marginBottom: 0 }}>
-            {p.s1.p2}<a href="mailto:info@mysmartsapp.com" style={{ color: accent }}>info@mysmartsapp.com</a>.
+            {p.s1.p2}<a href="/contact" style={{ color: accent }}>info@mysmartsapp.com</a>.
           </p>
           <p style={{ color: '#8892b0', fontSize: 14, lineHeight: 1.7, marginTop: 12, marginBottom: 0 }}>{p.s1.p3}</p>
         </Card>
@@ -223,7 +223,7 @@ export default function Privacy() {
           <SectionTitle>{p.s7.title}</SectionTitle>
           <BulletList bullets={p.s7.bullets} />
           <p style={{ color: '#8892b0', fontSize: 14, marginTop: 14, marginBottom: 0 }}>
-            {p.s7.p2}<a href="mailto:info@mysmartsapp.com" style={{ color: accent }}>info@mysmartsapp.com</a>.{' '}
+            {p.s7.p2}<a href="/contact" style={{ color: accent }}>info@mysmartsapp.com</a>.{' '}
             {lang === 'el' ? 'Απαντούμε εντός 30 ημερών (Άρθρο 12(3)).' : 'We respond within 30 days (Art. 12(3)).'}
           </p>
         </Card>
@@ -241,7 +241,7 @@ export default function Privacy() {
             <p style={{ color: '#fde68a', fontSize: 14, lineHeight: 1.7, margin: 0 }}>{p.s8.warning}</p>
           </div>
           <p style={{ color: '#8892b0', fontSize: 14, marginTop: 14, marginBottom: 0 }}>
-            {p.s8.p3}<a href="mailto:info@mysmartsapp.com" style={{ color: accent }}>info@mysmartsapp.com</a>.
+            {p.s8.p3}<a href="/contact" style={{ color: accent }}>info@mysmartsapp.com</a>.
           </p>
         </Card>
 
@@ -287,7 +287,7 @@ export default function Privacy() {
         <Card>
           <SectionTitle>{p.s13.title}</SectionTitle>
           <p style={{ color: '#c4c9d8', lineHeight: 1.7, fontSize: 15, margin: 0 }}>
-            {p.s13.p1}<a href="mailto:info@mysmartsapp.com" style={{ color: accent }}>info@mysmartsapp.com</a>
+            {p.s13.p1}<a href="/contact" style={{ color: accent }}>info@mysmartsapp.com</a>
             {lang === 'el' ? ' και θα το διαγράψουμε άμεσα.' : ' and we will promptly delete it.'}
           </p>
         </Card>
@@ -336,7 +336,7 @@ export default function Privacy() {
                 <li key={i} style={liSt}>
                   <strong style={{ color: '#fff' }}>{tuple[0]}</strong>{' '}
                   {isEmail
-                    ? <a href="mailto:info@mysmartsapp.com" style={{ color: accent }}>{tuple[1]}</a>
+                    ? <a href="/contact" style={{ color: accent }}>{tuple[1]}</a>
                     : isUrl
                     ? <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer" style={{ color: accent }}>{tuple[1]}</a>
                     : tuple[1]}
@@ -356,7 +356,7 @@ export default function Privacy() {
             <span style={{ fontSize: 12, fontWeight: 600, color: accent, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{p.footer.label}</span>
           </div>
           <p style={{ color: '#8892b0', fontSize: 15, lineHeight: 1.7, marginBottom: 20 }}>{p.footer.p}</p>
-          <a href="mailto:info@mysmartsapp.com" style={{ display: 'flex', alignItems: 'center', gap: 8, color: accent, fontSize: 15, textDecoration: 'none', marginBottom: 20 }}>
+          <a href="/contact" style={{ display: 'flex', alignItems: 'center', gap: 8, color: accent, fontSize: 15, textDecoration: 'none', marginBottom: 20 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />

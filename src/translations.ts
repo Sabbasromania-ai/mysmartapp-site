@@ -276,6 +276,13 @@ export const translations = {
     proc_5_title: 'Launch & Support',
     proc_5_desc: 'We deploy, monitor, and support your product. Ongoing updates and improvements as your business grows.',
 
+    // Portfolio / Who We Build For section
+    portfolio_title: 'Portfolio / Case Studies',
+    portfolio_sub: 'Real products we built to prove what we can deliver.',
+    portfolio_view_all: 'View All Projects →',
+    wbf_title: 'Who We Build For',
+    wbf_sub: 'We work with businesses of all types and sizes.',
+
     // CTA section
     cta_label: 'START A PROJECT',
     cta_title: 'Tell us what you want to build.',
@@ -558,6 +565,13 @@ export const translations = {
     proc_5_num: '06',
     proc_5_title: 'Λανσάρισμα & Υποστήριξη',
     proc_5_desc: 'Κάνουμε deploy, παρακολουθούμε και υποστηρίζουμε το προϊόν σου. Συνεχείς βελτιώσεις καθώς η επιχείρησή σου μεγαλώνει.',
+
+    // Portfolio / Who We Build For section
+    portfolio_title: 'Portfolio / Case Studies',
+    portfolio_sub: 'Πραγματικά προϊόντα που φτιάξαμε για να αποδείξουμε τι μπορούμε να παραδώσουμε.',
+    portfolio_view_all: 'Δες Όλα τα Projects →',
+    wbf_title: 'Για Ποιους Χτίζουμε',
+    wbf_sub: 'Δουλεύουμε με επιχειρήσεις κάθε τύπου και μεγέθους.',
 
     // CTA section
     cta_label: 'ΕΝΑΡΞΗ ΕΡΓΟΥ',

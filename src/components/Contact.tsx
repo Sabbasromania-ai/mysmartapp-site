@@ -21,7 +21,7 @@ export default function Contact({ email }: { email: string }) {
             <a href="/contact" className="btn-primary cta-btn">
               {t('cta_btn')} →
             </a>
-            <a href={`mailto:${email}`} className="cta-email">
+            <a href="/contact" className="cta-email">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 7l-10 7L2 7" />
