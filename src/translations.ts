@@ -105,6 +105,8 @@ export const translations = {
     footer_terms: 'Terms',
     footer_contact: 'Contact',
     footer_copy: '© 2026 mysmartsapp. All rights reserved.',
+    footer_tagline1: 'Technology that works.',
+    footer_tagline2: 'Results that count.',
 
     // AI Health Tracker detail page
     ht_badge: 'Live · App Store & Google Play',
@@ -386,6 +388,8 @@ export const translations = {
     footer_terms: 'Όροι',
     footer_contact: 'Επικοινωνία',
     footer_copy: '© 2026 mysmartsapp. Όλα τα δικαιώματα διατηρούνται.',
+    footer_tagline1: 'Τεχνολογία που δουλεύει.',
+    footer_tagline2: 'Αποτελέσματα που μετράνε.',
 
     // AI Health Tracker detail page
     ht_badge: 'Διαθέσιμο · App Store & Google Play',

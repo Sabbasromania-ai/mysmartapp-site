@@ -50,8 +50,11 @@ export default function HowItWorks() {
                   style={{ width: '195%', height: '195%', objectFit: 'cover', mixBlendMode: 'screen' }}
                 />
               </div>
-              <div className="proc-step-title">{t(step.titleKey)}</div>
-              <p className="proc-step-desc">{t(step.descKey)}</p>
+              <div className="proc-step-content">
+                <div className="proc-step-num">{String(i + 1).padStart(2, '0')}</div>
+                <div className="proc-step-title">{t(step.titleKey)}</div>
+                <p className="proc-step-desc">{t(step.descKey)}</p>
+              </div>
             </div>
           ))}
         </div>
