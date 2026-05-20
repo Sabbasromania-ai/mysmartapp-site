@@ -1,13 +1,20 @@
 import { useLang } from '../LangContext'
+import { TKey } from '../translations'
+import img01 from '../assets/icons/how-it-works/01_project_idea_requirements.png'
+import img02 from '../assets/icons/how-it-works/02_ui_ux_design.png'
+import img03 from '../assets/icons/how-it-works/03_development.png'
+import img04 from '../assets/icons/how-it-works/04_testing.png'
+import img05 from '../assets/icons/how-it-works/05_app_store_google_play_launch.png'
+import img06 from '../assets/icons/how-it-works/06_support_improvements.png'
 
-const PROC_KEYS = [
-  ['proc_0_num', 'proc_0_title', 'proc_0_desc'],
-  ['proc_1_num', 'proc_1_title', 'proc_1_desc'],
-  ['proc_2_num', 'proc_2_title', 'proc_2_desc'],
-  ['proc_3_num', 'proc_3_title', 'proc_3_desc'],
-  ['proc_4_num', 'proc_4_title', 'proc_4_desc'],
-  ['proc_5_num', 'proc_5_title', 'proc_5_desc'],
-] as const
+const STEPS: { color: string; titleKey: TKey; descKey: TKey; img: string }[] = [
+  { color: '#4fc3f7', titleKey: 'proc_0_title', descKey: 'proc_0_desc', img: img01 },
+  { color: '#26c6da', titleKey: 'proc_1_title', descKey: 'proc_1_desc', img: img02 },
+  { color: '#ffb300', titleKey: 'proc_2_title', descKey: 'proc_2_desc', img: img03 },
+  { color: '#9c5ff7', titleKey: 'proc_3_title', descKey: 'proc_3_desc', img: img04 },
+  { color: '#38bdf8', titleKey: 'proc_4_title', descKey: 'proc_4_desc', img: img05 },
+  { color: '#34d399', titleKey: 'proc_5_title', descKey: 'proc_5_desc', img: img06 },
+]
 
 export default function HowItWorks() {
   const { t } = useLang()
@@ -15,6 +22,7 @@ export default function HowItWorks() {
   return (
     <section className="process-section" id="process">
       <div className="container">
+
         <div className="col-section-header reveal">
           <div className="section-label">
             <span className="section-label-dot" />
@@ -26,15 +34,28 @@ export default function HowItWorks() {
           </h2>
         </div>
 
-        <div className="process-grid">
-          {PROC_KEYS.map(([numKey, titleKey, descKey], i) => (
-            <div key={i} className="proc-card reveal">
-              <div className="proc-num">{t(numKey)}</div>
-              <div className="proc-title">{t(titleKey)}</div>
-              <p className="proc-desc">{t(descKey)}</p>
+        <div className="proc-timeline">
+          {STEPS.map((step, i) => (
+            <div key={i} className="proc-step reveal">
+              <div
+                className="proc-circle"
+                style={{
+                  borderColor: step.color,
+                  boxShadow: `0 0 18px ${step.color}35, 0 0 36px ${step.color}18`,
+                }}
+              >
+                <img
+                  src={step.img}
+                  alt={step.titleKey}
+                  style={{ width: 48, height: 48, objectFit: 'contain', mixBlendMode: 'screen' }}
+                />
+              </div>
+              <div className="proc-step-title">{t(step.titleKey)}</div>
+              <p className="proc-step-desc">{t(step.descKey)}</p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )
