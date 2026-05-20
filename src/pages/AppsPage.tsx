@@ -282,6 +282,10 @@ export default function AppsPage() {
                 <div className="ap-soon-name">iCalorie</div>
                 <span className="ap-soon-badge">{t('apps_coming_soon')}</span>
                 <p className="ap-soon-desc">{t('app2_short')}</p>
+                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+                  <PlatformBadge platform="iOS" />
+                  <PlatformBadge platform="Android" />
+                </div>
               </div>
             </div>
 

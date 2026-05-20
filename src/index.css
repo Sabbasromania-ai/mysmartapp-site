@@ -430,9 +430,9 @@ nav {
   border-radius: 100px;
   display: inline-block;
   margin-top: 3px;
-  background: rgba(245,158,11,0.15);
-  color: #f59e0b;
-  border: 1px solid rgba(245,158,11,0.3);
+  background: rgba(0,212,255,0.08);
+  color: #00d4ff;
+  border: 1px solid rgba(0,220,255,0.28);
 }
 .hac-tag-live {
   background: rgba(16,185,129,0.15);
@@ -1338,9 +1338,9 @@ nav {
 }
 
 .status-dev {
-  background: rgba(245,158,11,0.08);
-  color: #f59e0b;
-  border: 1px solid rgba(245,158,11,0.2);
+  background: rgba(0,212,255,0.08);
+  color: #00d4ff;
+  border: 1px solid rgba(0,220,255,0.28);
 }
 
 .app-card-desc {
@@ -1698,9 +1698,9 @@ footer {
   border: 1px solid rgba(16,185,129,0.3);
 }
 .cc-tag-soon {
-  background: rgba(245,158,11,0.15);
-  color: #f59e0b;
-  border: 1px solid rgba(245,158,11,0.3);
+  background: rgba(0,212,255,0.08);
+  color: #00d4ff;
+  border: 1px solid rgba(0,220,255,0.28);
 }
 .cc-desc {
   font-size: 0.68rem;
@@ -2597,9 +2597,9 @@ button.feature-card {
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 220, 255, 0.28);
   border-radius: 100px;
   padding: 3px 10px;
   margin-bottom: 8px;
@@ -2867,8 +2867,8 @@ button.feature-card {
 }
 .apf-soon-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-2px); }
 .apf-soon-badge {
-  background: rgba(245,158,11,0.12); color: #f59e0b;
-  border: 1px solid rgba(245,158,11,0.3); border-radius: 20px;
+  background: rgba(0,212,255,0.08); color: #00d4ff;
+  border: 1px solid rgba(0,220,255,0.28); border-radius: 20px;
   padding: 3px 12px; font-size: 0.72rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
 }
