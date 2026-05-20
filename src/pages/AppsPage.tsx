@@ -7,6 +7,7 @@ import iCalorieLogo from '../icalorie-logo.png'
 import heroPhoneCutout from '../screens/hero-phone-cutout.png'
 import heroPhoneApps from '../screens/hero-phone-apps.png'
 import iReceptionMockup from '../iReception_mockup.png'
+import iCalorieMockup from '../iCalorie_mockup.png'
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import { config } from '../config'
 
@@ -99,6 +100,21 @@ export default function AppsPage() {
     { label: 'Lead Capture',           icon: '🎯' },
     { label: 'Multi-service Booking',  icon: '🔀' },
     { label: 'AI Assistant',           icon: '✨' },
+  ]
+
+  const iCalorieChips = [
+    { label: 'AI Meal Scan',            icon: '📷' },
+    { label: 'Calorie Tracking',        icon: '🔥' },
+    { label: 'Macro Tracking',          icon: '📊' },
+    { label: 'Protein Goals',           icon: '🥩' },
+    { label: 'Water Tracking',          icon: '💧' },
+    { label: 'Meal History',            icon: '📋' },
+    { label: 'Nutrition Insights',      icon: '🧠' },
+    { label: 'Barcode Scanner',         icon: '🔍' },
+    { label: 'Food Database',           icon: '🗄️' },
+    { label: 'Weight Progress',         icon: '⚖️' },
+    { label: 'Daily Targets',           icon: '🎯' },
+    { label: 'Smart Recommendations',   icon: '✨' },
   ]
 
   const ideaCards = [
@@ -269,26 +285,69 @@ export default function AppsPage() {
         </div>
       </section>
 
-      {/* ── Coming soon cards ── */}
-      <section className="ap-soon-section">
+      {/* ── iCalorie featured card ── */}
+      <section className="ap-featured-section">
         <div className="container">
-          <div className="ap-soon-grid" style={{ gridTemplateColumns: '1fr', maxWidth: 560, margin: '0 auto' }}>
+          <div className="ap-feat-card reveal">
 
-            <div className="ap-soon-card reveal" onClick={() => navigate(`/apps/${SLUG_NUTRITION}`)}>
-              <div className="ap-soon-icon" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-                <img src={iCalorieLogo} alt="iCalorie" style={{ width: 68, height: 68, borderRadius: 14 }} />
-              </div>
-              <div className="ap-soon-body">
-                <div className="ap-soon-name">iCalorie</div>
-                <span className="ap-soon-badge">{t('apps_coming_soon')}</span>
-                <p className="ap-soon-desc">{t('app2_short')}</p>
-                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-                  <PlatformBadge platform="iOS" />
-                  <PlatformBadge platform="Android" />
-                </div>
-              </div>
+            {/* Left: phone mockup */}
+            <div className="ap-feat-phone">
+              <img
+                src={iCalorieMockup}
+                alt="iCalorie App"
+                className="ap-feat-phone-img"
+                onClick={() => navigate(`/apps/${SLUG_NUTRITION}`)}
+              />
             </div>
 
+            {/* Right: content */}
+            <div className="ap-feat-content">
+
+              <div className="ap-feat-icon-row">
+                <img src={iCalorieLogo} alt="iCalorie" className="ap-feat-logo" />
+                <div>
+                  <div className="ap-feat-name">iCalorie</div>
+                  <span style={{
+                    display: 'inline-block',
+                    fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    background: 'rgba(0,220,255,0.12)',
+                    border: '1px solid rgba(0,220,255,0.45)',
+                    color: '#22e6ff',
+                    boxShadow: '0 0 12px rgba(0,220,255,0.18)',
+                    borderRadius: 100,
+                    padding: '3px 10px',
+                  }}>Coming Soon</span>
+                </div>
+              </div>
+
+              <p className="ap-feat-desc">
+                AI nutrition and calorie tracking app for meal scanning, macros, and personalized nutrition insights.
+              </p>
+              <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.42)', marginTop: -6, lineHeight: 1.6 }}>
+                Scan meals, track calories, macros, protein, water, and nutrition goals from one smart dashboard.
+              </p>
+
+              <div className="ap-feat-chips">
+                {iCalorieChips.map(chip => (
+                  <span key={chip.label} className="ap-feat-chip">
+                    <span>{chip.icon}</span>{chip.label}
+                  </span>
+                ))}
+              </div>
+
+              <div className="ap-feat-actions">
+                <button
+                  className="ap-feat-btn-primary"
+                  onClick={() => navigate(`/apps/${SLUG_NUTRITION}`)}
+                >
+                  Notify Me
+                </button>
+                <PlatformBadge platform="iOS" />
+                <PlatformBadge platform="Android" />
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
