@@ -47,7 +47,7 @@ export default function HowItWorks() {
                 <img
                   src={step.img}
                   alt={step.titleKey}
-                  style={{ width: 48, height: 48, objectFit: 'contain', mixBlendMode: 'screen' }}
+                  style={{ width: '195%', height: '195%', objectFit: 'cover', mixBlendMode: 'screen' }}
                 />
               </div>
               <div className="proc-step-title">{t(step.titleKey)}</div>
