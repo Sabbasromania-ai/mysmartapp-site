@@ -15,6 +15,7 @@ import AppsPage from './pages/AppsPage'
 import ServicesPage from './pages/ServicesPage'
 import AboutPage from './pages/AboutPage'
 import IndustriesPage from './pages/IndustriesPage'
+import ProcessPage from './pages/ProcessPage'
 import AIHealthTrackerPage from './pages/AIHealthTrackerPage'
 import ICaloriePage from './pages/ICaloriePage'
 import Privacy from './pages/Privacy'
@@ -62,6 +63,13 @@ export default function App() {
             <>
               <Nav />
               <AboutPage />
+              <Footer />
+            </>
+          } />
+          <Route path="/process" element={
+            <>
+              <Nav />
+              <ProcessPage />
               <Footer />
             </>
           } />
