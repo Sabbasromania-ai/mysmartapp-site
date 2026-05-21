@@ -312,38 +312,44 @@ export default function ProcessPage() {
             />
             {/* Node 1 — Discovery — cyan #4fc3f7 */}
             <circle cx="50" cy="248" r="34" fill="rgba(79,195,247,0.06)" stroke="none"/>
-            <circle cx="50" cy="248" r="22" fill="rgba(79,195,247,0.16)" stroke="#4fc3f7" strokeWidth="2" opacity="0.95"/>
+            <circle cx="50" cy="248" r="22" fill="rgba(8,10,20,0.93)" stroke="none"/>
+            <circle cx="50" cy="248" r="22" fill="rgba(79,195,247,0.18)" stroke="#4fc3f7" strokeWidth="2" opacity="0.95"/>
             <circle cx="50" cy="248" r="29" fill="none" stroke="#4fc3f7" strokeWidth="0.6" opacity="0.40"/>
             <circle cx="47" cy="245" r="6" fill="none" stroke="#4fc3f7" strokeWidth="1.6" opacity="0.9"/>
             <line x1="51.5" y1="249.5" x2="56" y2="254" stroke="#4fc3f7" strokeWidth="1.8" strokeLinecap="round" opacity="0.9"/>
             {/* Node 2 — Strategy — purple #9c5ff7 */}
             <circle cx="128" cy="192" r="34" fill="rgba(156,95,247,0.06)" stroke="none"/>
-            <circle cx="128" cy="192" r="22" fill="rgba(156,95,247,0.16)" stroke="#9c5ff7" strokeWidth="2" opacity="0.95"/>
+            <circle cx="128" cy="192" r="22" fill="rgba(8,10,20,0.93)" stroke="none"/>
+            <circle cx="128" cy="192" r="22" fill="rgba(156,95,247,0.18)" stroke="#9c5ff7" strokeWidth="2" opacity="0.95"/>
             <circle cx="128" cy="192" r="29" fill="none" stroke="#9c5ff7" strokeWidth="0.6" opacity="0.40"/>
             <rect x="119" y="184" width="18" height="16" rx="2" fill="none" stroke="#9c5ff7" strokeWidth="1.5" opacity="0.9"/>
             <line x1="123" y1="190" x2="133" y2="190" stroke="#9c5ff7" strokeWidth="1.5" strokeLinecap="round" opacity="0.9"/>
             <line x1="123" y1="194" x2="133" y2="194" stroke="#9c5ff7" strokeWidth="1.5" strokeLinecap="round" opacity="0.9"/>
             {/* Node 3 — Design — orange #ffb300 */}
             <circle cx="208" cy="145" r="34" fill="rgba(255,179,0,0.06)" stroke="none"/>
-            <circle cx="208" cy="145" r="22" fill="rgba(255,179,0,0.16)" stroke="#ffb300" strokeWidth="2" opacity="0.95"/>
+            <circle cx="208" cy="145" r="22" fill="rgba(8,10,20,0.93)" stroke="none"/>
+            <circle cx="208" cy="145" r="22" fill="rgba(255,179,0,0.18)" stroke="#ffb300" strokeWidth="2" opacity="0.95"/>
             <circle cx="208" cy="145" r="29" fill="none" stroke="#ffb300" strokeWidth="0.6" opacity="0.40"/>
             <path d="M200,153 L203,146 L212,137 L216,141 L207,150 Z" fill="none" stroke="#ffb300" strokeWidth="1.5" strokeLinejoin="round" opacity="0.9"/>
             <line x1="200" y1="153" x2="198" y2="155" stroke="#ffb300" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
             {/* Node 4 — Development — blue #38bdf8 */}
             <circle cx="288" cy="148" r="34" fill="rgba(56,189,248,0.06)" stroke="none"/>
-            <circle cx="288" cy="148" r="22" fill="rgba(56,189,248,0.16)" stroke="#38bdf8" strokeWidth="2" opacity="0.95"/>
+            <circle cx="288" cy="148" r="22" fill="rgba(8,10,20,0.93)" stroke="none"/>
+            <circle cx="288" cy="148" r="22" fill="rgba(56,189,248,0.18)" stroke="#38bdf8" strokeWidth="2" opacity="0.95"/>
             <circle cx="288" cy="148" r="29" fill="none" stroke="#38bdf8" strokeWidth="0.6" opacity="0.40"/>
             <polyline points="281,141 276,148 281,155" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
             <polyline points="295,141 300,148 295,155" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
             {/* Node 5 — Testing — green #34d399 */}
             <circle cx="357" cy="90" r="34" fill="rgba(52,211,153,0.06)" stroke="none"/>
-            <circle cx="357" cy="90" r="22" fill="rgba(52,211,153,0.16)" stroke="#34d399" strokeWidth="2" opacity="0.95"/>
+            <circle cx="357" cy="90" r="22" fill="rgba(8,10,20,0.93)" stroke="none"/>
+            <circle cx="357" cy="90" r="22" fill="rgba(52,211,153,0.18)" stroke="#34d399" strokeWidth="2" opacity="0.95"/>
             <circle cx="357" cy="90" r="29" fill="none" stroke="#34d399" strokeWidth="0.6" opacity="0.40"/>
             <path d="M357,80 L364,83 L364,91 L357,97 L350,91 L350,83 Z" fill="none" stroke="#34d399" strokeWidth="1.5" strokeLinejoin="round" opacity="0.9"/>
             <polyline points="353,90 356,93 362,86" fill="none" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
             {/* Node 6 — Launch — soft purple #a78bfa */}
             <circle cx="418" cy="42" r="32" fill="rgba(167,139,250,0.06)" stroke="none"/>
-            <circle cx="418" cy="42" r="20" fill="rgba(167,139,250,0.16)" stroke="#a78bfa" strokeWidth="2" opacity="0.95"/>
+            <circle cx="418" cy="42" r="20" fill="rgba(8,10,20,0.93)" stroke="none"/>
+            <circle cx="418" cy="42" r="20" fill="rgba(167,139,250,0.18)" stroke="#a78bfa" strokeWidth="2" opacity="0.95"/>
             <circle cx="418" cy="42" r="27" fill="none" stroke="#a78bfa" strokeWidth="0.6" opacity="0.40"/>
             <path d="M418,34 L415,46 L418,44 L421,46 Z" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinejoin="round" opacity="0.9"/>
             <circle cx="418" cy="37" r="2.5" fill="#a78bfa" opacity="0.8"/>
