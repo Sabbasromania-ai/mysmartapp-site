@@ -3250,14 +3250,26 @@ button.feature-card {
   transform: translateY(-2px);
 }
 .pf-web-preview {
-  padding: 10px 10px 0;
-  background: rgba(255,255,255,0.01);
+  overflow: hidden;
+  border-radius: 14px 14px 0 0;
+  background: rgba(0,0,0,0.25);
+  line-height: 0;
 }
 .pf-web-preview svg {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 5px 5px 0 0;
+}
+.pf-web-preview-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.pf-web-card:hover .pf-web-preview-img {
+  transform: scale(1.03);
 }
 .pf-web-body {
   padding: 14px 16px 18px;

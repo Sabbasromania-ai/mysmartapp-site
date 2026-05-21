@@ -10,6 +10,14 @@ import iCalorieMockup from '../iCalorie_mockup.png'
 import { useLang, setMeta, setOG, setCanonical } from '../LangContext'
 import { config } from '../config'
 
+// ── Portfolio mockup images ───────────────────────────────────
+import mockupBizWeb      from '../portfolio/portfolio-websites-business-website-cyan.png'
+import mockupLanding     from '../portfolio/portfolio-websites-service-landing-page-purple.png'
+import mockupAgency      from '../portfolio/portfolio-websites-agency-website-green-corrected.png'
+import mockupCatalog     from '../portfolio/portfolio-eshops-product-catalog-store-orange.png'
+import mockupCheckout    from '../portfolio/portfolio-eshops-checkout-ready-eshop-cyan.png'
+import mockupLocalStore  from '../portfolio/portfolio-eshops-local-business-online-store-green.png'
+
 const SLUG_MOUNJARO = 'mounjaro-tracker-ai-health'
 const SLUG_WELLNESS = 'ireception'
 const SLUG_NUTRITION = 'icalorie'
@@ -276,7 +284,7 @@ const iCalChips  = ['Meal Scan', 'Calorie Tracking', 'Macros', 'Nutrition', 'Goa
 
 const websiteCards = [
   {
-    preview: <BizWebPreview />,
+    preview: <img src={mockupBizWeb} alt="Business Website" className="pf-web-preview-img" />,
     title: 'Business Website',
     desc: 'Professional company website for presenting services, generating leads, and building trust.',
     category: 'Website',
@@ -284,7 +292,7 @@ const websiteCards = [
     color: '#00dcff',
   },
   {
-    preview: <ServiceLandingPreview />,
+    preview: <img src={mockupLanding} alt="Service Landing Page" className="pf-web-preview-img" />,
     title: 'Service Landing Page',
     desc: 'Conversion-focused landing page for promoting one service, offer, or campaign.',
     category: 'Landing page',
@@ -292,7 +300,7 @@ const websiteCards = [
     color: '#9c5ff7',
   },
   {
-    preview: <AgencyWebPreview />,
+    preview: <img src={mockupAgency} alt="Agency Website" className="pf-web-preview-img" />,
     title: 'Agency Website',
     desc: 'Modern multi-section website with services, portfolio, process, industries, and contact pages.',
     category: 'Website',
@@ -303,7 +311,7 @@ const websiteCards = [
 
 const eshopCards = [
   {
-    preview: <ProductCatalogPreview />,
+    preview: <img src={mockupCatalog} alt="Product Catalog Store" className="pf-web-preview-img" />,
     title: 'Product Catalog Store',
     desc: 'Online catalog structure for presenting products, categories, pricing, and product details.',
     category: 'E-shop',
@@ -311,7 +319,7 @@ const eshopCards = [
     color: '#ffb300',
   },
   {
-    preview: <CheckoutEshopPreview />,
+    preview: <img src={mockupCheckout} alt="Checkout-ready E-shop" className="pf-web-preview-img" />,
     title: 'Checkout-ready E-shop',
     desc: 'E-commerce structure with cart, checkout, online payments, order flow, and customer emails.',
     category: 'E-shop',
@@ -319,7 +327,7 @@ const eshopCards = [
     color: '#38bdf8',
   },
   {
-    preview: <LocalStorePreview />,
+    preview: <img src={mockupLocalStore} alt="Local Business Online Store" className="pf-web-preview-img" />,
     title: 'Local Business Online Store',
     desc: 'Online store for local businesses that want to sell products or services directly from their website.',
     category: 'E-shop',
