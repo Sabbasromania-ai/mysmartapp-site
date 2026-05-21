@@ -232,26 +232,64 @@ export default function ProcessPage() {
           <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" className="prc-hero-svg">
             <defs>
               <radialGradient id="prg1" cx="65%" cy="28%" r="55%">
-                <stop offset="0%" stopColor="#4fc3f7" stopOpacity="0.13"/>
+                <stop offset="0%" stopColor="#4fc3f7" stopOpacity="0.16"/>
                 <stop offset="100%" stopColor="#4fc3f7" stopOpacity="0"/>
               </radialGradient>
               <radialGradient id="prg2" cx="20%" cy="75%" r="45%">
-                <stop offset="0%" stopColor="#9c5ff7" stopOpacity="0.10"/>
+                <stop offset="0%" stopColor="#9c5ff7" stopOpacity="0.13"/>
                 <stop offset="100%" stopColor="#9c5ff7" stopOpacity="0"/>
               </radialGradient>
               <radialGradient id="prg3" cx="82%" cy="82%" r="38%">
-                <stop offset="0%" stopColor="#34d399" stopOpacity="0.08"/>
+                <stop offset="0%" stopColor="#34d399" stopOpacity="0.11"/>
                 <stop offset="100%" stopColor="#34d399" stopOpacity="0"/>
               </radialGradient>
+              {/* Dot grid pattern */}
+              <pattern id="pdots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+                <circle cx="11" cy="11" r="0.7" fill="rgba(255,255,255,0.07)"/>
+              </pattern>
             </defs>
+            {/* Dot grid background */}
+            <rect width="440" height="300" fill="url(#pdots)"/>
             {/* Atmosphere */}
             <ellipse cx="270" cy="85" rx="170" ry="130" fill="url(#prg1)"/>
             <ellipse cx="90" cy="225" rx="120" ry="95" fill="url(#prg2)"/>
             <ellipse cx="380" cy="248" rx="85" ry="75" fill="url(#prg3)"/>
+            {/* Scattered particles — cyan */}
+            <g fill="#00dcff">
+              <circle cx="160" cy="52" r="1.5" opacity="0.40"/>
+              <circle cx="232" cy="38" r="1.0" opacity="0.32"/>
+              <circle cx="322" cy="32" r="1.5" opacity="0.38"/>
+              <circle cx="402" cy="112" r="1.0" opacity="0.30"/>
+              <circle cx="28"  cy="168" r="1.5" opacity="0.35"/>
+              <circle cx="76"  cy="128" r="1.0" opacity="0.28"/>
+            </g>
+            {/* Scattered particles — purple */}
+            <g fill="#9c5ff7">
+              <circle cx="186" cy="102" r="1.5" opacity="0.42"/>
+              <circle cx="70"  cy="288" r="1.5" opacity="0.35"/>
+              <circle cx="242" cy="86"  r="1.0" opacity="0.30"/>
+              <circle cx="172" cy="265" r="1.5" opacity="0.35"/>
+            </g>
+            {/* Scattered particles — green */}
+            <g fill="#34d399">
+              <circle cx="392" cy="172" r="1.5" opacity="0.35"/>
+              <circle cx="432" cy="88"  r="1.0" opacity="0.30"/>
+              <circle cx="322" cy="198" r="1.5" opacity="0.28"/>
+            </g>
+            {/* Scattered particles — orange */}
+            <g fill="#ffb300">
+              <circle cx="155" cy="228" r="1.0" opacity="0.32"/>
+              <circle cx="252" cy="192" r="1.5" opacity="0.28"/>
+            </g>
+            {/* Path glow (wide soft stroke behind dashed line) */}
+            <path
+              d="M 50,248 C 78,225 108,200 128,192 C 158,182 190,152 208,145 C 226,138 268,147 288,148 C 310,149 340,102 357,90 C 374,78 402,56 418,42"
+              stroke="rgba(0,220,255,0.07)" strokeWidth="10" fill="none" strokeLinecap="round"
+            />
             {/* Process path */}
             <path
               d="M 50,248 C 78,225 108,200 128,192 C 158,182 190,152 208,145 C 226,138 268,147 288,148 C 310,149 340,102 357,90 C 374,78 402,56 418,42"
-              stroke="rgba(0,220,255,0.22)" strokeWidth="1.5" fill="none" strokeDasharray="5 7"
+              stroke="rgba(0,220,255,0.28)" strokeWidth="1.5" fill="none" strokeDasharray="5 7"
             />
             {/* Node 1 — Discovery — cyan #4fc3f7 */}
             <circle cx="50" cy="248" r="22" fill="rgba(79,195,247,0.09)" stroke="#4fc3f7" strokeWidth="1.6" opacity="0.95"/>

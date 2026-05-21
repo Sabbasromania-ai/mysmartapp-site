@@ -3447,6 +3447,8 @@ button.feature-card {
   color: rgba(255, 255, 255, 0.45);
   line-height: 1.55;
   margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ── Mobile: vertical timeline ─────────────────────────── */
@@ -4521,6 +4523,7 @@ button.feature-card {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
+  overflow-x: clip;
 }
 .prc-h1 {
   font-size: clamp(1.65rem, 3vw, 2.4rem);
@@ -4563,6 +4566,7 @@ button.feature-card {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 24px 56px;
+  overflow-x: clip;
 }
 .prc-section-head {
   text-align: center;
@@ -4588,7 +4592,7 @@ button.feature-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
-  padding: 22px 18px 20px;
+  padding: 22px 18px 24px;  /* extra bottom clears the 2px accent line */
   position: relative;
   overflow: hidden;
   display: flex;
