@@ -3362,8 +3362,8 @@ button.feature-card {
   transform: translateY(-50%);
   background-image: repeating-linear-gradient(
     90deg,
-    rgba(0, 212, 255, 0.5) 0px,
-    rgba(0, 212, 255, 0.5) 4px,
+    rgba(0, 212, 255, 0.9) 0px,
+    rgba(0, 212, 255, 0.9) 4px,
     transparent 4px,
     transparent 12px
   );
@@ -3375,14 +3375,14 @@ button.feature-card {
 .proc-step:not(:last-child)::after {
   content: '';
   position: absolute;
-  right: -3.5px;
+  right: -4.5px;
   top: 37px;
   transform: translateY(-50%);
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #00d4ff;
-  box-shadow: 0 0 8px 2px rgba(0, 212, 255, 0.8), 0 0 16px 4px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 10px 3px rgba(0, 212, 255, 1), 0 0 22px 8px rgba(0, 212, 255, 0.55), 0 0 36px 14px rgba(0, 212, 255, 0.20);
   z-index: 2;
 }
 
