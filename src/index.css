@@ -3027,6 +3027,473 @@ button.feature-card {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   pf-*  Portfolio page — apps grid + web/eshop/tools sections
+   ═══════════════════════════════════════════════════════════ */
+
+.pf-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 52px;
+  overflow-x: clip;
+}
+
+/* ── Section header row ── */
+.pf-section-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+.pf-section-hdr-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.pf-section-icon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+}
+.pf-section-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.015em;
+}
+.pf-section-view-all {
+  font-size: 0.80rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.75;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.pf-section-view-all:hover { opacity: 1; }
+
+/* ── Compact app cards (3-col) ── */
+.pf-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.pf-app-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,220,255,0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.pf-app-card:hover {
+  border-color: rgba(0,220,255,0.38);
+  box-shadow: 0 0 28px rgba(0,220,255,0.10);
+  transform: translateY(-2px);
+}
+.pf-app-phone-wrap {
+  background: radial-gradient(ellipse at center, rgba(0,220,255,0.10) 0%, rgba(0,100,180,0.06) 50%, transparent 80%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px 12px 0;
+  height: 210px;
+  overflow: hidden;
+}
+.pf-app-phone-wrap--purple {
+  background: radial-gradient(ellipse at center, rgba(156,95,247,0.12) 0%, rgba(80,20,150,0.06) 50%, transparent 80%);
+}
+.pf-app-phone-wrap--green {
+  background: radial-gradient(ellipse at center, rgba(52,211,153,0.10) 0%, rgba(0,100,80,0.06) 50%, transparent 80%);
+}
+.pf-app-phone-img {
+  height: 195px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(0,212,255,0.40)) drop-shadow(0 20px 40px rgba(0,0,0,0.65));
+  transition: transform 0.3s;
+}
+.pf-app-card:hover .pf-app-phone-img { transform: translateY(-3px); }
+.pf-app-body {
+  padding: 16px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.pf-app-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pf-app-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.pf-app-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.pf-app-badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 2px 8px;
+  display: inline-block;
+}
+.pf-app-badge--live {
+  background: rgba(0,220,255,0.12);
+  border: 1px solid rgba(0,220,255,0.45);
+  color: #22e6ff;
+  box-shadow: 0 0 10px rgba(0,220,255,0.16);
+}
+.pf-app-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.65;
+  margin: 0;
+}
+.pf-app-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pf-app-chip {
+  font-size: 0.67rem;
+  color: rgba(255,255,255,0.58);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 100px;
+  padding: 2px 8px;
+}
+.pf-app-btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2px;
+}
+.pf-app-btn-primary {
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(0,220,255,0.10);
+  border: 1px solid rgba(0,220,255,0.38);
+  border-radius: 100px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.pf-app-btn-primary:hover {
+  background: rgba(0,220,255,0.18);
+  border-color: rgba(0,220,255,0.65);
+}
+.pf-app-store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 4px 10px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.pf-app-store-link:hover { background: rgba(255,255,255,0.10); }
+.pf-app-store-link--soon { opacity: 0.55; cursor: default; }
+.pf-app-store-soon-label {
+  font-size: 0.60rem;
+  background: rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 1px 5px;
+  margin-left: 2px;
+}
+
+/* ── Website / E-shop cards (3-col) ── */
+.pf-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.pf-web-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid color-mix(in srgb, var(--pf-card-color, #00dcff) 22%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--pf-card-color, #00dcff) 7%, transparent);
+}
+.pf-web-card:hover {
+  border-color: color-mix(in srgb, var(--pf-card-color, #00dcff) 55%, transparent);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--pf-card-color, #00dcff) 18%, transparent);
+  transform: translateY(-2px);
+}
+.pf-web-preview {
+  padding: 10px 10px 0;
+  background: rgba(255,255,255,0.01);
+}
+.pf-web-preview svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px 5px 0 0;
+}
+.pf-web-body {
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.pf-web-category {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.pf-web-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.25;
+}
+.pf-web-desc {
+  font-size: 0.77rem;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.65;
+  margin: 0;
+}
+.pf-web-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pf-web-chip {
+  font-size: 0.66rem;
+  color: rgba(255,255,255,0.52);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 100px;
+  padding: 2px 8px;
+}
+.pf-web-cta {
+  font-size: 0.73rem;
+  font-weight: 600;
+  background: none;
+  border-radius: 100px;
+  padding: 5px 14px;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 4px;
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.pf-web-cta:hover { opacity: 0.8; }
+.pf-card-accent {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0.80;
+  border-radius: 0 0 14px 14px;
+}
+
+/* ── AI Tools (4-col) ── */
+.pf-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.pf-tool-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid color-mix(in srgb, var(--pf-tool-color, #00dcff) 22%, transparent);
+  border-radius: 14px;
+  padding: 20px 16px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--pf-tool-color, #00dcff) 6%, transparent);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.pf-tool-card:hover {
+  border-color: color-mix(in srgb, var(--pf-tool-color, #00dcff) 55%, transparent);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--pf-tool-color, #00dcff) 18%, transparent);
+  transform: translateY(-2px);
+}
+.pf-tool-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pf-tool-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.25;
+}
+.pf-tool-desc {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.47);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+.pf-tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.pf-tool-chip {
+  font-size: 0.64rem;
+  color: rgba(255,255,255,0.50);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 2px 7px;
+}
+.pf-tool-cta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: none;
+  border-radius: 100px;
+  padding: 5px 12px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.2s;
+}
+.pf-tool-cta:hover { opacity: 0.75; }
+
+/* ── CTA card ── */
+.pf-cta-card {
+  background: rgba(0,220,255,0.04);
+  border: 1px solid rgba(0,220,255,0.22);
+  border-radius: 18px;
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 0 48px rgba(0,220,255,0.07);
+}
+.pf-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.pf-cta-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(0,220,255,0.08);
+  border: 1px solid rgba(0,220,255,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  box-shadow: 0 0 22px rgba(0,220,255,0.14);
+  flex-shrink: 0;
+}
+.pf-cta-title {
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+.pf-cta-sub {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.48);
+  margin: 0;
+  max-width: 420px;
+  line-height: 1.6;
+}
+.pf-cta-email {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.32);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pf-cta-btn {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent);
+  border: none;
+  border-radius: 100px;
+  padding: 13px 28px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.pf-cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .pf-apps-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .pf-tools-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 740px) {
+  .pf-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .pf-section { padding: 0 16px 40px; }
+  .pf-apps-grid { max-width: 100%; }
+  .pf-cards-grid { grid-template-columns: 1fr; }
+  .pf-tools-grid { grid-template-columns: 1fr 1fr; }
+  .pf-cta-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+    gap: 20px;
+  }
+  .pf-cta-left {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pf-cta-sub { max-width: 100%; }
+  .pf-cta-email { justify-content: center; }
+}
+
+/* ─────────────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .bc-title { font-size: 1rem; }
   .bc-desc { font-size: 0.875rem; line-height: 1.5; }

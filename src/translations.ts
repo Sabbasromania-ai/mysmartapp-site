@@ -192,9 +192,9 @@ export const translations = {
     aht_store_google: 'Google Play',
 
     // AppsPage
-    apps_eyebrow: 'APPS',
-    apps_page_title: 'Our Apps',
-    apps_page_sub: 'Explore applications we design and build for real-world use — from health tracking to automation, data workflows, and intelligent features.',
+    apps_eyebrow: 'PORTFOLIO',
+    apps_page_title: 'Digital products, websites, and automation systems we build.',
+    apps_page_sub: 'Explore selected apps, websites, e-shops, and AI-powered systems designed for real business use.',
     apps_live_tag: 'Live on iOS & Android',
     apps_coming_soon: 'Coming Soon',
     apps_view: 'View App',
@@ -492,9 +492,9 @@ export const translations = {
     aht_store_google: 'Google Play',
 
     // AppsPage
-    apps_eyebrow: 'ΕΦΑΡΜΟΓΕΣ',
-    apps_page_title: 'Οι εφαρμογές μας',
-    apps_page_sub: 'Δείτε εφαρμογές που σχεδιάζουμε και αναπτύσσουμε για πραγματική χρήση — από health tracking μέχρι αυτοματισμούς, δεδομένα και λειτουργίες τεχνητής νοημοσύνης.',
+    apps_eyebrow: 'PORTFOLIO',
+    apps_page_title: 'Ψηφιακά προϊόντα, websites και συστήματα αυτοματισμού που φτιάχνουμε.',
+    apps_page_sub: 'Δείτε επιλεγμένες εφαρμογές, websites, e-shops και AI συστήματα σχεδιασμένα για πραγματική επιχειρηματική χρήση.',
     apps_live_tag: 'Διαθέσιμο σε iOS & Android',
     apps_coming_soon: 'Σύντομα',
     apps_view: 'Προβολή Εφαρμογής',
